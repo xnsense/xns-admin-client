@@ -4,9 +4,10 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent }  from './app.component';
+import { HomeComponent } from './home/home.component';
 
 /* Feature Modules */
-import { HomeComponent } from './home/home.component';
+import { ComponentModule } from './components/component.module';
 
 @NgModule({
   imports: [
@@ -17,7 +18,7 @@ import { HomeComponent } from './home/home.component';
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: '**', redirectTo: 'home', pathMatch: 'full' }
     ])
-    //,ProductModule
+    ,ComponentModule
   ],
   declarations: [
     AppComponent,

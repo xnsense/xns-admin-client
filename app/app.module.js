@@ -13,8 +13,9 @@ var platform_browser_1 = require("@angular/platform-browser");
 var http_1 = require("@angular/http");
 var router_1 = require("@angular/router");
 var app_component_1 = require("./app.component");
-/* Feature Modules */
 var home_component_1 = require("./home/home.component");
+/* Feature Modules */
+var component_module_1 = require("./components/component.module");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -29,7 +30,8 @@ AppModule = __decorate([
                 { path: 'home', component: home_component_1.HomeComponent },
                 { path: '', redirectTo: 'home', pathMatch: 'full' },
                 { path: '**', redirectTo: 'home', pathMatch: 'full' }
-            ])
+            ]),
+            component_module_1.ComponentModule
         ],
         declarations: [
             app_component_1.AppComponent,
