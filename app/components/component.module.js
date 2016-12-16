@@ -9,13 +9,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var common_1 = require("@angular/common");
 var router_1 = require("@angular/router");
 var component_list_component_1 = require("./component-list.component");
-//import { ProductDetailComponent } from './product-detail.component';
-//import { ProductDetailGuard } from './product-guard.service';
-//import { ProductFilterPipe } from './product-filter.pipe';
-//import { ProductService } from './product.service';
-//import { SharedModule } from '../shared/shared.module';
+var component_details_component_1 = require("./component-details.component");
+var xns_service_1 = require("../api/xns-service");
 var ComponentModule = (function () {
     function ComponentModule() {
     }
@@ -24,15 +22,19 @@ var ComponentModule = (function () {
 ComponentModule = __decorate([
     core_1.NgModule({
         imports: [
-            //SharedModule,
+            common_1.CommonModule,
             router_1.RouterModule.forChild([
                 { path: 'components', component: component_list_component_1.ComponentListComponent },
+                { path: 'components/:id', component: component_list_component_1.ComponentListComponent }
             ])
         ],
         declarations: [
             component_list_component_1.ComponentListComponent,
+            component_details_component_1.ComponentDetailsComponent
         ],
-        providers: []
+        providers: [
+            xns_service_1.XnsService,
+        ]
     }),
     __metadata("design:paramtypes", [])
 ], ComponentModule);

@@ -1,33 +1,28 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { RouterModule} from '@angular/router';
 
 import { ComponentListComponent } from './component-list.component';
-//import { ProductDetailComponent } from './product-detail.component';
-//import { ProductDetailGuard } from './product-guard.service';
+import { ComponentDetailsComponent } from './component-details.component';
 
-//import { ProductFilterPipe } from './product-filter.pipe';
-//import { ProductService } from './product.service';
-
-//import { SharedModule } from '../shared/shared.module';
+import { XnsService } from '../api/xns-service';
 
 @NgModule({
   imports: [
-    //SharedModule,
+      CommonModule,
     RouterModule.forChild([
       { path: 'components', component: ComponentListComponent },
-//      { path: 'product/:id',
-        //canActivate: [ ProductDetailGuard],
-        //component: ProductDetailComponent
-//      }
+      { path: 'components/:id', component: ComponentListComponent }
     ])
   ],
   declarations: [
     ComponentListComponent,
+    ComponentDetailsComponent
 //    ProductDetailComponent,
 //    ProductFilterPipe
   ],
   providers: [
-//    ProductService,
+    XnsService,
 //    ProductDetailGuard
   ]
 })
