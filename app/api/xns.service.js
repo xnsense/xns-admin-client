@@ -18,16 +18,21 @@ var XnsService = (function () {
     function XnsService(_http) {
         this._http = _http;
         this._baseUrl = 'https://xnsensemobile.azurewebsites.net/';
+        this.login("", "");
     }
     XnsService.prototype.getComponents = function () {
-        var headers = new http_1.Headers({ "X-ZUMO-AUTH": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyb2FyZnJlZEBnbWFpbC5jb20iLCJYTlMtQUNDRVNTLVRPS0VOIjoieG5zOnJvYXJmcmVkQGdtYWlsLmNvbS0yMzI5IiwiaWRwIjoieG5zZW5zZSIsImVtYWlsIjoicm9hcmZyZWRAZ21haWwuY29tIiwidmVyIjoiMyIsImlzcyI6Imh0dHBzOi8veG5zZW5zZW1vYmlsZS5henVyZXdlYnNpdGVzLm5ldC8iLCJhdWQiOiJodHRwczovL3huc2Vuc2Vtb2JpbGUuYXp1cmV3ZWJzaXRlcy5uZXQvIiwiZXhwIjoxNDgxOTg5NTA5LCJuYmYiOjE0ODE5MDMxMDl9.sYAwSsfSNJsJKvhOEL2gbxpdmVgRCooSkCZBEP8J8YU" });
+        var headers = new http_1.Headers({ "X-ZUMO-AUTH": this._auth });
         var options = new http_1.RequestOptions({ headers: headers });
         return this._http.get(this._baseUrl + "tables/component", options)
             .map(function (response) { return response.json(); })
             .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
             .catch(this.handleError);
     };
-    XnsService.prototype.getAuthHeader = function () {
+    XnsService.prototype.login = function (user, pass) {
+        this._auth = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyb2FyZnJlZEBnbWFpbC5jb20iLCJYTlMtQUNDRVNTLVRPS0VOIjoieG5zOnJvYXJmcmVkQGdtYWlsLmNvbS0yMzI5IiwiaWRwIjoieG5zZW5zZSIsImVtYWlsIjoicm9hcmZyZWRAZ21haWwuY29tIiwidmVyIjoiMyIsImlzcyI6Imh0dHBzOi8veG5zZW5zZW1vYmlsZS5henVyZXdlYnNpdGVzLm5ldC8iLCJhdWQiOiJodHRwczovL3huc2Vuc2Vtb2JpbGUuYXp1cmV3ZWJzaXRlcy5uZXQvIiwiZXhwIjoxNDgxOTg5NTA5LCJuYmYiOjE0ODE5MDMxMDl9.sYAwSsfSNJsJKvhOEL2gbxpdmVgRCooSkCZBEP8J8YU";
+    };
+    XnsService.prototype.isLoggedIn = function () {
+        return this._auth != null;
     };
     XnsService.prototype.handleError = function (error) {
         // in a real world app, we may send the server to some remote logging infrastructure
@@ -42,4 +47,4 @@ XnsService = __decorate([
     __metadata("design:paramtypes", [http_1.Http])
 ], XnsService);
 exports.XnsService = XnsService;
-//# sourceMappingURL=xns-service.js.map
+//# sourceMappingURL=xns.service.js.map

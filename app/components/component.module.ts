@@ -5,14 +5,15 @@ import { RouterModule} from '@angular/router';
 import { ComponentListComponent } from './component-list.component';
 import { ComponentDetailsComponent } from './component-details.component';
 
-import { XnsService } from '../api/xns-service';
+import { XnsService } from '../api/xns.service';
+import { XnsServiceGuard } from '../api/xns-guard.service';
 
 @NgModule({
   imports: [
       CommonModule,
     RouterModule.forChild([
-      { path: 'components', component: ComponentListComponent },
-      { path: 'components/:id', component: ComponentListComponent }
+      { path: 'components', component: ComponentListComponent, canActivate: [XnsServiceGuard] },
+      { path: 'components/:id', component: ComponentListComponent, canActivate: [XnsServiceGuard] }
     ])
   ],
   declarations: [
@@ -23,6 +24,7 @@ import { XnsService } from '../api/xns-service';
   ],
   providers: [
     XnsService,
+    XnsServiceGuard
 //    ProductDetailGuard
   ]
 })

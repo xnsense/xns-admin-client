@@ -13,7 +13,8 @@ var common_1 = require("@angular/common");
 var router_1 = require("@angular/router");
 var component_list_component_1 = require("./component-list.component");
 var component_details_component_1 = require("./component-details.component");
-var xns_service_1 = require("../api/xns-service");
+var xns_service_1 = require("../api/xns.service");
+var xns_guard_service_1 = require("../api/xns-guard.service");
 var ComponentModule = (function () {
     function ComponentModule() {
     }
@@ -24,8 +25,8 @@ ComponentModule = __decorate([
         imports: [
             common_1.CommonModule,
             router_1.RouterModule.forChild([
-                { path: 'components', component: component_list_component_1.ComponentListComponent },
-                { path: 'components/:id', component: component_list_component_1.ComponentListComponent }
+                { path: 'components', component: component_list_component_1.ComponentListComponent, canActivate: [xns_guard_service_1.XnsServiceGuard] },
+                { path: 'components/:id', component: component_list_component_1.ComponentListComponent, canActivate: [xns_guard_service_1.XnsServiceGuard] }
             ])
         ],
         declarations: [
@@ -34,6 +35,7 @@ ComponentModule = __decorate([
         ],
         providers: [
             xns_service_1.XnsService,
+            xns_guard_service_1.XnsServiceGuard
         ]
     }),
     __metadata("design:paramtypes", [])

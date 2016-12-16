@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { IComponent } from './component';
-import { XnsService } from '../api/xns-service';
+import { XnsService } from '../api/xns.service';
 
 @Component({
     selector: 'xns-component',

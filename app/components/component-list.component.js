@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
-var xns_service_1 = require("../api/xns-service");
+var xns_service_1 = require("../api/xns.service");
 var ComponentListComponent = (function () {
     function ComponentListComponent(_route, _router, _service) {
         this._route = _route;

@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 
 /* Feature Modules */
 import { ComponentModule } from './components/component.module';
+import { XnsServiceGuard } from './api/xns-guard.service';
 
 @NgModule({
   imports: [
@@ -23,6 +24,9 @@ import { ComponentModule } from './components/component.module';
   declarations: [
     AppComponent,
     HomeComponent
+  ],
+  providers: [
+    //XnsServiceGuard
   ],
   bootstrap: [ AppComponent ]
 })
