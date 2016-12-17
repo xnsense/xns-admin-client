@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 import { AppComponent }  from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -24,7 +25,6 @@ import { XnsServiceGuard } from './api/xns-guard.service';
       { path: '**', redirectTo: 'home', pathMatch: 'full' }
     ]),
     ComponentModule
-    
   ],
   declarations: [
     AppComponent,
@@ -32,7 +32,8 @@ import { XnsServiceGuard } from './api/xns-guard.service';
     LoginComponent
   ],
   providers: [
-    XnsServiceGuard
+    XnsServiceGuard,
+    DatePipe
   ],
   bootstrap: [ AppComponent ]
 })

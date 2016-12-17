@@ -9,14 +9,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var common_1 = require("@angular/common");
 var http_1 = require("@angular/http");
 var Observable_1 = require("rxjs/Observable");
 require("rxjs/add/operator/do");
 require("rxjs/add/operator/catch");
 require("rxjs/add/operator/map");
 var XnsService = (function () {
-    function XnsService(_http) {
+    function XnsService(_http, datePipe) {
         this._http = _http;
+        this.datePipe = datePipe;
         this._baseUrl = 'https://xnsensemobile.azurewebsites.net/';
         //this.login("", "");
     }
@@ -31,12 +33,15 @@ var XnsService = (function () {
     XnsService.prototype.getComponentMessages = function (component) {
         var headers = new http_1.Headers({ "X-ZUMO-AUTH": this._auth });
         var options = new http_1.RequestOptions({ headers: headers });
-        var fromDate = new Date().getFullYear() + "-" + new Date().getMonth() + "-" + new Date().getDay();
+        var fromDate = this.getDateParameter(new Date(new Date().getTime() - 7 * 1000 * 60 * 60 * 24));
         var address = this._baseUrl + "api/Message?componentAddress=" + encodeURI(component.componentAddress) + "&fromDate=" + fromDate;
         return this._http.get(address, options)
             .map(function (response) { return response.json().Data; })
             .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
             .catch(this.handleError);
+    };
+    XnsService.prototype.getDateParameter = function (date) {
+        return this.datePipe.transform(date, 'yyyy-MM-dd');
     };
     XnsService.prototype.login = function (user, pass) {
         var _this = this;
@@ -65,7 +70,8 @@ var XnsService = (function () {
 }());
 XnsService = __decorate([
     core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http])
+    __metadata("design:paramtypes", [http_1.Http,
+        common_1.DatePipe])
 ], XnsService);
 exports.XnsService = XnsService;
 //# sourceMappingURL=xns.service.js.map

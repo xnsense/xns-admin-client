@@ -13,6 +13,7 @@ var platform_browser_1 = require("@angular/platform-browser");
 var http_1 = require("@angular/http");
 var router_1 = require("@angular/router");
 var forms_1 = require("@angular/forms");
+var common_1 = require("@angular/common");
 var app_component_1 = require("./app.component");
 var home_component_1 = require("./home/home.component");
 var login_component_1 = require("./home/login.component");
@@ -44,7 +45,8 @@ AppModule = __decorate([
             login_component_1.LoginComponent
         ],
         providers: [
-            xns_guard_service_1.XnsServiceGuard
+            xns_guard_service_1.XnsServiceGuard,
+            common_1.DatePipe
         ],
         bootstrap: [app_component_1.AppComponent]
     }),

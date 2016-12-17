@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { DatePipe } from '@angular/common';
+
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
@@ -14,7 +16,10 @@ export class XnsService {
     private _baseUrl = 'https://xnsensemobile.azurewebsites.net/';
     private _auth: string;
 
-    constructor(private _http: Http) { 
+    constructor(
+        private _http: Http,
+        private datePipe: DatePipe
+    ) { 
 
         //this.login("", "");
     }
@@ -33,12 +38,16 @@ export class XnsService {
         let headers = new Headers({"X-ZUMO-AUTH": this._auth});
         
         let options = new RequestOptions({ headers: headers });
-        var fromDate = new Date().getFullYear() + "-" + new Date().getMonth() + "-" + new Date().getDay();
+        var fromDate = this.getDateParameter(new Date(new Date().getTime() - 7 * 1000 * 60 * 60 * 24));
         var address = this._baseUrl + "api/Message?componentAddress=" + encodeURI(component.componentAddress) + "&fromDate=" + fromDate;
         return this._http.get(address , options)
             .map((response: Response) => <IComponentMessage[]> response.json().Data)
             .do(data => console.log('All: ' +  JSON.stringify(data)))
             .catch(this.handleError);
+    }
+
+    private getDateParameter(date: Date) {
+        return this.datePipe.transform(date, 'yyyy-MM-dd');
     }
 
     public login(user: string, pass: string) : Observable<string> {
