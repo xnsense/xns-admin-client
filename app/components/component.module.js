@@ -12,6 +12,7 @@ var core_1 = require("@angular/core");
 var common_1 = require("@angular/common");
 var router_1 = require("@angular/router");
 var component_list_component_1 = require("./component-list.component");
+var component_edit_component_1 = require("./component-edit.component");
 var component_details_component_1 = require("./component-details.component");
 var component_messages_component_1 = require("./component-messages.component");
 var xns_service_1 = require("../api/xns.service");
@@ -27,13 +28,15 @@ ComponentModule = __decorate([
             common_1.CommonModule,
             router_1.RouterModule.forChild([
                 { path: 'components', component: component_list_component_1.ComponentListComponent, canActivate: [xns_guard_service_1.XnsServiceGuard] },
-                { path: 'components/:id', component: component_list_component_1.ComponentListComponent, canActivate: [xns_guard_service_1.XnsServiceGuard] }
+                { path: 'components/:id', component: component_list_component_1.ComponentListComponent, canActivate: [xns_guard_service_1.XnsServiceGuard] },
+                { path: 'edit/component/:id', component: component_edit_component_1.ComponentEditComponent, canActivate: [xns_guard_service_1.XnsServiceGuard] },
             ])
         ],
         declarations: [
             component_list_component_1.ComponentListComponent,
             component_details_component_1.ComponentDetailsComponent,
-            component_messages_component_1.ComponentMessagesComponent
+            component_messages_component_1.ComponentMessagesComponent,
+            component_edit_component_1.ComponentEditComponent
         ],
         providers: [
             xns_service_1.XnsService,

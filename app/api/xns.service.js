@@ -16,9 +16,9 @@ require("rxjs/add/operator/do");
 require("rxjs/add/operator/catch");
 require("rxjs/add/operator/map");
 var XnsService = (function () {
-    function XnsService(_http, datePipe) {
+    function XnsService(_http, _datePipe) {
         this._http = _http;
-        this.datePipe = datePipe;
+        this._datePipe = _datePipe;
         this._baseUrl = 'https://xnsensemobile.azurewebsites.net/';
         this._auth = localStorage.getItem('auth');
     }
@@ -41,7 +41,7 @@ var XnsService = (function () {
             .catch(this.handleError);
     };
     XnsService.prototype.getDateParameter = function (date) {
-        return this.datePipe.transform(date, 'yyyy-MM-dd');
+        return this._datePipe.transform(date, 'yyyy-MM-dd');
     };
     XnsService.prototype.login = function (user, pass) {
         var _this = this;

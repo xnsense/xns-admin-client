@@ -16,17 +16,13 @@ export class XnsService {
     private _baseUrl = 'https://xnsensemobile.azurewebsites.net/';
     private _auth: string;
 
-    constructor(
-        private _http: Http,
-        private datePipe: DatePipe
-    ) { 
-
+    constructor(private _http: Http, 
+                private _datePipe: DatePipe) { 
         this._auth = localStorage.getItem('auth');
     }
 
     getComponents(): Observable<IComponent[]> {
         let headers = new Headers({"X-ZUMO-AUTH": this._auth});
-        
         let options = new RequestOptions({ headers: headers });
         return this._http.get(this._baseUrl + "tables/component", options)
             .map((response: Response) => <IComponent[]> response.json())
@@ -36,7 +32,6 @@ export class XnsService {
 
     getComponentMessages(component: IComponent) : Observable<IComponentMessage[]> {
         let headers = new Headers({"X-ZUMO-AUTH": this._auth});
-        
         let options = new RequestOptions({ headers: headers });
         var fromDate = this.getDateParameter(new Date(new Date().getTime() - 7 * 1000 * 60 * 60 * 24));
         var address = this._baseUrl + "api/Message?componentAddress=" + encodeURI(component.componentAddress) + "&fromDate=" + fromDate;
@@ -47,7 +42,7 @@ export class XnsService {
     }
 
     private getDateParameter(date: Date) {
-        return this.datePipe.transform(date, 'yyyy-MM-dd');
+        return this._datePipe.transform(date, 'yyyy-MM-dd');
     }
 
     public login(user: string, pass: string) : Observable<string> {
@@ -61,14 +56,17 @@ export class XnsService {
             .do(data => console.log('All: ' +  JSON.stringify(data)))
             .catch(this.handleError);
     }
+
     public logout()
     {
         this._auth = null;
         localStorage.clear();
     }
+
     public isLoggedIn() : boolean {
         return this._auth != null;
     } 
+
     private handleError(error: Response) {
         // in a real world app, we may send the server to some remote logging infrastructure
         // instead of just logging it to the console

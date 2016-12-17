@@ -24,7 +24,6 @@ export class ComponentListComponent implements OnInit {
                 private _service: XnsService) {
 
     }
-    
 
     ngOnInit(): void {
         this._service.getComponents()
