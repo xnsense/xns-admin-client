@@ -12,10 +12,13 @@ var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var http_1 = require("@angular/http");
 var router_1 = require("@angular/router");
+var forms_1 = require("@angular/forms");
 var app_component_1 = require("./app.component");
 var home_component_1 = require("./home/home.component");
+var login_component_1 = require("./home/login.component");
 /* Feature Modules */
 var component_module_1 = require("./components/component.module");
+var xns_guard_service_1 = require("./api/xns-guard.service");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -26,8 +29,10 @@ AppModule = __decorate([
         imports: [
             platform_browser_1.BrowserModule,
             http_1.HttpModule,
+            forms_1.FormsModule,
             router_1.RouterModule.forRoot([
                 { path: 'home', component: home_component_1.HomeComponent },
+                { path: 'login', component: login_component_1.LoginComponent },
                 { path: '', redirectTo: 'home', pathMatch: 'full' },
                 { path: '**', redirectTo: 'home', pathMatch: 'full' }
             ]),
@@ -35,9 +40,12 @@ AppModule = __decorate([
         ],
         declarations: [
             app_component_1.AppComponent,
-            home_component_1.HomeComponent
+            home_component_1.HomeComponent,
+            login_component_1.LoginComponent
         ],
-        providers: [],
+        providers: [
+            xns_guard_service_1.XnsServiceGuard
+        ],
         bootstrap: [app_component_1.AppComponent]
     }),
     __metadata("design:paramtypes", [])

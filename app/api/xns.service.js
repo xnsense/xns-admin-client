@@ -18,7 +18,7 @@ var XnsService = (function () {
     function XnsService(_http) {
         this._http = _http;
         this._baseUrl = 'https://xnsensemobile.azurewebsites.net/';
-        this.login("", "");
+        //this.login("", "");
     }
     XnsService.prototype.getComponents = function () {
         var headers = new http_1.Headers({ "X-ZUMO-AUTH": this._auth });
@@ -29,7 +29,18 @@ var XnsService = (function () {
             .catch(this.handleError);
     };
     XnsService.prototype.login = function (user, pass) {
-        this._auth = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyb2FyZnJlZEBnbWFpbC5jb20iLCJYTlMtQUNDRVNTLVRPS0VOIjoieG5zOnJvYXJmcmVkQGdtYWlsLmNvbS0yMzI5IiwiaWRwIjoieG5zZW5zZSIsImVtYWlsIjoicm9hcmZyZWRAZ21haWwuY29tIiwidmVyIjoiMyIsImlzcyI6Imh0dHBzOi8veG5zZW5zZW1vYmlsZS5henVyZXdlYnNpdGVzLm5ldC8iLCJhdWQiOiJodHRwczovL3huc2Vuc2Vtb2JpbGUuYXp1cmV3ZWJzaXRlcy5uZXQvIiwiZXhwIjoxNDgxOTg5NTA5LCJuYmYiOjE0ODE5MDMxMDl9.sYAwSsfSNJsJKvhOEL2gbxpdmVgRCooSkCZBEP8J8YU";
+        var _this = this;
+        var options = new http_1.RequestOptions({ headers: new http_1.Headers({ 'Content-Type': 'application/json' }) });
+        return this._http.post(this._baseUrl + "api/serviceauth", JSON.stringify({ "username": user, "accessToken": pass }), options)
+            .map(function (response) {
+            _this._auth = response.json().authenticationToken;
+            return _this._auth;
+        })
+            .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
+            .catch(this.handleError);
+    };
+    XnsService.prototype.logout = function () {
+        this._auth = null;
     };
     XnsService.prototype.isLoggedIn = function () {
         return this._auth != null;

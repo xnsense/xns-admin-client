@@ -15,7 +15,7 @@ export class XnsService {
 
     constructor(private _http: Http) { 
 
-        this.login("", "");
+        //this.login("", "");
     }
 
     getComponents(): Observable<IComponent[]> {
@@ -28,8 +28,19 @@ export class XnsService {
             .catch(this.handleError);
     }
 
-    public login(user: string, pass: string) {
-        this._auth = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyb2FyZnJlZEBnbWFpbC5jb20iLCJYTlMtQUNDRVNTLVRPS0VOIjoieG5zOnJvYXJmcmVkQGdtYWlsLmNvbS0yMzI5IiwiaWRwIjoieG5zZW5zZSIsImVtYWlsIjoicm9hcmZyZWRAZ21haWwuY29tIiwidmVyIjoiMyIsImlzcyI6Imh0dHBzOi8veG5zZW5zZW1vYmlsZS5henVyZXdlYnNpdGVzLm5ldC8iLCJhdWQiOiJodHRwczovL3huc2Vuc2Vtb2JpbGUuYXp1cmV3ZWJzaXRlcy5uZXQvIiwiZXhwIjoxNDgxOTg5NTA5LCJuYmYiOjE0ODE5MDMxMDl9.sYAwSsfSNJsJKvhOEL2gbxpdmVgRCooSkCZBEP8J8YU";
+    public login(user: string, pass: string) : Observable<string> {
+        let options = new RequestOptions({ headers: new Headers({ 'Content-Type': 'application/json' }) });
+        return this._http.post(this._baseUrl + "api/serviceauth", JSON.stringify({"username":user,"accessToken":pass}), options)
+            .map((response: Response) => {
+                this._auth = response.json().authenticationToken;
+                return this._auth;
+            })
+            .do(data => console.log('All: ' +  JSON.stringify(data)))
+            .catch(this.handleError);
+    }
+    public logout()
+    {
+        this._auth = null;
     }
     public isLoggedIn() : boolean {
         return this._auth != null;
