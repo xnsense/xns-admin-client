@@ -9,10 +9,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var xns_service_1 = require("./api/xns.service");
 var AppComponent = (function () {
-    function AppComponent() {
+    function AppComponent(_service) {
+        this._service = _service;
         this.pageTitle = 'XNSENSE';
     }
+    AppComponent.prototype.isLoggedIn = function () {
+        return this._service.isLoggedIn();
+    };
     return AppComponent;
 }());
 AppComponent = __decorate([
@@ -20,7 +25,7 @@ AppComponent = __decorate([
         selector: 'pm-app',
         templateUrl: 'app/app.component.html'
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [xns_service_1.XnsService])
 ], AppComponent);
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map

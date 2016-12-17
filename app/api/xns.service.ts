@@ -21,7 +21,7 @@ export class XnsService {
         private datePipe: DatePipe
     ) { 
 
-        //this.login("", "");
+        this._auth = localStorage.getItem('auth');
     }
 
     getComponents(): Observable<IComponent[]> {
@@ -55,6 +55,7 @@ export class XnsService {
         return this._http.post(this._baseUrl + "api/serviceauth", JSON.stringify({"username":user,"accessToken":pass}), options)
             .map((response: Response) => {
                 this._auth = response.json().authenticationToken;
+                localStorage.setItem('auth', this._auth);
                 return this._auth;
             })
             .do(data => console.log('All: ' +  JSON.stringify(data)))
@@ -63,6 +64,7 @@ export class XnsService {
     public logout()
     {
         this._auth = null;
+        localStorage.clear();
     }
     public isLoggedIn() : boolean {
         return this._auth != null;

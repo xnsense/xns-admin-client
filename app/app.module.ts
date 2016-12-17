@@ -11,6 +11,7 @@ import { LoginComponent } from './home/login.component';
 
 /* Feature Modules */
 import { ComponentModule } from './components/component.module';
+import { XnsService } from './api/xns.service';
 import { XnsServiceGuard } from './api/xns-guard.service';
 
 @NgModule({
@@ -32,6 +33,7 @@ import { XnsServiceGuard } from './api/xns-guard.service';
     LoginComponent
   ],
   providers: [
+    XnsService,
     XnsServiceGuard,
     DatePipe
   ],

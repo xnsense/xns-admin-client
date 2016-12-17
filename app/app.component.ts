@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { XnsService } from './api/xns.service';
 
 @Component({
     selector: 'pm-app',
@@ -6,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
     pageTitle: string = 'XNSENSE';
+
+    constructor (private _service: XnsService) {
+
+    }
+
+    public isLoggedIn() : boolean {
+        return this._service.isLoggedIn();
+    }
 }

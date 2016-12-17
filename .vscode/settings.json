@@ -8,4 +8,6 @@
         "**/.hg": true,
         "**/.DS_Store": true
     }
+,
+"files.autoSave": "afterDelay"
 }

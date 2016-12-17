@@ -19,6 +19,7 @@ var home_component_1 = require("./home/home.component");
 var login_component_1 = require("./home/login.component");
 /* Feature Modules */
 var component_module_1 = require("./components/component.module");
+var xns_service_1 = require("./api/xns.service");
 var xns_guard_service_1 = require("./api/xns-guard.service");
 var AppModule = (function () {
     function AppModule() {
@@ -45,6 +46,7 @@ AppModule = __decorate([
             login_component_1.LoginComponent
         ],
         providers: [
+            xns_service_1.XnsService,
             xns_guard_service_1.XnsServiceGuard,
             common_1.DatePipe
         ],

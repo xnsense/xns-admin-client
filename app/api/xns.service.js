@@ -20,7 +20,7 @@ var XnsService = (function () {
         this._http = _http;
         this.datePipe = datePipe;
         this._baseUrl = 'https://xnsensemobile.azurewebsites.net/';
-        //this.login("", "");
+        this._auth = localStorage.getItem('auth');
     }
     XnsService.prototype.getComponents = function () {
         var headers = new http_1.Headers({ "X-ZUMO-AUTH": this._auth });
@@ -49,6 +49,7 @@ var XnsService = (function () {
         return this._http.post(this._baseUrl + "api/serviceauth", JSON.stringify({ "username": user, "accessToken": pass }), options)
             .map(function (response) {
             _this._auth = response.json().authenticationToken;
+            localStorage.setItem('auth', _this._auth);
             return _this._auth;
         })
             .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
@@ -56,6 +57,7 @@ var XnsService = (function () {
     };
     XnsService.prototype.logout = function () {
         this._auth = null;
+        localStorage.clear();
     };
     XnsService.prototype.isLoggedIn = function () {
         return this._auth != null;
