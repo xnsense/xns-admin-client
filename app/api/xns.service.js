@@ -28,6 +28,16 @@ var XnsService = (function () {
             .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
             .catch(this.handleError);
     };
+    XnsService.prototype.getComponentMessages = function (component) {
+        var headers = new http_1.Headers({ "X-ZUMO-AUTH": this._auth });
+        var options = new http_1.RequestOptions({ headers: headers });
+        var fromDate = new Date().getFullYear() + "-" + new Date().getMonth() + "-" + new Date().getDay();
+        var address = this._baseUrl + "api/Message?componentAddress=" + encodeURI(component.componentAddress) + "&fromDate=" + fromDate;
+        return this._http.get(address, options)
+            .map(function (response) { return response.json().Data; })
+            .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
+            .catch(this.handleError);
+    };
     XnsService.prototype.login = function (user, pass) {
         var _this = this;
         var options = new http_1.RequestOptions({ headers: new http_1.Headers({ 'Content-Type': 'application/json' }) });

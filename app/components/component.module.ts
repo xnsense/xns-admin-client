@@ -4,6 +4,7 @@ import { RouterModule} from '@angular/router';
 
 import { ComponentListComponent } from './component-list.component';
 import { ComponentDetailsComponent } from './component-details.component';
+import { ComponentMessagesComponent } from './component-messages.component';
 
 import { XnsService } from '../api/xns.service';
 import { XnsServiceGuard } from '../api/xns-guard.service';
@@ -18,7 +19,8 @@ import { XnsServiceGuard } from '../api/xns-guard.service';
   ],
   declarations: [
     ComponentListComponent,
-    ComponentDetailsComponent
+    ComponentDetailsComponent,
+    ComponentMessagesComponent
 //    ProductDetailComponent,
 //    ProductFilterPipe
   ],

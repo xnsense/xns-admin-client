@@ -7,6 +7,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
 import { IComponent } from '../components/component';
+import { IComponentMessage } from '../components/component-message';
 
 @Injectable()
 export class XnsService {
@@ -24,6 +25,18 @@ export class XnsService {
         let options = new RequestOptions({ headers: headers });
         return this._http.get(this._baseUrl + "tables/component", options)
             .map((response: Response) => <IComponent[]> response.json())
+            .do(data => console.log('All: ' +  JSON.stringify(data)))
+            .catch(this.handleError);
+    }
+
+    getComponentMessages(component: IComponent) : Observable<IComponentMessage[]> {
+        let headers = new Headers({"X-ZUMO-AUTH": this._auth});
+        
+        let options = new RequestOptions({ headers: headers });
+        var fromDate = new Date().getFullYear() + "-" + new Date().getMonth() + "-" + new Date().getDay();
+        var address = this._baseUrl + "api/Message?componentAddress=" + encodeURI(component.componentAddress) + "&fromDate=" + fromDate;
+        return this._http.get(address , options)
+            .map((response: Response) => <IComponentMessage[]> response.json().Data)
             .do(data => console.log('All: ' +  JSON.stringify(data)))
             .catch(this.handleError);
     }

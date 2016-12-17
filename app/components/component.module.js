@@ -13,6 +13,7 @@ var common_1 = require("@angular/common");
 var router_1 = require("@angular/router");
 var component_list_component_1 = require("./component-list.component");
 var component_details_component_1 = require("./component-details.component");
+var component_messages_component_1 = require("./component-messages.component");
 var xns_service_1 = require("../api/xns.service");
 var xns_guard_service_1 = require("../api/xns-guard.service");
 var ComponentModule = (function () {
@@ -31,7 +32,8 @@ ComponentModule = __decorate([
         ],
         declarations: [
             component_list_component_1.ComponentListComponent,
-            component_details_component_1.ComponentDetailsComponent
+            component_details_component_1.ComponentDetailsComponent,
+            component_messages_component_1.ComponentMessagesComponent
         ],
         providers: [
             xns_service_1.XnsService,
