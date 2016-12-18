@@ -33,12 +33,20 @@ var XnsService = (function () {
     XnsService.prototype.saveComponent = function (component) {
         var headers = new http_1.Headers({ "X-ZUMO-AUTH": this._auth, 'Content-Type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers });
-        return this._http.patch(this._baseUrl + "tables/component/" + encodeURI(component.id), JSON.stringify(component), options)
+        var savable = this.getSaveableComponent(component);
+        return this._http.patch(this._baseUrl + "tables/component/" + encodeURI(component.id), JSON.stringify(savable), options)
             .map(function (response) {
             return true;
         })
             .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
             .catch(this.handleError);
+    };
+    XnsService.prototype.getSaveableComponent = function (component) {
+        return {
+            name: component.name,
+            description: component.description,
+            type: component.type
+        };
     };
     XnsService.prototype.getComponents = function () {
         var headers = new http_1.Headers({ "X-ZUMO-AUTH": this._auth });

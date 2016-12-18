@@ -8,6 +8,7 @@ import { DatePipe } from '@angular/common';
 import { AppComponent }  from './app.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './home/login.component';
+import { NavbarComponent } from './home/navbar.component';
 
 /* Feature Modules */
 import { ComponentModule } from './components/component.module';
@@ -30,7 +31,8 @@ import { XnsServiceGuard } from './api/xns-guard.service';
   declarations: [
     AppComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    NavbarComponent
   ],
   providers: [
     XnsService,

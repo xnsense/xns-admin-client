@@ -37,8 +37,9 @@ export class ComponentEditComponent implements OnInit {
     save() : void {
         this._service
             .saveComponent(this.component)
-            .subscribe(v => {
-
+            .subscribe(success => {
+                if (success)
+                    this._router.navigate(['components']);
             }, e => {
 
             });

@@ -33,12 +33,21 @@ export class XnsService {
     saveComponent(component: IComponent): Observable<boolean> {
         let headers = new Headers({"X-ZUMO-AUTH": this._auth, 'Content-Type': 'application/json'});
         let options = new RequestOptions({ headers: headers });
-        return this._http.patch(this._baseUrl + "tables/component/" + encodeURI(component.id), JSON.stringify(component), options)
+        let savable = this.getSaveableComponent(component);
+        return this._http.patch(this._baseUrl + "tables/component/" + encodeURI(component.id), JSON.stringify(savable), options)
             .map((response: Response) => {
                 return true;
             })
             .do(data => console.log('All: ' +  JSON.stringify(data)))
             .catch(this.handleError);
+    }
+
+    getSaveableComponent(component: IComponent): any {
+        return {
+            name: component.name,
+            description: component.description,
+            type: component.type
+        };
     }
 
     getComponents(): Observable<IComponent[]> {

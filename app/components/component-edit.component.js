@@ -28,9 +28,12 @@ var ComponentEditComponent = (function () {
         });
     };
     ComponentEditComponent.prototype.save = function () {
+        var _this = this;
         this._service
             .saveComponent(this.component)
-            .subscribe(function (v) {
+            .subscribe(function (success) {
+            if (success)
+                _this._router.navigate(['components']);
         }, function (e) {
         });
     };

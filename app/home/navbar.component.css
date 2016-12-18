@@ -1,0 +1,12 @@
+.navnbar {
+    background-color: black;
+}
+
+.active {
+  color: #fff;
+}
+.navbar-toggler {
+  border: solid 1px silver;
+  border-radius: 2px;
+  color: #eee;
+}
