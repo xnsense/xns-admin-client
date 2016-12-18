@@ -21,6 +21,26 @@ export class XnsService {
         this._auth = localStorage.getItem('auth');
     }
 
+    getComponent(id: string): Observable<IComponent> {
+        let headers = new Headers({"X-ZUMO-AUTH": this._auth});
+        let options = new RequestOptions({ headers: headers });
+        return this._http.get(this._baseUrl + "tables/component/" + encodeURI(id), options)
+            .map((response: Response) => (<IComponent> response.json()))
+            .do(data => console.log('All: ' +  JSON.stringify(data)))
+            .catch(this.handleError);
+    }
+
+    saveComponent(component: IComponent): Observable<boolean> {
+        let headers = new Headers({"X-ZUMO-AUTH": this._auth, 'Content-Type': 'application/json'});
+        let options = new RequestOptions({ headers: headers });
+        return this._http.patch(this._baseUrl + "tables/component/" + encodeURI(component.id), JSON.stringify(component), options)
+            .map((response: Response) => {
+                return true;
+            })
+            .do(data => console.log('All: ' +  JSON.stringify(data)))
+            .catch(this.handleError);
+    }
+
     getComponents(): Observable<IComponent[]> {
         let headers = new Headers({"X-ZUMO-AUTH": this._auth});
         let options = new RequestOptions({ headers: headers });
