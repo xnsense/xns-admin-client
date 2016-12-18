@@ -33,7 +33,7 @@ var ComponentEditComponent = (function () {
             .saveComponent(this.component)
             .subscribe(function (success) {
             if (success)
-                _this._router.navigate(['components']);
+                _this._router.navigate(['components', _this.component.componentAddress]);
         }, function (e) {
         });
     };

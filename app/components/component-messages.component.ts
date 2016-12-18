@@ -10,6 +10,7 @@ import { XnsService } from '../api/xns.service';
 })
 export class ComponentMessagesComponent implements OnInit, OnChanges {
     @Input() component: IComponent;
+    echoMessage: string;
     messages: IComponentMessage[];
 
    constructor(
@@ -17,18 +18,22 @@ export class ComponentMessagesComponent implements OnInit, OnChanges {
 
     }
     
-ngOnChanges() : void {
-     this._service.getComponentMessages(this.component).subscribe(data => {
-            this.messages = data;
-        });
-}
+    ngOnChanges() : void {
+        this._service.getComponentMessages(this.component).subscribe(data => {
+                this.messages = data;
+            });
+    }
+
     ngOnInit(): void {
         this.messages = [];
-/*        
-        this._service.getComponentMessages(this.component).subscribe(data => {
-            this.messages = data;
+    }
+
+    echo() : void {
+        this._service.echo(this.component, this.echoMessage).subscribe(success => {
+            setTimeout(() => {
+                this.ngOnChanges();
+            }, 3000);            
         });
-        */
     }
   
 }

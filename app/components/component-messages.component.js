@@ -22,11 +22,14 @@ var ComponentMessagesComponent = (function () {
     };
     ComponentMessagesComponent.prototype.ngOnInit = function () {
         this.messages = [];
-        /*
-                this._service.getComponentMessages(this.component).subscribe(data => {
-                    this.messages = data;
-                });
-                */
+    };
+    ComponentMessagesComponent.prototype.echo = function () {
+        var _this = this;
+        this._service.echo(this.component, this.echoMessage).subscribe(function (success) {
+            setTimeout(function () {
+                _this.ngOnChanges();
+            }, 3000);
+        });
     };
     return ComponentMessagesComponent;
 }());

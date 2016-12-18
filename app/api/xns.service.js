@@ -41,6 +41,30 @@ var XnsService = (function () {
             .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
             .catch(this.handleError);
     };
+    XnsService.prototype.echo = function (component, message) {
+        var command = {
+            id: component.componentAddress,
+            command: "Echo",
+            message: message
+        };
+        return this.sendCommand(component, command);
+    };
+    XnsService.prototype.sendCommand = function (component, command) {
+        var data = {
+            action: JSON.stringify(command),
+            unitId: component.unitId,
+            componentId: component.id
+        };
+        var headers = new http_1.Headers({ "X-ZUMO-AUTH": this._auth, 'Content-Type': 'application/json' });
+        var options = new http_1.RequestOptions({ headers: headers });
+        var savable = this.getSaveableComponent(component);
+        return this._http.post(this._baseUrl + "api/componentAction", JSON.stringify(data), options)
+            .map(function (response) {
+            return true;
+        })
+            .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
+            .catch(this.handleError);
+    };
     XnsService.prototype.getSaveableComponent = function (component) {
         return {
             name: component.name,

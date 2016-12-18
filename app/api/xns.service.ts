@@ -42,6 +42,34 @@ export class XnsService {
             .catch(this.handleError);
     }
 
+    echo(component: IComponent, message: string): Observable<boolean> {
+        
+        let command = { 
+            id: component.componentAddress, 
+            command: "Echo",
+            message: message 
+        };
+        
+        return this.sendCommand(component, command);
+    }
+
+    sendCommand(component: IComponent, command: any) : Observable<boolean> {
+        var data = {
+            action: JSON.stringify(command),
+            unitId: component.unitId,
+            componentId: component.id
+        };
+        
+        let headers = new Headers({"X-ZUMO-AUTH": this._auth, 'Content-Type': 'application/json'});
+        let options = new RequestOptions({ headers: headers });
+        let savable = this.getSaveableComponent(component);
+        return this._http.post(this._baseUrl + "api/componentAction", JSON.stringify(data), options)
+            .map((response: Response) => {
+                return true;
+            })
+            .do(data => console.log('All: ' +  JSON.stringify(data)))
+            .catch(this.handleError);
+    }
     getSaveableComponent(component: IComponent): any {
         return {
             name: component.name,
