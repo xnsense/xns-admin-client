@@ -9,5 +9,6 @@
         "**/.DS_Store": true
     }
 ,
-"files.autoSave": "afterDelay"
+"files.autoSave": "afterDelay",
+"typescript.tsdk": "./node_modules/typescript/lib"
 }
