@@ -9,6 +9,7 @@ import { ComponentDetailsComponent } from './component-details.component';
 import { ComponentMessagesComponent } from './component-messages.component';
 
 import { ReversePipe } from '../shared/reverse.pipe';
+import { KeysPipe } from '../shared/keys.pipe';
 
 import { XnsService } from '../api/xns.service';
 import { XnsServiceGuard } from '../api/xns-guard.service';
@@ -28,7 +29,8 @@ import { XnsServiceGuard } from '../api/xns-guard.service';
     ComponentDetailsComponent,
     ComponentMessagesComponent,
     ComponentEditComponent,
-    ReversePipe
+    ReversePipe,
+    KeysPipe
   ],
   providers: [
     XnsService,

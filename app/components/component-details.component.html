@@ -7,8 +7,15 @@
     <div class="col-sm-3 text-right">Address</div>
     <div class="col-sm-9">{{component.componentAddress}}</div>
     
-
 </div>
+
+<ul>
+    Latest:
+    <li *ngFor="let p of latest | keys">
+        {{p.key}}: {{p.value.temperature}} <span class="small">[{{p.value.logdate}}]</span>
+    </li>
+</ul>
+
 <div class="row">
     <xns-component-messages [component]='component'></xns-component-messages>
 </div>

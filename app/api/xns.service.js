@@ -90,6 +90,16 @@ var XnsService = (function () {
             .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
             .catch(this.handleError);
     };
+    XnsService.prototype.getComponentLatestData = function (component) {
+        var headers = new http_1.Headers({ "X-ZUMO-AUTH": this._auth });
+        var options = new http_1.RequestOptions({ headers: headers });
+        var fromDate = this.getDateParameter(new Date(new Date().getTime() - 7 * 1000 * 60 * 60 * 24));
+        var address = this._baseUrl + "api/ComponentLatestData?componentAddress=" + encodeURI(component.componentAddress);
+        return this._http.get(address, options)
+            .map(function (response) { return response.json().Data; })
+            .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
+            .catch(this.handleError);
+    };
     XnsService.prototype.getDateParameter = function (date) {
         return this._datePipe.transform(date, 'yyyy-MM-dd');
     };

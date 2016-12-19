@@ -16,12 +16,12 @@ var ComponentMessagesComponent = (function () {
     }
     ComponentMessagesComponent.prototype.ngOnChanges = function () {
         var _this = this;
+        this.messages = [];
         this._service.getComponentMessages(this.component).subscribe(function (data) {
             _this.messages = data;
         });
     };
     ComponentMessagesComponent.prototype.ngOnInit = function () {
-        this.messages = [];
     };
     ComponentMessagesComponent.prototype.echo = function () {
         var _this = this;

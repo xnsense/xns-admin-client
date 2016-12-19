@@ -17,6 +17,7 @@ var component_edit_component_1 = require("./component-edit.component");
 var component_details_component_1 = require("./component-details.component");
 var component_messages_component_1 = require("./component-messages.component");
 var reverse_pipe_1 = require("../shared/reverse.pipe");
+var keys_pipe_1 = require("../shared/keys.pipe");
 var xns_service_1 = require("../api/xns.service");
 var xns_guard_service_1 = require("../api/xns-guard.service");
 var ComponentModule = (function () {
@@ -40,7 +41,8 @@ ComponentModule = __decorate([
             component_details_component_1.ComponentDetailsComponent,
             component_messages_component_1.ComponentMessagesComponent,
             component_edit_component_1.ComponentEditComponent,
-            reverse_pipe_1.ReversePipe
+            reverse_pipe_1.ReversePipe,
+            keys_pipe_1.KeysPipe
         ],
         providers: [
             xns_service_1.XnsService,

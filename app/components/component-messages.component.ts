@@ -19,13 +19,13 @@ export class ComponentMessagesComponent implements OnInit, OnChanges {
     }
     
     ngOnChanges() : void {
+        this.messages = [];
         this._service.getComponentMessages(this.component).subscribe(data => {
                 this.messages = data;
             });
     }
 
     ngOnInit(): void {
-        this.messages = [];
     }
 
     echo() : void {

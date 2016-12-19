@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { IComponent } from './component';
 import { XnsService } from '../api/xns.service';
 
@@ -7,8 +7,10 @@ import { XnsService } from '../api/xns.service';
     templateUrl: 'app/components/component-details.component.html',
     styleUrls: ['app/components/component-details.component.css']
 })
-export class ComponentDetailsComponent implements OnInit {
+export class ComponentDetailsComponent implements OnInit, OnChanges {
     @Input() component: IComponent;
+
+    latest: any = {};
 
    constructor(
                 private _service: XnsService) {
@@ -17,7 +19,11 @@ export class ComponentDetailsComponent implements OnInit {
     
 
     ngOnInit(): void {
-        
     }
-  
+    ngOnChanges() : void {
+        this.latest = {};
+         this._service.getComponentLatestData(this.component).subscribe(data => {
+                this.latest = data;
+            });
+    }
 }

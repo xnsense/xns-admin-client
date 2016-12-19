@@ -13,8 +13,16 @@ var xns_service_1 = require("../api/xns.service");
 var ComponentDetailsComponent = (function () {
     function ComponentDetailsComponent(_service) {
         this._service = _service;
+        this.latest = {};
     }
     ComponentDetailsComponent.prototype.ngOnInit = function () {
+    };
+    ComponentDetailsComponent.prototype.ngOnChanges = function () {
+        var _this = this;
+        this.latest = {};
+        this._service.getComponentLatestData(this.component).subscribe(function (data) {
+            _this.latest = data;
+        });
     };
     return ComponentDetailsComponent;
 }());
