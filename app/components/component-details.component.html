@@ -37,7 +37,7 @@
     </div>
     <ul>
         <li *ngFor="let p of latest | keys:'weight'">
-            {{p.key}}: <span class="label label-info">{{p.value.weight}}</span> <span class="small">[{{p.value.logdate}}]</span>
+            {{p.key}}: <span class="label label-info">{{p.value.weight}} {{p.value.measureunit}}</span> <span class="small">[{{p.value.logdate}}]</span>
         </li>
     </ul>
 </div>
