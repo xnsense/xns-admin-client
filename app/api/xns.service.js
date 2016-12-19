@@ -83,17 +83,22 @@ var XnsService = (function () {
     XnsService.prototype.getComponentMessages = function (component) {
         var headers = new http_1.Headers({ "X-ZUMO-AUTH": this._auth });
         var options = new http_1.RequestOptions({ headers: headers });
-        var fromDate = this.getDateParameter(new Date(new Date().getTime() - 7 * 1000 * 60 * 60 * 24));
+        var fromDate = this.getDateParameter(this.getDateOffsetFromNow(-1));
         var address = this._baseUrl + "api/Message?componentAddress=" + encodeURI(component.componentAddress) + "&fromDate=" + fromDate;
         return this._http.get(address, options)
             .map(function (response) { return response.json().Data; })
             .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
             .catch(this.handleError);
     };
+    XnsService.prototype.getDateOffsetFromNow = function (days) {
+        return new Date(new Date().getTime() + days * this.secondsPerDay());
+    };
+    XnsService.prototype.secondsPerDay = function () {
+        return 1000 * 60 * 60 * 24;
+    };
     XnsService.prototype.getComponentLatestData = function (component) {
         var headers = new http_1.Headers({ "X-ZUMO-AUTH": this._auth });
         var options = new http_1.RequestOptions({ headers: headers });
-        var fromDate = this.getDateParameter(new Date(new Date().getTime() - 7 * 1000 * 60 * 60 * 24));
         var address = this._baseUrl + "api/ComponentLatestData?componentAddress=" + encodeURI(component.componentAddress);
         return this._http.get(address, options)
             .map(function (response) { return response.json().Data; })

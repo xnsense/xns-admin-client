@@ -15,6 +15,30 @@ var ComponentDetailsComponent = (function () {
         this._service = _service;
         this.latest = {};
     }
+    ComponentDetailsComponent.prototype.hasTemperature = function () {
+        for (var key in this.latest) {
+            if (this.latest[key].temperature)
+                return true;
+        }
+        return false;
+    };
+    ComponentDetailsComponent.prototype.hasPosition = function () {
+        for (var key in this.latest) {
+            if (this.latest[key].position)
+                return true;
+        }
+        return false;
+    };
+    ComponentDetailsComponent.prototype.hasWeigth = function () {
+        for (var key in this.latest) {
+            if (this.latest[key].weight)
+                return true;
+        }
+        return false;
+    };
+    ComponentDetailsComponent.prototype.getJson = function () {
+        return JSON.stringify(this.latest, null, 2);
+    };
     ComponentDetailsComponent.prototype.ngOnInit = function () {
     };
     ComponentDetailsComponent.prototype.ngOnChanges = function () {

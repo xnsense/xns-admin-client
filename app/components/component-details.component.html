@@ -9,13 +9,46 @@
     
 </div>
 
-<ul>
-    Latest:
-    <li *ngFor="let p of latest | keys">
-        {{p.key}}: {{p.value.temperature}} <span class="small">[{{p.value.logdate}}]</span>
-    </li>
-</ul>
-
-<div class="row">
-    <xns-component-messages [component]='component'></xns-component-messages>
+<div class="panel panel-info" *ngIf="hasTemperature()">
+    <div class="panel-heading">
+        <h3 class="panel-title">Latest temperatures</h3>
+    </div>
+    <ul>
+        <li *ngFor="let p of latest | keys:'temperature'">
+            {{p.key}}: <span class="label label-info">{{p.value.temperature}} &deg;C</span> <span class="small">[{{p.value.logdate}}]</span>
+        </li>
+    </ul>
 </div>
+
+<div class="panel panel-info" *ngIf="hasPosition()">
+    <div class="panel-heading">
+        <h3 class="panel-title">Latest positions</h3>
+    </div>
+    <ul>
+        <li *ngFor="let p of latest | keys:'position'">
+            {{p.key}}: <span class="label label-info">{{p.value.position}}</span> <span class="small">[{{p.value.logdate}}]</span>
+        </li>
+    </ul>
+</div>
+
+<div class="panel panel-info" *ngIf="hasWeigth()">
+    <div class="panel-heading">
+        <h3 class="panel-title">Latest weight</h3>
+    </div>
+    <ul>
+        <li *ngFor="let p of latest | keys:'weight'">
+            {{p.key}}: <span class="label label-info">{{p.value.weight}}</span> <span class="small">[{{p.value.logdate}}]</span>
+        </li>
+    </ul>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Latest raw</h3>
+    </div>
+    <pre>{{getJson()}}</pre>
+</div>
+
+<xns-component-messages [component]='component'></xns-component-messages>
+
+

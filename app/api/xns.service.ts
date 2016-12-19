@@ -90,7 +90,7 @@ export class XnsService {
     getComponentMessages(component: IComponent) : Observable<IComponentMessage[]> {
         let headers = new Headers({"X-ZUMO-AUTH": this._auth});
         let options = new RequestOptions({ headers: headers });
-        var fromDate = this.getDateParameter(new Date(new Date().getTime() - 7 * 1000 * 60 * 60 * 24));
+        var fromDate = this.getDateParameter(this.getDateOffsetFromNow(-1));
         var address = this._baseUrl + "api/Message?componentAddress=" + encodeURI(component.componentAddress) + "&fromDate=" + fromDate;
         return this._http.get(address , options)
             .map((response: Response) => <IComponentMessage[]> response.json().Data)
@@ -98,10 +98,16 @@ export class XnsService {
             .catch(this.handleError);
     }
 
+    getDateOffsetFromNow(days : number) {
+        return new Date(new Date().getTime() + days * this.secondsPerDay());
+    }
+    secondsPerDay() : number {
+        return 1000 * 60 * 60 * 24;
+    }
+
     getComponentLatestData(component:IComponent) : Observable<any> {
         let headers = new Headers({"X-ZUMO-AUTH": this._auth});
         let options = new RequestOptions({ headers: headers });
-        var fromDate = this.getDateParameter(new Date(new Date().getTime() - 7 * 1000 * 60 * 60 * 24));
         var address = this._baseUrl + "api/ComponentLatestData?componentAddress=" + encodeURI(component.componentAddress);
         return this._http.get(address , options)
             .map((response: Response) => response.json().Data)

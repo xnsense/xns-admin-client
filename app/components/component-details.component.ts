@@ -17,8 +17,35 @@ export class ComponentDetailsComponent implements OnInit, OnChanges {
 
     }
     
+    hasTemperature() : boolean {
+        for (let key in this.latest) {
+            if (this.latest[key].temperature)
+                return true;
+        }
+        return false;
+    }
 
+    hasPosition() : boolean {
+        for (let key in this.latest) {
+            if (this.latest[key].position)
+                return true;
+        }
+        return false;
+    }
+
+    hasWeigth() : boolean {
+        for (let key in this.latest) {
+            if (this.latest[key].weight)
+                return true;
+        }
+        return false;
+    }
+    
+    getJson() : string {
+        return JSON.stringify(this.latest, null, 2);
+    }
     ngOnInit(): void {
+
     }
     ngOnChanges() : void {
         this.latest = {};

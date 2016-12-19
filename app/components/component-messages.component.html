@@ -1,12 +1,17 @@
-<div class="row">
-    <h3>Messages from last week:</h3>
-</div>
-<div class="well well-lg">
-    <div class="row">
-        Send echo: <input type="text" name="echoMessage" [(ngModel)]="echoMessage"/> <button (click)="echo()">send</button>
+<div class="panel panel-warning">
+    <div class="panel-heading">
+        <h3 class="panel-title">Messages from last week</h3>
     </div>
-    <div class="row" *ngFor="let message of messages | reverse">
-        [{{message.fw}}] - {{message.rowkey | date:'yyyy-MM-dd HH:mm'}}: {{message.message}}
+    <form class="form-in-panel">
+        <div class="form-group">
+            <label for="echoMessage">Send echo</label>
+            <input class="form-control" type="text" name="echoMessage" [(ngModel)]="echoMessage"/> <button class="btn btn-primary" (click)="echo()">send</button>
+        </div>
+    </form>
+    <div class="message-list">
+        <div *ngFor="let message of messages | reverse">
+            [{{message.fw}}] - {{message.rowkey | date:'yyyy-MM-dd HH:mm'}}: {{message.message}}
+        </div>
+        <div *ngIf="messages.length == 0">No messages</div>
     </div>
-    <div *ngIf="messages.length == 0">No messages</div>
 </div>
