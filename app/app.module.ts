@@ -4,6 +4,7 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
+import { Ng2BootstrapModule }  from 'ng2-bootstrap';
 
 import { AppComponent }  from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -26,7 +27,8 @@ import { XnsServiceGuard } from './api/xns-guard.service';
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: '**', redirectTo: 'home', pathMatch: 'full' }
     ]),
-    ComponentModule
+    ComponentModule,
+    Ng2BootstrapModule
   ],
   declarations: [
     AppComponent,

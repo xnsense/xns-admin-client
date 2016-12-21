@@ -14,6 +14,7 @@ var http_1 = require("@angular/http");
 var router_1 = require("@angular/router");
 var forms_1 = require("@angular/forms");
 var common_1 = require("@angular/common");
+var ng2_bootstrap_1 = require("ng2-bootstrap");
 var app_component_1 = require("./app.component");
 var home_component_1 = require("./home/home.component");
 var login_component_1 = require("./home/login.component");
@@ -39,7 +40,8 @@ AppModule = __decorate([
                 { path: '', redirectTo: 'home', pathMatch: 'full' },
                 { path: '**', redirectTo: 'home', pathMatch: 'full' }
             ]),
-            component_module_1.ComponentModule
+            component_module_1.ComponentModule,
+            ng2_bootstrap_1.Ng2BootstrapModule
         ],
         declarations: [
             app_component_1.AppComponent,
