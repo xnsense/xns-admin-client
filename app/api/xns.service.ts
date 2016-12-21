@@ -1,5 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 import { DatePipe } from '@angular/common';
+
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 
@@ -15,6 +17,8 @@ import { IComponentMessage } from '../components/component-message';
 export class XnsService {
     private _baseUrl = 'https://xnsensemobile.azurewebsites.net/';
     private _auth: string;
+    
+    onLogin = new BehaviorSubject<boolean>(false);
 
     constructor(private _http: Http, 
                 private _datePipe: DatePipe) { 
@@ -125,6 +129,7 @@ export class XnsService {
             .map((response: Response) => {
                 this._auth = response.json().authenticationToken;
                 localStorage.setItem('auth', this._auth);
+                this.onLogin.next(true);
                 return this._auth;
             })
             .do(data => console.log('All: ' +  JSON.stringify(data)))
@@ -135,6 +140,7 @@ export class XnsService {
     {
         this._auth = null;
         localStorage.clear();
+        this.onLogin.next(false);
     }
 
     public isLoggedIn() : boolean {

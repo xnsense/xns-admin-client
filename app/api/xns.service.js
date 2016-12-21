@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var common_1 = require("@angular/common");
+var BehaviorSubject_1 = require("rxjs/BehaviorSubject");
 var http_1 = require("@angular/http");
 var Observable_1 = require("rxjs/Observable");
 require("rxjs/add/operator/do");
@@ -20,6 +21,7 @@ var XnsService = (function () {
         this._http = _http;
         this._datePipe = _datePipe;
         this._baseUrl = 'https://xnsensemobile.azurewebsites.net/';
+        this.onLogin = new BehaviorSubject_1.BehaviorSubject(false);
         this._auth = localStorage.getItem('auth');
     }
     XnsService.prototype.getComponent = function (id) {
@@ -115,6 +117,7 @@ var XnsService = (function () {
             .map(function (response) {
             _this._auth = response.json().authenticationToken;
             localStorage.setItem('auth', _this._auth);
+            _this.onLogin.next(true);
             return _this._auth;
         })
             .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
@@ -123,6 +126,7 @@ var XnsService = (function () {
     XnsService.prototype.logout = function () {
         this._auth = null;
         localStorage.clear();
+        this.onLogin.next(false);
     };
     XnsService.prototype.isLoggedIn = function () {
         return this._auth != null;

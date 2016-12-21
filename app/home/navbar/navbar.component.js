@@ -11,12 +11,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var navbar_routes_config_1 = require("./navbar-routes.config");
 var navbar_metadata_1 = require("./navbar.metadata");
+var xns_service_1 = require("../../api/xns.service");
 var NavbarComponent = (function () {
-    function NavbarComponent() {
+    function NavbarComponent(_service) {
+        var _this = this;
+        this._service = _service;
         this.isCollapsed = true;
+        this._service.onLogin.asObservable().subscribe(function (loggedIn) {
+            _this.menuItems = navbar_routes_config_1.ROUTES.filter(function (menuItem) { return menuItem.menuType !== navbar_metadata_1.MenuType.BRAND && (menuItem.anonymous != loggedIn); });
+        });
     }
     NavbarComponent.prototype.ngOnInit = function () {
-        this.menuItems = navbar_routes_config_1.ROUTES.filter(function (menuItem) { return menuItem.menuType !== navbar_metadata_1.MenuType.BRAND; });
+        var _this = this;
+        this.menuItems = navbar_routes_config_1.ROUTES.filter(function (menuItem) { return menuItem.menuType !== navbar_metadata_1.MenuType.BRAND && (menuItem.anonymous != _this._service.isLoggedIn()); });
         this.brandMenu = navbar_routes_config_1.ROUTES.filter(function (menuItem) { return menuItem.menuType === navbar_metadata_1.MenuType.BRAND; })[0];
     };
     Object.defineProperty(NavbarComponent.prototype, "menuIcon", {
@@ -40,7 +47,7 @@ NavbarComponent = __decorate([
         templateUrl: 'navbar.component.html',
         styleUrls: ['navbar.component.css']
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [xns_service_1.XnsService])
 ], NavbarComponent);
 exports.NavbarComponent = NavbarComponent;
 //# sourceMappingURL=navbar.component.js.map

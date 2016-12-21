@@ -9,7 +9,7 @@ import { Ng2BootstrapModule }  from 'ng2-bootstrap';
 import { AppComponent }  from './app.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './home/login.component';
-import { NavbarComponent } from './home/navbar.component';
+import { NavbarComponent } from './home/navbar/navbar.component';
 
 /* Feature Modules */
 import { ComponentModule } from './components/component.module';

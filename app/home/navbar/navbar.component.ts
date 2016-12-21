@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ROUTES } from './navbar-routes.config';
 import { MenuType } from './navbar.metadata';
+import { XnsService } from '../../api/xns.service';
 
 @Component({
   moduleId: module.id,
@@ -13,10 +14,14 @@ export class NavbarComponent implements OnInit {
   public brandMenu: any;
   isCollapsed = true;
 
-  constructor() {}
+  constructor(private _service: XnsService) {
+    this._service.onLogin.asObservable().subscribe(loggedIn => {
+      this.menuItems = ROUTES.filter(menuItem => menuItem.menuType !== MenuType.BRAND && (menuItem.anonymous != loggedIn));  
+    });
+  }
 
   ngOnInit() {
-    this.menuItems = ROUTES.filter(menuItem => menuItem.menuType !== MenuType.BRAND);
+    this.menuItems = ROUTES.filter(menuItem => menuItem.menuType !== MenuType.BRAND && (menuItem.anonymous != this._service.isLoggedIn()));
     this.brandMenu = ROUTES.filter(menuItem => menuItem.menuType === MenuType.BRAND)[0];
   }
 

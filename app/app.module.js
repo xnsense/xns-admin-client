@@ -18,7 +18,7 @@ var ng2_bootstrap_1 = require("ng2-bootstrap");
 var app_component_1 = require("./app.component");
 var home_component_1 = require("./home/home.component");
 var login_component_1 = require("./home/login.component");
-var navbar_component_1 = require("./home/navbar.component");
+var navbar_component_1 = require("./home/navbar/navbar.component");
 /* Feature Modules */
 var component_module_1 = require("./components/component.module");
 var xns_service_1 = require("./api/xns.service");

@@ -1,12 +1,16 @@
-.navnbar {
+.navbar {
     background-color: black;
 }
 
 .active {
   color: #fff;
 }
-.navbar-toggler {
+.navbar-toggle {
   border: solid 1px silver;
   border-radius: 2px;
   color: #eee;
+}
+
+.container {
+  margin-left: 15px
 }
