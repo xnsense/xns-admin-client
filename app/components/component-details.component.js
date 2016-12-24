@@ -40,12 +40,15 @@ var ComponentDetailsComponent = (function () {
         return JSON.stringify(this.latest, null, 2);
     };
     ComponentDetailsComponent.prototype.ngOnInit = function () {
+        this.latest = {};
     };
     ComponentDetailsComponent.prototype.ngOnChanges = function () {
         var _this = this;
-        this.latest = {};
         this._service.getComponentLatestData(this.component).subscribe(function (data) {
             _this.latest = data;
+            setTimeout(function () {
+                _this.ngOnChanges();
+            }, 10000);
         });
     };
     return ComponentDetailsComponent;

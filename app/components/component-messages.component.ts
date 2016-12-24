@@ -41,5 +41,11 @@ export class ComponentMessagesComponent implements OnInit, OnChanges {
             }, 3000);            
         });
     }
+
+    keyDownFunction(event) : void {
+        if(event.keyCode == 13) {
+            this.echo();
+        }
+    }
   
 }

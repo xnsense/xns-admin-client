@@ -36,6 +36,11 @@ var ComponentMessagesComponent = (function () {
             }, 3000);
         });
     };
+    ComponentMessagesComponent.prototype.keyDownFunction = function (event) {
+        if (event.keyCode == 13) {
+            this.echo();
+        }
+    };
     return ComponentMessagesComponent;
 }());
 __decorate([

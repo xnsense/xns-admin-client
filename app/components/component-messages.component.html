@@ -2,7 +2,7 @@
     <div class="panel-heading">
         <h3 class="panel-title">Messages from last 24 hours</h3>
     </div>
-    <form class="form-in-panel">
+    <form class="form-in-panel form-inline" (keydown)="keyDownFunction($event)">
         <div class="form-group">
             <label for="echoMessage">Send echo</label>
             <input class="form-control" type="text" name="echoMessage" [(ngModel)]="echoMessage"/> <button class="btn btn-primary" (click)="echo()">send</button>

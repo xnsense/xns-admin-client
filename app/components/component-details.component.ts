@@ -45,11 +45,15 @@ export class ComponentDetailsComponent implements OnInit, OnChanges {
         return JSON.stringify(this.latest, null, 2);
     }
     ngOnInit(): void {
+        this.latest = {};
     }
     ngOnChanges() : void {
-        this.latest = {};
+        
          this._service.getComponentLatestData(this.component).subscribe(data => {
                 this.latest = data;
+                setTimeout(() => {
+                    this.ngOnChanges();
+                }, 10000);  
             });
     }
 }
