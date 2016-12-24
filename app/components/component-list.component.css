@@ -97,15 +97,10 @@
     background: none;
 }
 
-@media(min-width:768px) {
     #wrapper {
         padding-left: 250px;
     }
-
-    #menu-toggle {
-        display: none;
-    }
-    
+   
     #wrapper.toggled {
         padding-left: 0;
     }
@@ -128,4 +123,6 @@
         position: relative;
         margin-right: 0;
     }
+
+@media(min-width:768px) {
 }
