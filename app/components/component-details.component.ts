@@ -45,7 +45,7 @@ export class ComponentDetailsComponent implements OnInit, OnChanges {
         return JSON.stringify(this.latest, null, 2);
     }
     ngOnInit(): void {
-
+        alert(this.component.componentAddress);
     }
     ngOnChanges() : void {
         this.latest = {};

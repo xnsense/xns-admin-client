@@ -40,6 +40,7 @@ var ComponentDetailsComponent = (function () {
         return JSON.stringify(this.latest, null, 2);
     };
     ComponentDetailsComponent.prototype.ngOnInit = function () {
+        alert(this.component.componentAddress);
     };
     ComponentDetailsComponent.prototype.ngOnChanges = function () {
         var _this = this;
