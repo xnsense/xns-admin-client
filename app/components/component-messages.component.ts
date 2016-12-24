@@ -21,9 +21,9 @@ export class ComponentMessagesComponent implements OnInit, OnChanges {
     
     ngOnChanges() : void {
         try {
-        this._service.getComponentMessages(this.component).subscribe(data => {
-                this.messages = data;
-            });
+            this._service.getComponentMessages(this.component).subscribe(data => {
+                    this.messages = data;
+                });
         }
         catch(ex)
         {
