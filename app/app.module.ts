@@ -1,15 +1,15 @@
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { DatePipe } from '@angular/common';
 import { Ng2BootstrapModule }  from 'ng2-bootstrap';
 
 import { AppComponent }  from './app.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './home/login.component';
 import { NavbarComponent } from './home/navbar/navbar.component';
+import { DatePipe } from '@angular/common';
 
 /* Feature Modules */
 import { ComponentModule } from './components/component.module';
@@ -34,9 +34,10 @@ import { XnsServiceGuard } from './api/xns-guard.service';
     AppComponent,
     HomeComponent,
     LoginComponent,
-    NavbarComponent
+    NavbarComponent,
   ],
   providers: [
+    { provide: LOCALE_ID, useValue: "en-US" }, //replace "en-US" with your locale
     XnsService,
     XnsServiceGuard,
     DatePipe

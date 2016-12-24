@@ -11,7 +11,8 @@ import { XnsService } from '../api/xns.service';
 export class ComponentMessagesComponent implements OnInit, OnChanges {
     @Input() component: IComponent;
     echoMessage: string;
-    messages: IComponentMessage[];
+    errorMessage: any;
+    messages: IComponentMessage[] = [];
 
    constructor(
                 private _service: XnsService) {
@@ -19,10 +20,15 @@ export class ComponentMessagesComponent implements OnInit, OnChanges {
     }
     
     ngOnChanges() : void {
-        this.messages = [];
+        try {
         this._service.getComponentMessages(this.component).subscribe(data => {
                 this.messages = data;
             });
+        }
+        catch(ex)
+        {
+            this.errorMessage = ex;
+        }
     }
 
     ngOnInit(): void {

@@ -13,13 +13,18 @@ var xns_service_1 = require("../api/xns.service");
 var ComponentMessagesComponent = (function () {
     function ComponentMessagesComponent(_service) {
         this._service = _service;
+        this.messages = [];
     }
     ComponentMessagesComponent.prototype.ngOnChanges = function () {
         var _this = this;
-        this.messages = [];
-        this._service.getComponentMessages(this.component).subscribe(function (data) {
-            _this.messages = data;
-        });
+        try {
+            this._service.getComponentMessages(this.component).subscribe(function (data) {
+                _this.messages = data;
+            });
+        }
+        catch (ex) {
+            this.errorMessage = ex;
+        }
     };
     ComponentMessagesComponent.prototype.ngOnInit = function () {
     };

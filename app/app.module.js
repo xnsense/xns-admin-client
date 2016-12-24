@@ -13,12 +13,12 @@ var platform_browser_1 = require("@angular/platform-browser");
 var http_1 = require("@angular/http");
 var router_1 = require("@angular/router");
 var forms_1 = require("@angular/forms");
-var common_1 = require("@angular/common");
 var ng2_bootstrap_1 = require("ng2-bootstrap");
 var app_component_1 = require("./app.component");
 var home_component_1 = require("./home/home.component");
 var login_component_1 = require("./home/login.component");
 var navbar_component_1 = require("./home/navbar/navbar.component");
+var common_1 = require("@angular/common");
 /* Feature Modules */
 var component_module_1 = require("./components/component.module");
 var xns_service_1 = require("./api/xns.service");
@@ -47,9 +47,10 @@ AppModule = __decorate([
             app_component_1.AppComponent,
             home_component_1.HomeComponent,
             login_component_1.LoginComponent,
-            navbar_component_1.NavbarComponent
+            navbar_component_1.NavbarComponent,
         ],
         providers: [
+            { provide: core_1.LOCALE_ID, useValue: "en-US" },
             xns_service_1.XnsService,
             xns_guard_service_1.XnsServiceGuard,
             common_1.DatePipe

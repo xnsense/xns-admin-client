@@ -93,10 +93,8 @@ var XnsService = (function () {
             .catch(this.handleError);
     };
     XnsService.prototype.getDateOffsetFromNow = function (days) {
-        return new Date(new Date().getTime() + days * this.secondsPerDay());
-    };
-    XnsService.prototype.secondsPerDay = function () {
-        return 1000 * 60 * 60 * 24;
+        var secondsPerDay = 1000 * 60 * 60 * 24;
+        return new Date(new Date().getTime() + days * secondsPerDay);
     };
     XnsService.prototype.getComponentLatestData = function (component) {
         var headers = new http_1.Headers({ "X-ZUMO-AUTH": this._auth });
@@ -113,7 +111,7 @@ var XnsService = (function () {
     XnsService.prototype.login = function (user, pass) {
         var _this = this;
         var options = new http_1.RequestOptions({ headers: new http_1.Headers({ 'Content-Type': 'application/json' }) });
-        return this._http.post(this._baseUrl + "api/serviceauth", JSON.stringify({ "username": user, "accessToken": pass }), options)
+        return this._http.post(this._baseUrl + "api/serviceauth", JSON.stringify({ "username": user, "accessToken": "xns:" + user + "-" + pass }), options)
             .map(function (response) {
             _this._auth = response.json().authenticationToken;
             localStorage.setItem('auth', _this._auth);

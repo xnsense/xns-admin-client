@@ -103,10 +103,8 @@ export class XnsService {
     }
 
     getDateOffsetFromNow(days : number) {
-        return new Date(new Date().getTime() + days * this.secondsPerDay());
-    }
-    secondsPerDay() : number {
-        return 1000 * 60 * 60 * 24;
+        const secondsPerDay = 1000 * 60 * 60 * 24;
+        return new Date(new Date().getTime() + days * secondsPerDay);
     }
 
     getComponentLatestData(component:IComponent) : Observable<any> {
@@ -125,7 +123,7 @@ export class XnsService {
 
     public login(user: string, pass: string) : Observable<string> {
         let options = new RequestOptions({ headers: new Headers({ 'Content-Type': 'application/json' }) });
-        return this._http.post(this._baseUrl + "api/serviceauth", JSON.stringify({"username":user,"accessToken":pass}), options)
+        return this._http.post(this._baseUrl + "api/serviceauth", JSON.stringify({"username":user,"accessToken":`xns:${user}-${pass}`}), options)
             .map((response: Response) => {
                 this._auth = response.json().authenticationToken;
                 localStorage.setItem('auth', this._auth);

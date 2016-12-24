@@ -10,8 +10,8 @@
     </form>
     <div class="message-list">
         <div *ngFor="let message of messages | reverse">
-            [{{message.fw}}] - {{message.rowkey | date:'yyyy-MM-dd HH:mm'}}: {{message.message}}
+            [{{message.fw}}] - {{message.rowkey | mydate:'yyyy-MM-dd HH:mm'}}: {{message.message}}
         </div>
-        <div *ngIf="messages.length == 0">No messages</div>
+        <div *ngIf="messages.length == 0">No messages {{errorMessage}}</div>
     </div>
 </div>
