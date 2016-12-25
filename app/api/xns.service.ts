@@ -117,6 +117,17 @@ export class XnsService {
             .catch(this.handleError);
         
     }
+
+    otaUpdateComponent(component:IComponent, firmwareUrl: string) :Observable<boolean> {
+        let command = { 
+            id: component.componentAddress, 
+            command: "UpgradeFromHttp",
+            url: firmwareUrl
+        };
+        
+        return this.sendCommand(component, command);
+    }
+
     private getDateParameter(date: Date) {
         return this._datePipe.transform(date, 'yyyy-MM-dd');
     }

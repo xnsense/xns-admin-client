@@ -41,6 +41,9 @@ var ComponentMessagesComponent = (function () {
             this.echo();
         }
     };
+    ComponentMessagesComponent.prototype.refresh = function () {
+        this.ngOnChanges();
+    };
     return ComponentMessagesComponent;
 }());
 __decorate([

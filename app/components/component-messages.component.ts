@@ -42,10 +42,13 @@ export class ComponentMessagesComponent implements OnInit, OnChanges {
         });
     }
 
-    keyDownFunction(event) : void {
+    keyDownFunction(event:any) : void {
         if(event.keyCode == 13) {
             this.echo();
         }
     }
   
+    refresh() :void {
+        this.ngOnChanges();
+    }
 }

@@ -105,6 +105,14 @@ var XnsService = (function () {
             .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
             .catch(this.handleError);
     };
+    XnsService.prototype.otaUpdateComponent = function (component, firmwareUrl) {
+        var command = {
+            id: component.componentAddress,
+            command: "UpgradeFromHttp",
+            url: firmwareUrl
+        };
+        return this.sendCommand(component, command);
+    };
     XnsService.prototype.getDateParameter = function (date) {
         return this._datePipe.transform(date, 'yyyy-MM-dd');
     };

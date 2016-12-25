@@ -6,8 +6,10 @@
     
     <div class="col-sm-3 text-right">Address</div>
     <div class="col-sm-9">{{component.componentAddress}}</div>
-    
+
 </div>
+
+<xns-component-ota [component]='component'></xns-component-ota> 
 
 <div class="panel panel-info" *ngIf="hasTemperature()">
     <div class="panel-heading">

@@ -16,6 +16,7 @@ var component_list_component_1 = require("./component-list.component");
 var component_edit_component_1 = require("./component-edit.component");
 var component_details_component_1 = require("./component-details.component");
 var component_messages_component_1 = require("./component-messages.component");
+var component_ota_component_1 = require("./component-ota.component");
 var reverse_pipe_1 = require("../shared/reverse.pipe");
 var keys_pipe_1 = require("../shared/keys.pipe");
 var mydate_pipe_1 = require("../shared/mydate.pipe");
@@ -42,6 +43,7 @@ ComponentModule = __decorate([
             component_details_component_1.ComponentDetailsComponent,
             component_messages_component_1.ComponentMessagesComponent,
             component_edit_component_1.ComponentEditComponent,
+            component_ota_component_1.ComponentOtaComponent,
             reverse_pipe_1.ReversePipe,
             keys_pipe_1.KeysPipe,
             mydate_pipe_1.MyDatePipe

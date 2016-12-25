@@ -7,6 +7,7 @@ import { ComponentListComponent } from './component-list.component';
 import { ComponentEditComponent } from './component-edit.component';
 import { ComponentDetailsComponent } from './component-details.component';
 import { ComponentMessagesComponent } from './component-messages.component';
+import { ComponentOtaComponent } from './component-ota.component';
 
 import { ReversePipe } from '../shared/reverse.pipe';
 import { KeysPipe } from '../shared/keys.pipe';
@@ -30,6 +31,7 @@ import { XnsServiceGuard } from '../api/xns-guard.service';
     ComponentDetailsComponent,
     ComponentMessagesComponent,
     ComponentEditComponent,
+    ComponentOtaComponent,
     ReversePipe,
     KeysPipe,
     MyDatePipe

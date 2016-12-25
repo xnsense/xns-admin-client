@@ -5,7 +5,8 @@
     <form class="form-in-panel form-inline" (keydown)="keyDownFunction($event)">
         <div class="form-group">
             <label for="echoMessage">Send echo</label>
-            <input class="form-control" type="text" name="echoMessage" [(ngModel)]="echoMessage"/> <button class="btn btn-primary" (click)="echo()">send</button>
+            <input class="form-control" type="text" name="echoMessage" [(ngModel)]="echoMessage"/> <button class="btn btn-primary" (click)="echo()">Send echo message</button>
+            <button class="btn btn-success" (click)="refresh()">Refresh messages</button>
         </div>
     </form>
     <div class="message-list">

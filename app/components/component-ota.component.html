@@ -1,0 +1,12 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">OTA Firmware Update</h3>
+    </div>
+    <form class="form-in-panel" (keydown)="keyDownFunction($event)" (ngSubmit)="f.form.valid && update()" #f="ngForm">
+        <div class="form-group">
+            <label for="echoMessage">Firmware URL</label>
+            <input class="form-control" required minlength="10" type="text" name="firmwareUrl" [(ngModel)]="firmwareUrl"/><button class="btn btn-primary" type="submit">Send upgrade command</button>
+        </div>
+        <div class="label label-success">{{message}}</div>
+    </form>
+</div>
