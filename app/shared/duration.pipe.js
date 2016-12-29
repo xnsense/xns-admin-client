@@ -24,7 +24,7 @@ var DurationPipe = (function () {
         // hours
         seconds = Math.floor(seconds / 60);
         if (seconds > 0)
-            output = seconds % 60 + "h " + output;
+            output = seconds % 24 + "h " + output;
         // days
         seconds = Math.floor(seconds / 24);
         if (seconds > 0)
