@@ -15,14 +15,18 @@ import { IComponentMessage } from '../components/component-message';
 
 @Injectable()
 export class XnsService {
+    private AUTH_EXPIRES_TIME = 1000 * 60 * 60 * 24;
+
     private _baseUrl = 'https://xnsensemobile.azurewebsites.net/';
     private _auth: string;
+    private _authExpires: Number;
     
     onLogin = new BehaviorSubject<boolean>(false);
 
     constructor(private _http: Http, 
                 private _datePipe: DatePipe) { 
         this._auth = localStorage.getItem('auth');
+        this._authExpires = Number(localStorage.getItem('auth_expires') || 0);
     }
 
     getComponent(id: string): Observable<IComponent> {
@@ -137,7 +141,10 @@ export class XnsService {
         return this._http.post(this._baseUrl + "api/serviceauth", JSON.stringify({"username":user,"accessToken":`xns:${user}-${pass}`}), options)
             .map((response: Response) => {
                 this._auth = response.json().authenticationToken;
+                this._authExpires = Date.now() + this.AUTH_EXPIRES_TIME;
                 localStorage.setItem('auth', this._auth);
+                localStorage.setItem('auth_expires', this._authExpires.toString());
+
                 this.onLogin.next(true);
                 return this._auth;
             })
@@ -153,7 +160,7 @@ export class XnsService {
     }
 
     public isLoggedIn() : boolean {
-        return this._auth != null;
+        return this._auth != null && this._authExpires > Date.now();
     } 
 
     private handleError(error: Response) {

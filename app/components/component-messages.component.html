@@ -11,7 +11,7 @@
     </form>
     <div class="message-list">
         <div *ngFor="let message of messages | reverse">
-            <span class="label label-default">{{message.fw}}</span> {{message.rowkey | mydate:'yyyy-MM-dd HH:mm'}}: {{message.message}} <span class="label label-success" *ngIf="message.up != null">Up for {{message.up}} seconds</span>
+            <span class="label label-default">{{message.fw}}</span> {{message.rowkey | mydate:'yyyy-MM-dd HH:mm'}}: {{message.message}} <span class="label label-success" *ngIf="message.up != null">Up for {{message.up | duration}}</span>
         </div>
         <div *ngIf="messages.length == 0">No messages {{errorMessage}}</div>
     </div>

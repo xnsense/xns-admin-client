@@ -20,9 +20,11 @@ var XnsService = (function () {
     function XnsService(_http, _datePipe) {
         this._http = _http;
         this._datePipe = _datePipe;
+        this.AUTH_EXPIRES_TIME = 1000 * 60 * 60 * 24;
         this._baseUrl = 'https://xnsensemobile.azurewebsites.net/';
         this.onLogin = new BehaviorSubject_1.BehaviorSubject(false);
         this._auth = localStorage.getItem('auth');
+        this._authExpires = Number(localStorage.getItem('auth_expires') || 0);
     }
     XnsService.prototype.getComponent = function (id) {
         var headers = new http_1.Headers({ "X-ZUMO-AUTH": this._auth });
@@ -122,7 +124,9 @@ var XnsService = (function () {
         return this._http.post(this._baseUrl + "api/serviceauth", JSON.stringify({ "username": user, "accessToken": "xns:" + user + "-" + pass }), options)
             .map(function (response) {
             _this._auth = response.json().authenticationToken;
+            _this._authExpires = Date.now() + _this.AUTH_EXPIRES_TIME;
             localStorage.setItem('auth', _this._auth);
+            localStorage.setItem('auth_expires', _this._authExpires.toString());
             _this.onLogin.next(true);
             return _this._auth;
         })
@@ -135,7 +139,7 @@ var XnsService = (function () {
         this.onLogin.next(false);
     };
     XnsService.prototype.isLoggedIn = function () {
-        return this._auth != null;
+        return this._auth != null && this._authExpires > Date.now();
     };
     XnsService.prototype.handleError = function (error) {
         // in a real world app, we may send the server to some remote logging infrastructure

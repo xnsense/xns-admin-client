@@ -12,6 +12,7 @@ import { ComponentOtaComponent } from './component-ota.component';
 import { ReversePipe } from '../shared/reverse.pipe';
 import { KeysPipe } from '../shared/keys.pipe';
 import { MyDatePipe } from '../shared/mydate.pipe';
+import { DurationPipe } from '../shared/duration.pipe';
 
 import { XnsService } from '../api/xns.service';
 import { XnsServiceGuard } from '../api/xns-guard.service';
@@ -34,7 +35,8 @@ import { XnsServiceGuard } from '../api/xns-guard.service';
     ComponentOtaComponent,
     ReversePipe,
     KeysPipe,
-    MyDatePipe
+    MyDatePipe,
+    DurationPipe
   ],
   providers: [
     XnsService,

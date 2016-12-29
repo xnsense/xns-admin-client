@@ -20,6 +20,7 @@ var component_ota_component_1 = require("./component-ota.component");
 var reverse_pipe_1 = require("../shared/reverse.pipe");
 var keys_pipe_1 = require("../shared/keys.pipe");
 var mydate_pipe_1 = require("../shared/mydate.pipe");
+var duration_pipe_1 = require("../shared/duration.pipe");
 var xns_service_1 = require("../api/xns.service");
 var xns_guard_service_1 = require("../api/xns-guard.service");
 var ComponentModule = (function () {
@@ -46,7 +47,8 @@ ComponentModule = __decorate([
             component_ota_component_1.ComponentOtaComponent,
             reverse_pipe_1.ReversePipe,
             keys_pipe_1.KeysPipe,
-            mydate_pipe_1.MyDatePipe
+            mydate_pipe_1.MyDatePipe,
+            duration_pipe_1.DurationPipe
         ],
         providers: [
             xns_service_1.XnsService,
