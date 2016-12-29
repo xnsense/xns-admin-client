@@ -43,11 +43,15 @@ var ComponentDetailsComponent = (function () {
         this.latest = {};
     };
     ComponentDetailsComponent.prototype.ngOnChanges = function () {
+        this.latest = {};
+        this.loadLatest();
+    };
+    ComponentDetailsComponent.prototype.loadLatest = function () {
         var _this = this;
         this._service.getComponentLatestData(this.component).subscribe(function (data) {
             _this.latest = data;
             setTimeout(function () {
-                _this.ngOnChanges();
+                _this.loadLatest();
             }, 10000);
         });
     };

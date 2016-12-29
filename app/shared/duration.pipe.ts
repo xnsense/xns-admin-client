@@ -6,10 +6,30 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class DurationPipe implements PipeTransform {
     constructor() {}
 
-    transform(value : number) : string {
+    transform(value : any) : string {
         let output = "";
-        let seconds = value;
+        var seconds: number;
         
+        if (typeof value === 'string')
+        {
+            try {
+                let d = new Date(value);
+                seconds = (Date.now() - d.getTime()) / 1000;
+            }
+            catch(ex)
+            {
+             seconds = Number.parseInt(value);
+            }
+        }
+        else if (typeof value === 'number')
+            seconds = <number>value;
+        else if (value instanceof Date)
+            seconds = Date.now() - value.getTime();
+        else
+            return `Value is not a number or a date (was ${typeof value})`;
+
+        seconds = Math.floor(seconds);
+
         // seconds
         output = `${seconds % 60}s`;
         

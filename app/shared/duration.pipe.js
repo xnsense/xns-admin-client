@@ -14,7 +14,23 @@ var DurationPipe = (function () {
     }
     DurationPipe.prototype.transform = function (value) {
         var output = "";
-        var seconds = value;
+        var seconds;
+        if (typeof value === 'string') {
+            try {
+                var d = new Date(value);
+                seconds = (Date.now() - d.getTime()) / 1000;
+            }
+            catch (ex) {
+                seconds = Number.parseInt(value);
+            }
+        }
+        else if (typeof value === 'number')
+            seconds = value;
+        else if (value instanceof Date)
+            seconds = Date.now() - value.getTime();
+        else
+            return "Value is not a number or a date (was " + typeof value + ")";
+        seconds = Math.floor(seconds);
         // seconds
         output = seconds % 60 + "s";
         // minutes

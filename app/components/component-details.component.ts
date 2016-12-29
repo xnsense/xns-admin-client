@@ -14,7 +14,7 @@ export class ComponentDetailsComponent implements OnInit, OnChanges {
 
    constructor(
                 private _service: XnsService) {
-
+    
     }
     
     hasTemperature() : boolean {
@@ -48,12 +48,16 @@ export class ComponentDetailsComponent implements OnInit, OnChanges {
         this.latest = {};
     }
     ngOnChanges() : void {
-        
-         this._service.getComponentLatestData(this.component).subscribe(data => {
-                this.latest = data;
-                setTimeout(() => {
-                    this.ngOnChanges();
-                }, 10000);  
-            });
+        this.latest = {};
+        this.loadLatest();
+    }
+
+    loadLatest() : void {
+        this._service.getComponentLatestData(this.component).subscribe(data => {
+            this.latest = data;
+            setTimeout(() => {
+                this.loadLatest();
+            }, 10000);  
+        });
     }
 }

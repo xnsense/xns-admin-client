@@ -17,7 +17,7 @@
     </div>
     <ul>
         <li *ngFor="let p of latest | keys:'temperature'">
-            {{p.key}}: <span class="label label-info">{{p.value.temperature}} &deg;C</span> <span class="small">[{{p.value.logdate | mydate:'dd.MM.yyyy HH:mm'}}]</span>
+            {{p.key}}: <span class="label label-info">{{p.value.temperature}} &deg;C</span> <span class="small">[{{p.value.logdate | mydate:'dd.MM.yyyy HH:mm'}}]</span>&nbsp;<span class="label label-success">{{p.value.logdate | duration}} ago</span>
         </li>
     </ul>
 </div>
@@ -28,7 +28,7 @@
     </div>
     <ul>
         <li *ngFor="let p of latest | keys:'position'">
-            {{p.key}}: <span class="label label-info">{{p.value.position}}</span> <span class="small">[{{p.value.logdate | date:'dd.MM.yyyy HH:mm'}}]</span>
+            {{p.key}}: <span class="label label-info">{{p.value.position}}</span> <span class="small">[{{p.value.logdate | date:'dd.MM.yyyy HH:mm'}}]</span>&nbsp;<span class="label label-success">{{p.value.logdate | duration}} ago</span>
         </li>
     </ul>
 </div>
@@ -39,7 +39,7 @@
     </div>
     <ul>
         <li *ngFor="let p of latest | keys:'weight'">
-            {{p.key}}: <span class="label label-info">{{p.value.weight}} {{p.value.measureunit}}</span> <span class="small">[{{p.value.logdate | date:'dd.MM.yyyy HH:mm'}}]</span>
+            {{p.key}}: <span class="label label-info">{{p.value.weight}} {{p.value.measureunit}}</span> <span class="small">[{{p.value.logdate | date:'dd.MM.yyyy HH:mm'}}]</span>&nbsp;<span class="label label-success">{{p.value.logdate | duration}} ago</span>
         </li>
     </ul>
 </div>
