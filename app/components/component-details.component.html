@@ -9,8 +9,6 @@
 
 </div>
 
-<xns-component-ota [component]='component'></xns-component-ota> 
-
 <div class="panel panel-info" *ngIf="hasTemperature()">
     <div class="panel-heading">
         <h3 class="panel-title">Latest temperatures</h3>
@@ -52,6 +50,6 @@
 </div>
 
 
-
-
+<xns-component-ota [component]='component'></xns-component-ota> 
+<xns-component-custom-command [component]='component'></xns-component-custom-command> 
 <xns-component-messages [component]='component'></xns-component-messages>

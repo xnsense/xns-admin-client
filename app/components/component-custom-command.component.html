@@ -1,0 +1,18 @@
+<div class="panel panel-warning">
+    <div class="panel-heading">
+        <h3 class="panel-title">Custom command</h3>
+    </div>
+    <form class="form-in-panel form-inline" (keydown)="keyDownFunction($event)">
+        <div class="form-group">
+            <label for="echoMessage">Command</label>
+            <input class="form-control" type="text" name="commandName" [(ngModel)]="commandName"/> <button class="btn btn-primary" (click)="sendCommand()">Send command</button>
+        </div>
+        <div class="form-group">
+            <label for="commandDetails">Command details (type JSON here, e.g. <code>{{'{'}} "name": "value" }</code>)</label>
+            <textarea class="form-control" name="commandDetails" [(ngModel)]="commandDetails"></textarea>
+        </div>
+        <div class="label label-danger" *ngIf="errorMessage != null">
+            {{errorMessage}}
+        </div>
+    </form>
+</div>

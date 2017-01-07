@@ -53,6 +53,12 @@ var XnsService = (function () {
         };
         return this.sendCommand(component, command);
     };
+    XnsService.prototype.sendCustomCommand = function (component, commandName, command) {
+        var c = command ? command : {};
+        c["id"] = component.componentAddress;
+        c["command"] = commandName;
+        return this.sendCommand(component, c);
+    };
     XnsService.prototype.sendCommand = function (component, command) {
         var data = {
             action: JSON.stringify(command),

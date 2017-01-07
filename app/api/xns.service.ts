@@ -61,6 +61,13 @@ export class XnsService {
         return this.sendCommand(component, command);
     }
 
+    sendCustomCommand(component: IComponent, commandName: string, command: any) : Observable<boolean> {
+        let c = command ? command : {};
+        c["id"] = component.componentAddress;
+        c["command"] = commandName;
+        return this.sendCommand(component, c);
+    }
+
     sendCommand(component: IComponent, command: any) : Observable<boolean> {
         var data = {
             action: JSON.stringify(command),
