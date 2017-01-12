@@ -121,7 +121,7 @@ export class XnsService {
     getComponentLatestData(component:IComponent) : Observable<any> {
         let headers = new Headers({"X-ZUMO-AUTH": this._auth});
         let options = new RequestOptions({ headers: headers });
-        var address = this._baseUrl + "api/ComponentLatestData?componentAddress=" + encodeURI(component.componentAddress);
+        var address = this._baseUrl + "api/ComponentDataLatest?componentAddress=" + encodeURI(component.componentAddress);
         return this._http.get(address , options)
             .map((response: Response) => response.json().Data)
             .do(data => console.log('All: ' +  JSON.stringify(data)))

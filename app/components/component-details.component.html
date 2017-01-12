@@ -6,16 +6,26 @@
     
     <div class="col-sm-3 text-right">Address</div>
     <div class="col-sm-9">{{component.componentAddress}}</div>
+    
+    <div class="col-sm-3 text-right">Latest data</div>
+    <div class="col-sm-9">
+        <span *ngIf="latest.EventEnqueuedUtcTime" class="small">[{{latest.EventEnqueuedUtcTime | mydate:'dd.MM.yyyy HH:mm'}}]</span>&nbsp;<span class="label label-success">{{latest.EventEnqueuedUtcTime | duration}} ago</span>
+    </div>
 
 </div>
+
+
 
 <div class="panel panel-info" *ngIf="hasTemperature()">
     <div class="panel-heading">
         <h3 class="panel-title">Latest temperatures</h3>
     </div>
     <ul>
-        <li *ngFor="let p of latest | keys:'temperature'">
-            {{p.key}}: <span class="label label-info">{{p.value.temperature}} &deg;C</span> <span class="small">[{{p.value.logdate | mydate:'dd.MM.yyyy HH:mm'}}]</span>&nbsp;<span class="label label-success">{{p.value.logdate | duration}} ago</span>
+        <li *ngIf="latest.Temperature">
+            Temperature: <span class="label label-info">{{latest.Temperature}} &deg;C</span>
+        </li>
+        <li *ngFor="let p of latest.Temperatures | keys">
+            {{p.key}}: <span class="label label-info">{{p.value}} &deg;C</span> 
         </li>
     </ul>
 </div>
@@ -25,8 +35,11 @@
         <h3 class="panel-title">Latest positions</h3>
     </div>
     <ul>
-        <li *ngFor="let p of latest | keys:'position'">
-            {{p.key}}: <span class="label label-info">{{p.value.position}}</span> <span class="small">[{{p.value.logdate | date:'dd.MM.yyyy HH:mm'}}]</span>&nbsp;<span class="label label-success">{{p.value.logdate | duration}} ago</span>
+        <li *ngIf="latest.Position">
+            Position: <span class="label label-info">{{latest.Position}}</span>
+        </li>
+        <li *ngFor="let p of latest.Positions | keys">
+            {{p.key}}: <span class="label label-info">{{p.value}}</span>
         </li>
     </ul>
 </div>
@@ -36,8 +49,12 @@
         <h3 class="panel-title">Latest weight</h3>
     </div>
     <ul>
-        <li *ngFor="let p of latest | keys:'weight'">
-            {{p.key}}: <span class="label label-info">{{p.value.weight}} {{p.value.measureunit}}</span> <span class="small">[{{p.value.logdate | date:'dd.MM.yyyy HH:mm'}}]</span>&nbsp;<span class="label label-success">{{p.value.logdate | duration}} ago</span>
+        <li *ngIf="latest.Weight">
+            Weight: <span class="label label-info">{{latest.Weight}} {{latest.MeasureUnit}}</span>
+        </li>
+
+        <li *ngFor="let p of latest.Weigths | keys">
+            {{p.key}}: <span class="label label-info">{{p.value.weight}} {{p.value.MeasureUnit}}</span>
         </li>
     </ul>
 </div>
