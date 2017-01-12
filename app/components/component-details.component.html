@@ -49,12 +49,12 @@
         <h3 class="panel-title">Latest weight</h3>
     </div>
     <ul>
-        <li *ngIf="latest.Weight">
-            Weight: <span class="label label-info">{{latest.Weight}} {{latest.MeasureUnit}}</span>
+        <li *ngIf="latest.weight">
+            Weight: <span class="label label-info">{{latest.weight}} {{latest.measureunit}}</span>
         </li>
 
-        <li *ngFor="let p of latest.Weigths | keys">
-            {{p.key}}: <span class="label label-info">{{p.value.weight}} {{p.value.MeasureUnit}}</span>
+        <li *ngFor="let p of latest.weigths | keys">
+            {{p.key}}: <span class="label label-info">{{p.value.weight}} {{p.value.measureunit}}</span>
         </li>
     </ul>
 </div>
