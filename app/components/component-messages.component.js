@@ -14,16 +14,35 @@ var ComponentMessagesComponent = (function () {
     function ComponentMessagesComponent(_service) {
         this._service = _service;
         this.messages = [];
+        this.loading = false;
+        this.latestMessage = null;
     }
     ComponentMessagesComponent.prototype.ngOnChanges = function () {
+        this.loading = true;
+        this.messages = [];
+        this.latestMessage = null;
+        this.loadNewMessages();
+    };
+    ComponentMessagesComponent.prototype.loadNewMessages = function () {
         var _this = this;
         try {
-            this._service.getComponentMessages(this.component).subscribe(function (data) {
-                _this.messages = data;
+            this.loading = true;
+            this._service.getComponentMessages(this.component, this.latestMessage).subscribe(function (data) {
+                if (data.length > 0)
+                    _this.latestMessage = data[0].processed;
+                if (_this.messages)
+                    _this.messages = data.concat(_this.messages);
+                else
+                    _this.messages = data;
+                _this.loading = false;
+                setTimeout(function () {
+                    _this.loadNewMessages();
+                }, 5000);
             });
         }
         catch (ex) {
             this.errorMessage = ex;
+            this.loading = false;
         }
     };
     ComponentMessagesComponent.prototype.ngOnInit = function () {
@@ -32,7 +51,7 @@ var ComponentMessagesComponent = (function () {
         var _this = this;
         this._service.echo(this.component, this.echoMessage).subscribe(function (success) {
             setTimeout(function () {
-                _this.ngOnChanges();
+                _this.loadNewMessages();
             }, 3000);
         });
     };
@@ -42,7 +61,7 @@ var ComponentMessagesComponent = (function () {
         }
     };
     ComponentMessagesComponent.prototype.refresh = function () {
-        this.ngOnChanges();
+        this.loadNewMessages();
     };
     return ComponentMessagesComponent;
 }());

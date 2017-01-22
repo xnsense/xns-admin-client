@@ -1,6 +1,6 @@
 <div class="panel panel-warning">
     <div class="panel-heading">
-        <h3 class="panel-title">Messages from last 24 hours</h3>
+        <h3 class="panel-title">Messages from last 24 hours <span class="label label-default" *ngIf="loading">Loading...</span></h3>
     </div>
     <form class="form-in-panel form-inline" (keydown)="keyDownFunction($event)">
         <div class="form-group">
@@ -10,6 +10,7 @@
         </div>
     </form>
     <div class="message-list">
+        <div class="label label-danger" *ngIf="errorMessage">{{errorMessage}}</div>
         <div *ngFor="let message of messages">
             <span class="label label-default">{{message.fw}}</span> {{message.enqueued | mydate:'yyyy-MM-dd HH:mm'}}: {{message.message}} <span class="label label-success" *ngIf="message.up != null">Up for {{message.up | duration}}</span>
         </div>

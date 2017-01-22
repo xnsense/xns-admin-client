@@ -61,7 +61,7 @@
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title">Latest raw</h3>
+        <h3 class="panel-title">Latest raw <span class="label label-default" *ngIf="loading">Loading...</span></h3>
     </div>
     <pre>{{getJson()}}</pre>
 </div>

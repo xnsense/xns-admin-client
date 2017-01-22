@@ -90,15 +90,21 @@ var XnsService = (function () {
             .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
             .catch(this.handleError);
     };
-    XnsService.prototype.getComponentMessages = function (component) {
+    XnsService.prototype.getComponentMessages = function (component, latest) {
         var headers = new http_1.Headers({ "X-ZUMO-AUTH": this._auth });
         var options = new http_1.RequestOptions({ headers: headers });
-        var fromDate = this.getDateParameter(this.getDateOffsetFromNow(-1));
-        var address = this._baseUrl + "api/ComponentMessage?componentAddress=" + encodeURI(component.componentAddress) /*  + "&fromDate=" + fromDate */ + "&pageSize=100";
+        var address = this._baseUrl + "api/ComponentMessage?componentAddress=" + encodeURI(component.componentAddress) + "&pageSize=100";
+        if (latest)
+            address += "&fromDate=" + this.getDateParameter(this.addOneMillisencond(latest));
         return this._http.get(address, options)
             .map(function (response) { return response.json().results; })
             .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
             .catch(this.handleError);
+    };
+    XnsService.prototype.addOneMillisencond = function (date) {
+        var d = new Date(date);
+        d.setMilliseconds(d.getMilliseconds() + 1);
+        return d;
     };
     XnsService.prototype.getDateOffsetFromNow = function (days) {
         var secondsPerDay = 1000 * 60 * 60 * 24;
@@ -122,7 +128,8 @@ var XnsService = (function () {
         return this.sendCommand(component, command);
     };
     XnsService.prototype.getDateParameter = function (date) {
-        return this._datePipe.transform(date, 'yyyy-MM-dd');
+        return new Date(date).toISOString();
+        //return this._datePipe.transform(date, 'yyyy-MM-dd HH:mm:ss');
     };
     XnsService.prototype.login = function (user, pass) {
         var _this = this;

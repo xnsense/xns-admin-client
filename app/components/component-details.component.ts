@@ -9,7 +9,7 @@ import { XnsService } from '../api/xns.service';
 })
 export class ComponentDetailsComponent implements OnInit, OnChanges {
     @Input() component: IComponent;
-
+    loading: boolean = false;
     latest: any = {};
 
    constructor(
@@ -56,8 +56,10 @@ export class ComponentDetailsComponent implements OnInit, OnChanges {
     }
 
     loadLatest() : void {
+        this.loading = true;
         this._service.getComponentLatestData(this.component).subscribe(data => {
             this.latest = data;
+            this.loading = false;
             setTimeout(() => {
                 this.loadLatest();
             }, 10000);  

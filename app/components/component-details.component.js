@@ -13,6 +13,7 @@ var xns_service_1 = require("../api/xns.service");
 var ComponentDetailsComponent = (function () {
     function ComponentDetailsComponent(_service) {
         this._service = _service;
+        this.loading = false;
         this.latest = {};
     }
     ComponentDetailsComponent.prototype.hasTemperature = function () {
@@ -51,8 +52,10 @@ var ComponentDetailsComponent = (function () {
     };
     ComponentDetailsComponent.prototype.loadLatest = function () {
         var _this = this;
+        this.loading = true;
         this._service.getComponentLatestData(this.component).subscribe(function (data) {
             _this.latest = data;
+            _this.loading = false;
             setTimeout(function () {
                 _this.loadLatest();
             }, 10000);

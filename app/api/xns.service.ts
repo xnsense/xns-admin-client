@@ -102,17 +102,24 @@ export class XnsService {
             .catch(this.handleError);
     }
 
-    getComponentMessages(component: IComponent) : Observable<IComponentMessage[]> {
+    getComponentMessages(component: IComponent, latest: Date) : Observable<IComponentMessage[]> {
         let headers = new Headers({"X-ZUMO-AUTH": this._auth});
         let options = new RequestOptions({ headers: headers });
-        var fromDate = this.getDateParameter(this.getDateOffsetFromNow(-1));
-        var address = this._baseUrl + "api/ComponentMessage?componentAddress=" + encodeURI(component.componentAddress) /*  + "&fromDate=" + fromDate */+ "&pageSize=100";
+        
+        var address = this._baseUrl + "api/ComponentMessage?componentAddress=" + encodeURI(component.componentAddress) + "&pageSize=100";
+        if (latest)
+            address += "&fromDate=" + this.getDateParameter(this.addOneMillisencond(latest));
+
         return this._http.get(address , options)
             .map((response: Response) => <IComponentMessage[]> response.json().results)
             .do(data => console.log('All: ' +  JSON.stringify(data)))
             .catch(this.handleError);
     }
-
+    addOneMillisencond(date: Date) {
+        var d = new Date(date);
+        d.setMilliseconds(d.getMilliseconds() + 1);
+        return d;
+    }
     getDateOffsetFromNow(days : number) {
         const secondsPerDay = 1000 * 60 * 60 * 24;
         return new Date(new Date().getTime() + days * secondsPerDay);
@@ -140,7 +147,8 @@ export class XnsService {
     }
 
     private getDateParameter(date: Date) {
-        return this._datePipe.transform(date, 'yyyy-MM-dd');
+        return new Date(date).toISOString();
+        //return this._datePipe.transform(date, 'yyyy-MM-dd HH:mm:ss');
     }
 
     public login(user: string, pass: string) : Observable<string> {

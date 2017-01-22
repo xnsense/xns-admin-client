@@ -13,6 +13,8 @@ export class ComponentMessagesComponent implements OnInit, OnChanges {
     echoMessage: string;
     errorMessage: any;
     messages: IComponentMessage[] = [];
+    loading: boolean = false;
+    latestMessage: Date = null;
 
    constructor(
                 private _service: XnsService) {
@@ -20,14 +22,32 @@ export class ComponentMessagesComponent implements OnInit, OnChanges {
     }
     
     ngOnChanges() : void {
+        this.loading = true;
+        this.messages = [];
+        this.latestMessage = null;
+        this.loadNewMessages();
+    }
+
+    loadNewMessages(): void {
         try {
-            this._service.getComponentMessages(this.component).subscribe(data => {
+            this.loading = true;
+            this._service.getComponentMessages(this.component, this.latestMessage).subscribe(data => {
+                if (data.length > 0)
+                    this.latestMessage = data[0].processed;
+                if (this.messages)
+                    this.messages = data.concat(this.messages);
+                else
                     this.messages = data;
-                });
+                this.loading = false;
+                setTimeout(() => {
+                    this.loadNewMessages();
+                }, 5000); 
+            });
         }
         catch(ex)
         {
             this.errorMessage = ex;
+            this.loading = false;
         }
     }
 
@@ -37,7 +57,7 @@ export class ComponentMessagesComponent implements OnInit, OnChanges {
     echo() : void {
         this._service.echo(this.component, this.echoMessage).subscribe(success => {
             setTimeout(() => {
-                this.ngOnChanges();
+                this.loadNewMessages();
             }, 3000);            
         });
     }
@@ -49,6 +69,6 @@ export class ComponentMessagesComponent implements OnInit, OnChanges {
     }
   
     refresh() :void {
-        this.ngOnChanges();
+        this.loadNewMessages();
     }
 }
