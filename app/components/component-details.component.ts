@@ -18,7 +18,7 @@ export class ComponentDetailsComponent implements OnInit, OnChanges {
     }
     
     hasTemperature() : boolean {
-        return this.latest.Temperatures != null;
+        return this.latest.data && this.latest.data.Temperatures != null;
         for (let key in this.latest) {
             if (this.latest[key].temperature)
                 return true;
@@ -27,7 +27,7 @@ export class ComponentDetailsComponent implements OnInit, OnChanges {
     }
 
     hasPosition() : boolean {
-        return this.latest.Positions != null;
+        return this.latest.data && this.latest.data.Positions != null;
         for (let key in this.latest) {
             if (this.latest[key].position)
                 return true;
@@ -36,7 +36,7 @@ export class ComponentDetailsComponent implements OnInit, OnChanges {
     }
 
     hasWeigth() : boolean {
-        return this.latest.Weights != null;
+        return this.latest.data && this.latest.data.Weights != null;
         for (let key in this.latest) {
             if (this.latest[key].weight)
                 return true;

@@ -94,9 +94,9 @@ var XnsService = (function () {
         var headers = new http_1.Headers({ "X-ZUMO-AUTH": this._auth });
         var options = new http_1.RequestOptions({ headers: headers });
         var fromDate = this.getDateParameter(this.getDateOffsetFromNow(-1));
-        var address = this._baseUrl + "api/Message?componentAddress=" + encodeURI(component.componentAddress) + "&fromDate=" + fromDate;
+        var address = this._baseUrl + "api/ComponentMessage?componentAddress=" + encodeURI(component.componentAddress) /*  + "&fromDate=" + fromDate */ + "&pageSize=100";
         return this._http.get(address, options)
-            .map(function (response) { return response.json().Data; })
+            .map(function (response) { return response.json().results; })
             .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
             .catch(this.handleError);
     };
@@ -107,9 +107,9 @@ var XnsService = (function () {
     XnsService.prototype.getComponentLatestData = function (component) {
         var headers = new http_1.Headers({ "X-ZUMO-AUTH": this._auth });
         var options = new http_1.RequestOptions({ headers: headers });
-        var address = this._baseUrl + "api/ComponentDataLatest?componentAddress=" + encodeURI(component.componentAddress);
+        var address = this._baseUrl + "api/ComponentData?componentAddress=" + encodeURI(component.componentAddress) + "&pageSize=1";
         return this._http.get(address, options)
-            .map(function (response) { return response.json().Data; })
+            .map(function (response) { return response.json().results[0]; })
             .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
             .catch(this.handleError);
     };

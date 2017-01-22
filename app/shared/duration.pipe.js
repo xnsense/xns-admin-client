@@ -16,12 +16,17 @@ var DurationPipe = (function () {
         var output = "";
         var seconds;
         if (typeof value === 'string') {
-            try {
-                var d = new Date(value);
-                seconds = (Date.now() - d.getTime()) / 1000;
-            }
-            catch (ex) {
+            var regex = /^\d+$/g;
+            if (regex.test(value))
                 seconds = Number.parseInt(value);
+            else {
+                try {
+                    var d = new Date(value);
+                    seconds = (Date.now() - d.getTime()) / 1000;
+                }
+                catch (ex) {
+                    return "Value is not a number or a date (was " + typeof value + "): " + value;
+                }
             }
         }
         else if (typeof value === 'number')
@@ -29,7 +34,7 @@ var DurationPipe = (function () {
         else if (value instanceof Date)
             seconds = Date.now() - value.getTime();
         else
-            return "Value is not a number or a date (was " + typeof value + ")";
+            return "Value is not a number or a date (was " + typeof value + "): " + value;
         seconds = Math.floor(seconds);
         // seconds
         output = seconds % 60 + "s";

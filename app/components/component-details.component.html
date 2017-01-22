@@ -9,7 +9,7 @@
     
     <div class="col-sm-3 text-right">Latest data</div>
     <div class="col-sm-9">
-        <span *ngIf="latest.EventEnqueuedUtcTime" class="small">[{{latest.EventEnqueuedUtcTime | mydate:'dd.MM.yyyy HH:mm'}}]</span>&nbsp;<span class="label label-success">{{latest.EventEnqueuedUtcTime | duration}} ago</span>
+        <span *ngIf="latest.enqueued" class="small">[{{latest.enqueued | mydate:'dd.MM.yyyy HH:mm'}}]</span>&nbsp;<span class="label label-success">{{latest.enqueued | duration}} ago</span>
     </div>
 
 </div>
@@ -21,10 +21,10 @@
         <h3 class="panel-title">Latest temperatures</h3>
     </div>
     <ul>
-        <li *ngIf="latest.Temperature">
-            Temperature: <span class="label label-info">{{latest.Temperature}} &deg;C</span>
+        <li *ngIf="latest.data.Temperature">
+            Temperature: <span class="label label-info">{{latest.data.Temperature}} &deg;C</span>
         </li>
-        <li *ngFor="let p of latest.Temperatures | keys">
+        <li *ngFor="let p of latest.data.Temperatures | keys">
             {{p.key}}: <span class="label label-info">{{p.value}} &deg;C</span> 
         </li>
     </ul>
@@ -35,10 +35,10 @@
         <h3 class="panel-title">Latest positions</h3>
     </div>
     <ul>
-        <li *ngIf="latest.Position">
-            Position: <span class="label label-info">{{latest.Position}}</span>
+        <li *ngIf="latest.data.Position">
+            Position: <span class="label label-info">{{latest.data.Position}}</span>
         </li>
-        <li *ngFor="let p of latest.Positions | keys">
+        <li *ngFor="let p of latest.data.Positions | keys">
             {{p.key}}: <span class="label label-info">{{p.value}}</span>
         </li>
     </ul>
@@ -49,11 +49,11 @@
         <h3 class="panel-title">Latest weight</h3>
     </div>
     <ul>
-        <li *ngIf="latest.weight">
-            Weight: <span class="label label-info">{{latest.weight}} {{latest.measureunit}}</span>
+        <li *ngIf="latest.data.weight">
+            Weight: <span class="label label-info">{{latest.data.weight}} {{latest.measureunit}}</span>
         </li>
 
-        <li *ngFor="let p of latest.weigths | keys">
+        <li *ngFor="let p of latest.data.weigths | keys">
             {{p.key}}: <span class="label label-info">{{p.value.weight}} {{p.value.measureunit}}</span>
         </li>
     </ul>

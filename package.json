@@ -1,10 +1,10 @@
 {
-  "name": "product-management",
+  "name": "xns-admin-client",
   "version": "1.0.0",
-  "author": "Deborah Kurata",
-  "description": "Package for the Acme Product Management sample application",
+  "author": "Roar Fredriksen",
+  "description": "Administration application for the xnsense ecosystem",
   "scripts": {
-    "start": "tsc && concurrently \"tsc -w\" \"lite-server\" ",
+    "start": "concurrently \"tsc -w\" \"lite-server\" ",
     "tsc": "tsc",
     "tsc:w": "tsc -w",
     "lint": "tslint ./app/**/*.ts -t verbose",

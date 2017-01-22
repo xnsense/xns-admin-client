@@ -12,13 +12,20 @@ export class DurationPipe implements PipeTransform {
         
         if (typeof value === 'string')
         {
-            try {
-                let d = new Date(value);
-                seconds = (Date.now() - d.getTime()) / 1000;
-            }
-            catch(ex)
+            let regex = /^\d+$/g;
+            if (regex.test(value))
+                seconds = Number.parseInt(value);
+            else
             {
-             seconds = Number.parseInt(value);
+                try 
+                {
+                    let d = new Date(value);
+                    seconds = (Date.now() - d.getTime()) / 1000;
+                }
+                catch(ex)
+                {
+                    return `Value is not a number or a date (was ${typeof value}): ${value}`;
+                }
             }
         }
         else if (typeof value === 'number')
@@ -26,7 +33,7 @@ export class DurationPipe implements PipeTransform {
         else if (value instanceof Date)
             seconds = Date.now() - value.getTime();
         else
-            return `Value is not a number or a date (was ${typeof value})`;
+            return `Value is not a number or a date (was ${typeof value}): ${value}`;
 
         seconds = Math.floor(seconds);
 
