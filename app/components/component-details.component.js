@@ -17,7 +17,7 @@ var ComponentDetailsComponent = (function () {
         this.latest = {};
     }
     ComponentDetailsComponent.prototype.hasTemperature = function () {
-        return this.latest.data && this.latest.data.Temperatures != null;
+        return this.latest && this.latest.data && this.latest.data.Temperatures != null;
         for (var key in this.latest) {
             if (this.latest[key].temperature)
                 return true;
@@ -25,7 +25,7 @@ var ComponentDetailsComponent = (function () {
         return false;
     };
     ComponentDetailsComponent.prototype.hasPosition = function () {
-        return this.latest.data && this.latest.data.Positions != null;
+        return this.latest && this.latest.data && this.latest.data.Positions != null;
         for (var key in this.latest) {
             if (this.latest[key].position)
                 return true;
@@ -33,7 +33,7 @@ var ComponentDetailsComponent = (function () {
         return false;
     };
     ComponentDetailsComponent.prototype.hasWeigth = function () {
-        return this.latest.data && this.latest.data.Weights != null;
+        return this.latest && this.latest.data && this.latest.data.Weights != null;
         for (var key in this.latest) {
             if (this.latest[key].weight)
                 return true;

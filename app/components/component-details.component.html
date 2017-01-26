@@ -9,7 +9,9 @@
     
     <div class="col-sm-3 text-right">Latest data</div>
     <div class="col-sm-9">
-        <span *ngIf="latest.enqueued" class="small">[{{latest.enqueued | mydate:'dd.MM.yyyy HH:mm'}}]</span>&nbsp;<span class="label label-success">{{latest.enqueued | duration}} ago</span>
+        <div *ngIf="latest && latest.enqueued">
+        <span class="small">[{{latest.enqueued | mydate:'dd.MM.yyyy HH:mm'}}]</span>&nbsp;<span class="label label-success">{{latest.enqueued | duration}} ago</span>
+        </div>
     </div>
 
 </div>
