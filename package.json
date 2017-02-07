@@ -25,6 +25,7 @@
     "bootstrap": "^3.3.6",
     "chart.js": "^2.4.0",
     "core-js": "^2.4.1",
+    "file-droppa": "^1.0.0",
     "intl": "1.1.0",
     "ng2-bootstrap": "^1.1.16-7",
     "reflect-metadata": "^0.1.3",

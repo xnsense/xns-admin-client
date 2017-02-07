@@ -1,4 +1,6 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+
 import { IComponent } from './component';
 import { XnsService } from '../api/xns.service';
 
@@ -13,7 +15,8 @@ export class ComponentDetailsComponent implements OnInit, OnChanges {
     latest: any = {};
 
    constructor(
-                private _service: XnsService) {
+                private _service: XnsService,
+                private _route: ActivatedRoute) {
     
     }
     
@@ -49,7 +52,20 @@ export class ComponentDetailsComponent implements OnInit, OnChanges {
     }
     ngOnInit(): void {
         this.latest = {};
+
+        this._route.params.subscribe(
+            params => {
+                let id = params['id'];
+                this._service.getComponent(id).subscribe(
+                    data => {
+                        this.component = data;
+                    }
+                );
+            }
+        );
     }
+
+    
     ngOnChanges() : void {
         this.latest = {};
         this.loadLatest();

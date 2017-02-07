@@ -1,0 +1,79 @@
+<div *ngIf="component">
+
+<h1>{{component.name}}</h1><a [routerLink]="['/edit/component', component.id]">edit</a>
+<div class="row">
+
+    <div class="col-sm-3 text-right">Unit ID</div>
+    <div class="col-sm-9">{{component.unitId}}</div>
+    
+    <div class="col-sm-3 text-right">Address</div>
+    <div class="col-sm-9">{{component.componentAddress}}</div>
+    
+    <div class="col-sm-3 text-right">Latest data</div>
+    <div class="col-sm-9">
+        <div *ngIf="latest && latest.enqueued">
+        <span class="small">[{{latest.enqueued | mydate:'dd.MM.yyyy HH:mm'}}]</span>&nbsp;<span class="label label-success">{{latest.enqueued | duration}} ago</span>
+        </div>
+    </div>
+
+</div>
+
+
+
+<div class="panel panel-info" *ngIf="hasTemperature()">
+    <div class="panel-heading">
+        <h3 class="panel-title">Latest temperatures</h3>
+    </div>
+    <ul>
+        <li *ngIf="latest.data.Temperature">
+            Temperature: <span class="label label-info">{{latest.data.Temperature}} &deg;C</span>
+        </li>
+        <li *ngFor="let p of latest.data.Temperatures | keys">
+            {{p.key}}: <span class="label label-info">{{p.value}} &deg;C</span> 
+        </li>
+    </ul>
+</div>
+
+<div class="panel panel-info" *ngIf="hasPosition()">
+    <div class="panel-heading">
+        <h3 class="panel-title">Latest positions</h3>
+    </div>
+    <ul>
+        <li *ngIf="latest.data.Position">
+            Position: <span class="label label-info">{{latest.data.Position}}</span>
+        </li>
+        <li *ngFor="let p of latest.data.Positions | keys">
+            {{p.key}}: <span class="label label-info">{{p.value}}</span>
+        </li>
+    </ul>
+</div>
+
+<div class="panel panel-info" *ngIf="hasWeigth()">
+    <div class="panel-heading">
+        <h3 class="panel-title">Latest weight</h3>
+    </div>
+    <ul>
+        <li *ngIf="latest.data.weight">
+            Weight: <span class="label label-info">{{latest.data.weight}} {{latest.measureunit}}</span>
+        </li>
+
+        <li *ngFor="let p of latest.data.weigths | keys">
+            {{p.key}}: <span class="label label-info">{{p.value.weight}} {{p.value.measureunit}}</span>
+        </li>
+    </ul>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Latest raw <span class="label label-default" *ngIf="loading">Loading...</span></h3>
+    </div>
+    <pre>{{getJson()}}</pre>
+</div>
+
+
+<xns-component-ota [component]='component'></xns-component-ota> 
+<xns-component-custom-command [component]='component'></xns-component-custom-command> 
+<xns-component-messages [component]='component'></xns-component-messages>
+
+
+</div>

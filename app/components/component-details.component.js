@@ -9,10 +9,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var router_1 = require("@angular/router");
 var xns_service_1 = require("../api/xns.service");
 var ComponentDetailsComponent = (function () {
-    function ComponentDetailsComponent(_service) {
+    function ComponentDetailsComponent(_service, _route) {
         this._service = _service;
+        this._route = _route;
         this.loading = false;
         this.latest = {};
     }
@@ -44,7 +46,14 @@ var ComponentDetailsComponent = (function () {
         return JSON.stringify(this.latest, null, 2);
     };
     ComponentDetailsComponent.prototype.ngOnInit = function () {
+        var _this = this;
         this.latest = {};
+        this._route.params.subscribe(function (params) {
+            var id = params['id'];
+            _this._service.getComponent(id).subscribe(function (data) {
+                _this.component = data;
+            });
+        });
     };
     ComponentDetailsComponent.prototype.ngOnChanges = function () {
         this.latest = {};
@@ -73,7 +82,8 @@ ComponentDetailsComponent = __decorate([
         templateUrl: 'app/components/component-details.component.html',
         styleUrls: ['app/components/component-details.component.css']
     }),
-    __metadata("design:paramtypes", [xns_service_1.XnsService])
+    __metadata("design:paramtypes", [xns_service_1.XnsService,
+        router_1.ActivatedRoute])
 ], ComponentDetailsComponent);
 exports.ComponentDetailsComponent = ComponentDetailsComponent;
 //# sourceMappingURL=component-details.component.js.map

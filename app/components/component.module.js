@@ -36,7 +36,7 @@ ComponentModule = __decorate([
             forms_1.FormsModule,
             router_1.RouterModule.forChild([
                 { path: 'components', component: component_list_component_1.ComponentListComponent, canActivate: [xns_guard_service_1.XnsServiceGuard] },
-                { path: 'components/:id', component: component_list_component_1.ComponentListComponent, canActivate: [xns_guard_service_1.XnsServiceGuard] },
+                { path: 'components/:id', component: component_details_component_1.ComponentDetailsComponent, canActivate: [xns_guard_service_1.XnsServiceGuard] },
                 { path: 'edit/component/:id', component: component_edit_component_1.ComponentEditComponent, canActivate: [xns_guard_service_1.XnsServiceGuard] }
             ])
         ],

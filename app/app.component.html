@@ -1,5 +1,26 @@
 <xns-navbar></xns-navbar>
-<div class='container' style="padding-top: 60px">
-    <router-outlet></router-outlet>
+
+<div class="app-body">
+    <xns-sidebar></xns-sidebar>
+    
+
+    <!-- Main content -->
+    <main class="main">
+
+        <!-- Breadcrumb -->
+        <ol class="breadcrumb">
+            
+        </ol>
+
+        <div class="container-fluid">
+            <router-outlet></router-outlet>
+        </div>
+        <!-- /.conainer-fluid -->
+    </main>
 </div>
+
+<footer class="app-footer">
+    <a href="https://xnsense.com">xnsense</a> &copy; 2017.
+</footer>
+
 

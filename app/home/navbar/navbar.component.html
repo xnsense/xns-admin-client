@@ -1,19 +1,9 @@
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" (click)="isCollapsed = !isCollapsed" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-        {{menuIcon}}
-      </button>
-      <a class="navbar-brand" [routerLink]="[brandMenu.path]">{{brandMenu.title}}</a>
-    </div>
-    <div id="navbar" class="navbar-collapse collapse" [attr.aria-expanded]="!isCollapsed" [ngClass]="{collapse: isCollapsed}">
-      <ul class="nav navbar-nav">
-        <li (click)="isCollapsed = true" *ngFor="let menuItem of menuItems" class="nav-item" routerLinkActive="active" [ngClass]="getMenuItemClasses(menuItem)">
-          <a class="nav-item nav-link" [routerLink]="[menuItem.path]" routerLinkActive="active">{{menuItem.title}}</a>
+<header class="app-header navbar">
+    <button class="navbar-toggler mobile-sidebar-toggler hidden-lg-up" type="button">&#9776;</button>
+    <a class="navbar-brand" href="#"></a>
+    <ul class="nav navbar-nav hidden-md-down">
+        <li class="nav-item">
+            <a class="nav-link navbar-toggler sidebar-toggler" href="#">&#9776;</a>
         </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-
+    </ul>
+</header>

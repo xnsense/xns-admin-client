@@ -14,10 +14,12 @@ var http_1 = require("@angular/http");
 var router_1 = require("@angular/router");
 var forms_1 = require("@angular/forms");
 var ng2_bootstrap_1 = require("ng2-bootstrap");
+// import { FileDroppa } from 'file-droppa';
 var app_component_1 = require("./app.component");
 var home_component_1 = require("./home/home.component");
 var login_component_1 = require("./home/login.component");
 var navbar_component_1 = require("./home/navbar/navbar.component");
+var sidebar_component_1 = require("./home/sidebar/sidebar.component");
 var common_1 = require("@angular/common");
 /* Feature Modules */
 var component_module_1 = require("./components/component.module");
@@ -48,6 +50,7 @@ AppModule = __decorate([
             home_component_1.HomeComponent,
             login_component_1.LoginComponent,
             navbar_component_1.NavbarComponent,
+            sidebar_component_1.SidebarComponent
         ],
         providers: [
             { provide: core_1.LOCALE_ID, useValue: "en-US" },

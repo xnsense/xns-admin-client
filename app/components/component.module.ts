@@ -24,7 +24,7 @@ import { XnsServiceGuard } from '../api/xns-guard.service';
       FormsModule,
       RouterModule.forChild([
         { path: 'components', component: ComponentListComponent, canActivate: [XnsServiceGuard] },
-        { path: 'components/:id', component: ComponentListComponent, canActivate: [XnsServiceGuard] },
+        { path: 'components/:id', component: ComponentDetailsComponent, canActivate: [XnsServiceGuard] },
         { path: 'edit/component/:id', component: ComponentEditComponent, canActivate: [XnsServiceGuard] }
       ])
   ],
