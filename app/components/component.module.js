@@ -16,6 +16,7 @@ var component_list_component_1 = require("./component-list.component");
 var component_edit_component_1 = require("./component-edit.component");
 var component_dashboard_component_1 = require("./component-dashboard.component");
 var component_details_component_1 = require("./component-details.component");
+var component_firmware_component_1 = require("./component-firmware.component");
 var component_messages_component_1 = require("./component-messages.component");
 var component_custom_command_component_1 = require("./component-custom-command.component");
 var component_ota_component_1 = require("./component-ota.component");
@@ -46,6 +47,7 @@ ComponentModule = __decorate([
             component_dashboard_component_1.ComponentDashboardComponent,
             component_messages_component_1.ComponentMessagesComponent,
             component_details_component_1.ComponentDetailsComponent,
+            component_firmware_component_1.ComponentFirmwareComponent,
             component_edit_component_1.ComponentEditComponent,
             component_ota_component_1.ComponentOtaComponent,
             component_custom_command_component_1.ComponentCustomCommandComponent,

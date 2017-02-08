@@ -5,41 +5,7 @@
         </div>
 
         <div class="col-sm-6">
-            <div class="card">
-                <div class="card-header">
-                    <strong>Firmware</strong>
-                    <small></small>
-                </div>
-                <div class="card-block">
-                    <div class="row">
-                        <div class="form-group col-sm-8">
-                            <label for="city">Hardware</label>
-                            <input type="text" class="form-control" name="hardware" placeholder="xns.sensors.in-out-temp">
-                        </div>
-                        <div class="form-group col-sm-4">
-                            <label for="postal-code">Revision</label>
-                            <input type="text" class="form-control" name="revision" placeholder="A">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-sm-5">
-                            <label for="city">Firmware Revision</label>
-                            <input type="text" class="form-control" name="fwRevision" placeholder="1.0.0.20">
-                        </div>
-                        <div class="form-group col-sm-7">
-                            <label for="postal-code">URL</label>
-                            <input type="text" class="form-control" name="fwUrl" placeholder="https://blobUrl">
-                        </div>
-                    </div>
-                    <!-- Drop Zone -->
-                    <label for="postal-code">Upload new firmware</label>
-<!--
-                    <div class="upload-drop-zone" id="drop-zone">
-                        Drag and drop files here
-                    </div>
--->                    
-                </div>
-            </div>
+            <xns-component-firmware [component]="component"></xns-component-firmware>
         </div>
         <div class="col-sm-12">
             <xns-component-custom-command [component]="component"></xns-component-custom-command>

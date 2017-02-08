@@ -7,6 +7,7 @@ import { ComponentListComponent } from './component-list.component';
 import { ComponentEditComponent } from './component-edit.component';
 import { ComponentDashboardComponent } from './component-dashboard.component';
 import { ComponentDetailsComponent } from './component-details.component';
+import { ComponentFirmwareComponent } from './component-firmware.component';
 import { ComponentMessagesComponent } from './component-messages.component';
 import { ComponentCustomCommandComponent } from './component-custom-command.component';
 import { ComponentOtaComponent } from './component-ota.component';
@@ -34,6 +35,7 @@ import { XnsServiceGuard } from '../api/xns-guard.service';
     ComponentDashboardComponent,
     ComponentMessagesComponent,
     ComponentDetailsComponent,
+    ComponentFirmwareComponent,
     ComponentEditComponent,
     ComponentOtaComponent,
     ComponentCustomCommandComponent,
