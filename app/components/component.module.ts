@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { ComponentListComponent } from './component-list.component';
 import { ComponentEditComponent } from './component-edit.component';
 import { ComponentDashboardComponent } from './component-dashboard.component';
+import { ComponentDetailsComponent } from './component-details.component';
 import { ComponentMessagesComponent } from './component-messages.component';
 import { ComponentCustomCommandComponent } from './component-custom-command.component';
 import { ComponentOtaComponent } from './component-ota.component';
@@ -32,6 +33,7 @@ import { XnsServiceGuard } from '../api/xns-guard.service';
     ComponentListComponent,
     ComponentDashboardComponent,
     ComponentMessagesComponent,
+    ComponentDetailsComponent,
     ComponentEditComponent,
     ComponentOtaComponent,
     ComponentCustomCommandComponent,
