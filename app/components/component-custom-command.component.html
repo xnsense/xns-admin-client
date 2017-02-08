@@ -1,18 +1,26 @@
-<div class="panel panel-warning">
-    <div class="panel-heading">
-        <h3 class="panel-title">Custom command</h3>
+<div class="card">
+    <div class="card-header">
+        <strong>Command</strong>
+        <small></small>
     </div>
-    <form class="form-in-panel form-inline" (keydown)="keyDownFunction($event)">
-        <div class="form-group">
-            <label for="echoMessage">Command</label>
-            <input class="form-control" type="text" name="commandName" [(ngModel)]="commandName"/> <button class="btn btn-primary" (click)="sendCommand()">Send command</button>
-        </div>
-        <div class="form-group">
-            <label for="commandDetails">Command details (type JSON here, e.g. <code>{{'{'}} "name": "value" }</code>)</label>
-            <textarea class="form-control" name="commandDetails" [(ngModel)]="commandDetails"></textarea>
-        </div>
-        <div class="label label-danger" *ngIf="errorMessage != null">
-            {{errorMessage}}
-        </div>
-    </form>
+    <div class="card-block">
+        <form class="" (keydown)="keyDownFunction($event)">
+            <div class="row">
+                <div class="form-group col-sm-3">
+                    <label for="city">Command</label>
+                    <input type="text" class="form-control" name="commandName" [(ngModel)]="commandName">
+                </div>
+                <div class="form-group col-sm-9">
+                    <label for="street">Details</label>
+                    <input type="text" class="form-control" name="commandDetails" placeholder="{'name':'value'}" [(ngModel)]="commandDetails">
+                    <div class="label label-danger" *ngIf="errorMessage != null">
+                        {{errorMessage}}
+                    </div>
+                </div>
+            </div>    
+            <div class="form-group">
+                <button type="button" name="sendCommand" class="btn btn-primary" (click)="sendCommand()">Send</button>
+            </div>
+        </form>
+    </div>
 </div>

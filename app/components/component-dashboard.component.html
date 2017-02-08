@@ -1,0 +1,150 @@
+<div class="animated fadeIn row" *ngIf="component">
+
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-header">
+                    <strong>{{component.name}}</strong>
+                    <small></small>
+                </div>
+                <div class="card-block">
+                    <form name="form" (ngSubmit)="f.form.valid && save()" #f="ngForm" novalidate>
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label for="city">Name</label>
+                                <input type="text" class="form-control" name="name" [(ngModel)]="component.name">
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="postal-code">Address</label>
+                                <input type="text" class="form-control" name="componentAddress" [(ngModel)]="component.componentAddress">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="street">Description</label>
+                            <input type="text" class="form-control" name="description" [(ngModel)]="component.description">
+                        </div>
+                        <div class="form-group">
+                            <label for="street">Tag</label>
+                            <input type="text" class="form-control" name="tags" [(ngModel)]="component.tags">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-header">
+                    <strong>Firmware</strong>
+                    <small></small>
+                </div>
+                <div class="card-block">
+                    <div class="row">
+                        <div class="form-group col-sm-8">
+                            <label for="city">Hardware</label>
+                            <input type="text" class="form-control" name="hardware" placeholder="xns.sensors.in-out-temp">
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <label for="postal-code">Revision</label>
+                            <input type="text" class="form-control" name="revision" placeholder="A">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-5">
+                            <label for="city">Firmware Revision</label>
+                            <input type="text" class="form-control" name="fwRevision" placeholder="1.0.0.20">
+                        </div>
+                        <div class="form-group col-sm-7">
+                            <label for="postal-code">URL</label>
+                            <input type="text" class="form-control" name="fwUrl" placeholder="https://blobUrl">
+                        </div>
+                    </div>
+                    <!-- Drop Zone -->
+                    <label for="postal-code">Upload new firmware</label>
+<!--
+                    <div class="upload-drop-zone" id="drop-zone">
+                        Drag and drop files here
+                    </div>
+-->                    
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <xns-component-custom-command component="component"></xns-component-custom-command>
+        </div>
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <strong>Messages</strong> 
+                    <span class="float-right"> Refresh every 10 sec 
+                    <label class="switch switch-text switch-pill switch-primary">
+                        <input checked="" class="switch-input" type="checkbox">
+                        <span class="switch-label" data-off="Off" data-on="On"></span>
+                        <span class="switch-handle"></span>
+                    </label>
+                    </span>
+                    <small></small>
+                </div>
+                <div class="card-block">
+                    <div class="row">
+                        <div class="form-group col-sm-3">
+                            <label for="city">Send Echo</label>
+                            <div class="input-group">
+                                    <input class="form-control" id="input2-group2" name="input2-group2" placeholder="Echo Message" type="email">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-primary" type="button">Send</button>
+                                    </span>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Message</th>
+                                <th>Up time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2012/01/01</td>
+                                <td>Connected</td>
+                                <td>
+                                    <span class="badge badge-success">9 h 12m 33s</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2012/01/01</td>
+                                <td>OTA Upgrade from http</td>
+                                <td>
+                                    <span class="badge badge-success">9 h 12m 33s</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2012/01/01</td>
+                                <td>Im alive</td>
+                                <td>
+                                    <span class="badge badge-success">9 h 12m 33s</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2012/01/01</td>
+                                <td>Im alive</td>
+                                <td>
+                                    <span class="badge badge-success">9 h 12m 33s</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2012/01/01</td>
+                                <td>Im alive</td>
+                                <td>
+                                    <span class="badge badge-success">9 h 12m 33s</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>        
+</div>    

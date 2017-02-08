@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 
 import { ComponentListComponent } from './component-list.component';
 import { ComponentEditComponent } from './component-edit.component';
-import { ComponentDetailsComponent } from './component-details.component';
+import { ComponentDashboardComponent } from './component-dashboard.component';
 import { ComponentMessagesComponent } from './component-messages.component';
 import { ComponentCustomCommandComponent } from './component-custom-command.component';
 import { ComponentOtaComponent } from './component-ota.component';
@@ -24,13 +24,13 @@ import { XnsServiceGuard } from '../api/xns-guard.service';
       FormsModule,
       RouterModule.forChild([
         { path: 'components', component: ComponentListComponent, canActivate: [XnsServiceGuard] },
-        { path: 'components/:id', component: ComponentDetailsComponent, canActivate: [XnsServiceGuard] },
+        { path: 'components/:id', component: ComponentDashboardComponent, canActivate: [XnsServiceGuard] },
         { path: 'edit/component/:id', component: ComponentEditComponent, canActivate: [XnsServiceGuard] }
       ])
   ],
   declarations: [
     ComponentListComponent,
-    ComponentDetailsComponent,
+    ComponentDashboardComponent,
     ComponentMessagesComponent,
     ComponentEditComponent,
     ComponentOtaComponent,
