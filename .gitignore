@@ -37,6 +37,8 @@ jspm_packages
 .node_repl_history
 
 # Compile output from .ts files
+app/*.js
+app/*.map
 app/**/*.js
 app/**/*.map
 
