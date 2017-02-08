@@ -1,19 +1,51 @@
-<div class="panel panel-warning">
-    <div class="panel-heading">
-        <h3 class="panel-title">Messages from last 24 hours <span class="label label-default" *ngIf="loading">Loading...</span></h3>
+<div class="card">
+    <div class="card-header">
+        <strong>Messages</strong> 
+        <span class="float-right"> Refresh every 10 sec 
+        <label class="switch switch-text switch-pill switch-primary">
+            <input checked="" class="switch-input" type="checkbox" [(ngModel)]="autoRefresh" (click)="toggleAutoRefresh()">
+            <span class="switch-label" data-off="Off" data-on="On"></span>
+            <span class="switch-handle"></span>
+        </label>
+        </span>
+        <small></small>
     </div>
-    <form class="form-in-panel form-inline" (keydown)="keyDownFunction($event)">
-        <div class="form-group">
-            <label for="echoMessage">Send echo</label>
-            <input class="form-control" type="text" name="echoMessage" [(ngModel)]="echoMessage"/> <button class="btn btn-primary" (click)="echo()">Send echo message</button>
-            <button class="btn btn-success" (click)="refresh()">Refresh messages</button>
+    <div class="card-block">
+        <div class="row">
+            <div class="form-group col-sm-12">
+                <label for="city">Send Echo</label>
+                <form class="form-in-panel" (keydown)="keyDownFunction($event)">
+                    <div class="input-group">
+                        <input class="form-control" type="text" name="echoMessage" placeholder="Echo Message" [(ngModel)]="echoMessage"/>
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" (click)="echo()">Go</button>
+                        </span>
+                    </div>
+                </form>
+            </div>
         </div>
-    </form>
-    <div class="message-list">
-        <div class="label label-danger" *ngIf="errorMessage">{{errorMessage}}</div>
-        <div *ngFor="let message of messages">
-            <span class="label label-default">{{message.fw}}</span> {{message.enqueued | mydate:'yyyy-MM-dd HH:mm'}}: {{message.message}} <span class="label label-success" *ngIf="message.up != null">Up for {{message.up | duration}}</span>
+        <div>&nbsp;
+            <span class="badge badge-default" *ngIf="loading">Loading...</span>
         </div>
-        <div *ngIf="messages.length == 0">No messages {{errorMessage}}</div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Date (time)</th>
+                    <th>Message</th>
+                    <th>Up time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let message of messages">
+                    <td>{{message.enqueued | mydate:'yyyy-MM-dd (HH:mm)'}}</td>
+                    <td>{{message.message}}</td>
+                    <td>
+                        <span *ngIf="message.up" class="badge badge-success">{{message.up | duration}}</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
+
+

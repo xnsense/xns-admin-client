@@ -15,6 +15,8 @@ export class ComponentMessagesComponent implements OnInit, OnChanges {
     messages: IComponentMessage[] = [];
     loading: boolean = false;
     latestMessage: Date = null;
+    reloadTimer: NodeJS.Timer;
+    autoRefresh: boolean = true;
 
    constructor(
                 private _service: XnsService) {
@@ -28,8 +30,19 @@ export class ComponentMessagesComponent implements OnInit, OnChanges {
         this.loadNewMessages();
     }
 
+    toggleAutoRefresh(): void {
+        this.autoRefresh = !this.autoRefresh;
+
+        if (this.autoRefresh)
+            this.loadNewMessages();
+        else if (this.reloadTimer)
+            clearTimeout(this.reloadTimer);
+    }
     loadNewMessages(): void {
         try {
+            if (this.reloadTimer)
+                clearTimeout(this.reloadTimer);
+
             this.loading = true;
             this._service.getComponentMessages(this.component, this.latestMessage).subscribe(data => {
                 if (data.length > 0)
@@ -39,9 +52,13 @@ export class ComponentMessagesComponent implements OnInit, OnChanges {
                 else
                     this.messages = data;
                 this.loading = false;
-                setTimeout(() => {
-                    this.loadNewMessages();
-                }, 5000); 
+
+                if (this.autoRefresh)
+                {
+                    this.reloadTimer = setTimeout(() => {
+                        this.loadNewMessages();
+                    }, 5000); 
+                }
             });
         }
         catch(ex)
