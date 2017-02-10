@@ -113,11 +113,11 @@ export class XnsService {
             .catch(this.handleError);
     }
     
-    getHardware(id: string): Observable<IHardware[]> {
+    getHardware(id: string): Observable<IHardware> {
         let headers = new Headers({"X-ZUMO-AUTH": this._auth});
         let options = new RequestOptions({ headers: headers });
-        return this._http.get(this._baseUrl + "tables/hardware" + encodeURI(id), options)
-            .map((response: Response) => <IHardware[]> response.json())
+        return this._http.get(this._baseUrl + "tables/hardware/" + encodeURI(id), options)
+            .map((response: Response) => <IHardware> response.json())
             .do(data => console.log('All: ' +  JSON.stringify(data)))
             .catch(this.handleError);
     }
@@ -131,11 +131,11 @@ export class XnsService {
             .catch(this.handleError);
     }
 
-    getFirmware(id: string): Observable<IFirmware[]> {
+    getFirmware(id: string): Observable<IFirmware> {
         let headers = new Headers({"X-ZUMO-AUTH": this._auth});
         let options = new RequestOptions({ headers: headers });
-        return this._http.get(this._baseUrl + "tables/firmware" + encodeURI(id), options)
-            .map((response: Response) => <IFirmware[]> response.json())
+        return this._http.get(this._baseUrl + "tables/firmware/" + encodeURI(id), options)
+            .map((response: Response) => <IFirmware> response.json())
             .do(data => console.log('All: ' +  JSON.stringify(data)))
             .catch(this.handleError);
     }

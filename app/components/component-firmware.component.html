@@ -1,27 +1,28 @@
-<div class="card">
+<div class="card" *ngIf="firmware && hardware">
     <div class="card-header">
         <strong>Firmware</strong>
         <small></small>
     </div>
     <div class="card-block">
         <div class="row">
+            
             <div class="form-group col-sm-8">
-                <label for="city">Hardware</label>
-                <input type="text" class="form-control" name="hardware" placeholder="xns.sensors.in-out-temp">
+                <label>Hardware</label>
+                <input type="text" name="hardware" class="form-control" [(ngModel)]="hardware.appname">
             </div>
             <div class="form-group col-sm-4">
-                <label for="postal-code">Revision</label>
-                <input type="text" class="form-control" name="revision" placeholder="A">
+                <label for="hardwareRevision">Revision</label>
+                <input type="text" name="revision" class="form-control" [(ngModel)]="hardware.revision">
             </div>
         </div>
         <div class="row">
             <div class="form-group col-sm-5">
-                <label for="city">Firmware Revision</label>
-                <input type="text" class="form-control" name="fwRevision" placeholder="1.0.0.20">
+                <label>Firmware Revision</label>
+                <input type="text" class="form-control" name="fwRevision" [(ngModel)]="firmware.revision">
             </div>
             <div class="form-group col-sm-7">
-                <label for="postal-code">URL</label>
-                <input type="text" class="form-control" name="fwUrl" placeholder="https://blobUrl">
+                <label>URL</label>
+                <input type="text" class="form-control" name="fwUrl" [(ngModel)]="firmware.blobUrl">
             </div>
         </div>
         <!-- Drop Zone -->

@@ -5,4 +5,6 @@ export interface IComponent {
     description: string;
     componentAddress: string;
     unitId: string;
+    hardwareId: string;
+    firmwareId: string;
 }
