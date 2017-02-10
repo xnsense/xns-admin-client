@@ -11,6 +11,8 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
 import { IComponent } from '../components/component';
+import { IHardware } from '../components/hardware';
+import { IFirmware } from '../components/firmware';
 import { IComponentMessage } from '../components/component-message';
 
 @Injectable()
@@ -98,6 +100,24 @@ export class XnsService {
         let options = new RequestOptions({ headers: headers });
         return this._http.get(this._baseUrl + "tables/component", options)
             .map((response: Response) => <IComponent[]> response.json())
+            .do(data => console.log('All: ' +  JSON.stringify(data)))
+            .catch(this.handleError);
+    }
+
+    getHardware(): Observable<IHardware[]> {
+        let headers = new Headers({"X-ZUMO-AUTH": this._auth});
+        let options = new RequestOptions({ headers: headers });
+        return this._http.get(this._baseUrl + "tables/hardware", options)
+            .map((response: Response) => <IHardware[]> response.json())
+            .do(data => console.log('All: ' +  JSON.stringify(data)))
+            .catch(this.handleError);
+    }
+
+    getFirmware(): Observable<IFirmware[]> {
+        let headers = new Headers({"X-ZUMO-AUTH": this._auth});
+        let options = new RequestOptions({ headers: headers });
+        return this._http.get(this._baseUrl + "tables/firmware", options)
+            .map((response: Response) => <IFirmware[]> response.json())
             .do(data => console.log('All: ' +  JSON.stringify(data)))
             .catch(this.handleError);
     }
