@@ -104,7 +104,7 @@ export class XnsService {
             .catch(this.handleError);
     }
 
-    getHardware(): Observable<IHardware[]> {
+    getHardwareList(): Observable<IHardware[]> {
         let headers = new Headers({"X-ZUMO-AUTH": this._auth});
         let options = new RequestOptions({ headers: headers });
         return this._http.get(this._baseUrl + "tables/hardware", options)
@@ -112,11 +112,29 @@ export class XnsService {
             .do(data => console.log('All: ' +  JSON.stringify(data)))
             .catch(this.handleError);
     }
+    
+    getHardware(id: string): Observable<IHardware[]> {
+        let headers = new Headers({"X-ZUMO-AUTH": this._auth});
+        let options = new RequestOptions({ headers: headers });
+        return this._http.get(this._baseUrl + "tables/hardware" + encodeURI(id), options)
+            .map((response: Response) => <IHardware[]> response.json())
+            .do(data => console.log('All: ' +  JSON.stringify(data)))
+            .catch(this.handleError);
+    }
 
-    getFirmware(): Observable<IFirmware[]> {
+    getFirmwareList(): Observable<IFirmware[]> {
         let headers = new Headers({"X-ZUMO-AUTH": this._auth});
         let options = new RequestOptions({ headers: headers });
         return this._http.get(this._baseUrl + "tables/firmware", options)
+            .map((response: Response) => <IFirmware[]> response.json())
+            .do(data => console.log('All: ' +  JSON.stringify(data)))
+            .catch(this.handleError);
+    }
+
+    getFirmware(id: string): Observable<IFirmware[]> {
+        let headers = new Headers({"X-ZUMO-AUTH": this._auth});
+        let options = new RequestOptions({ headers: headers });
+        return this._http.get(this._baseUrl + "tables/firmware" + encodeURI(id), options)
             .map((response: Response) => <IFirmware[]> response.json())
             .do(data => console.log('All: ' +  JSON.stringify(data)))
             .catch(this.handleError);
