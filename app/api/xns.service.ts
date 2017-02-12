@@ -24,8 +24,10 @@ export class XnsService {
     private _authExpires: Number;
     
     getFirmwareUrl(component: IComponent, sendOTAMessage: boolean):string {
-        return this._baseUrl + "api/ComponentFirmwareFile?componentAddress=" + encodeURI(component.componentAddress) + (sendOTAMessage ? "&sendOTAMessage=True" : "");
-
+        return this._baseUrl + "api/ComponentFirmwareFile?componentAddress=" + encodeURI(component.componentAddress) + "&sendOTAMessage=" + (sendOTAMessage ? "True" : "False");
+    }
+    getAuthHeader():string[] {
+        return ["X-ZUMO-AUTH", this._auth];
     }
 
     onLogin = new BehaviorSubject<boolean>(false);

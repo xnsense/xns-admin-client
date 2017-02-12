@@ -26,15 +26,23 @@
             </div>
         </div>
         <!-- Drop Zone -->
-        <label for="postal-code">Upload new firmware</label>
-
+        <div class="row form-group">
+            <div class="col-sm-6">
+            <label for="postal-code">Upload new firmware</label>
+            </div>
+            <div class="col-sm-6 checkbox">
+                <label><input type="checkbox" name="autoOTA" [(ngModel)]="autoOTA" (click)="updateUrl()"> send OTA ({{autoOTA}})</label>
+            </div>
+        </div>
         <div ng2FileDrop
                 [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
                 (fileOver)="fileOverBase($event)"
                 [uploader]="uploader"
-                class="well my-drop-zone">
-            Drop hex file here
+                class="well my-drop-zone"
+                >
+            Drop hex file here ({{uploader?.queue?.length}} files)
         </div>
+        
 <!--
         <div class="upload-drop-zone" id="drop-zone">
             Drag and drop files here

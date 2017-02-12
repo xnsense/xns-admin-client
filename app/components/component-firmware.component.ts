@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { FileUploader, FileSelectDirective } from 'ng2-file-upload';
+import { FileUploader, FileSelectDirective, FileItem } from 'ng2-file-upload';
 
 import { IComponent } from './component';
 import { IFirmware } from './firmware';
@@ -16,11 +16,12 @@ import { XnsService } from '../api/xns.service';
 export class ComponentFirmwareComponent implements OnInit, OnChanges {
     
     @Input() public component: IComponent;
-    errorMessage: any;
-    firmware: IFirmware;
-    hardware: IHardware;
+    public errorMessage: any;
+    public firmware: IFirmware;
+    public hardware: IHardware;
+    public autoOTA: false;
 
-    public uploader:FileUploader = new FileUploader({});
+    public uploader:FileUploader = new MyUploader({});
     public hasBaseDropZoneOver:boolean = false;
 
     constructor(private _service: XnsService) {
@@ -30,8 +31,11 @@ export class ComponentFirmwareComponent implements OnInit, OnChanges {
         this.hasBaseDropZoneOver = e;
         console.log("File is over zone");
     }
+    upload(): void {
+        this.uploader.uploadAll();
+    }
     ngOnInit(): void {
-        this.uploader.setOptions({url: this._service.getFirmwareUrl(this.component, true), autoUpload: true});
+        this.updateUrl();
 
         let fwId = this.component.firmwareId;
         let hwId = this.component.hardwareId;
@@ -52,8 +56,25 @@ export class ComponentFirmwareComponent implements OnInit, OnChanges {
                 error => this.errorMessage = <any>error
             );        
     }
+
+    updateUrl() : void {
+        //let url = "http://localhost:8080/api";
+        let url = this._service.getFirmwareUrl(this.component, true);
+        let auth = this._service.getAuthHeader();
+        this.uploader.setOptions({ url: url, autoUpload: true, removeAfterUpload: true, method: "POST", authTokenHeader: auth[0], authToken: auth[1] });        
+    }
     
     ngOnChanges() : void {
-        
+
+    }
+}
+
+/*
+    This is a trick to turn off Credentials in the request, 
+    allowing use of wildcard host header in CORS request
+*/
+class MyUploader extends FileUploader {
+    onAfterAddingFile(file: FileItem) {
+        file.withCredentials = false;
     }
 }
