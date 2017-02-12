@@ -38,7 +38,7 @@ export class ComponentMessagesComponent implements OnInit, OnChanges {
         else if (this.reloadTimer)
             clearTimeout(this.reloadTimer);
 
-        localStorage.setItem('autoRefresh', JSON.stringify(this.autoRefresh);            
+        localStorage.setItem('autoRefresh', JSON.stringify(this.autoRefresh));            
     }
     loadNewMessages(): void {
         try {
