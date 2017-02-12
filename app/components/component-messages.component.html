@@ -30,18 +30,20 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Date (time)</th>
+                    <th>Time ago</th>
                     <th>Message</th>
                     <th>Up time</th>
+                    <th>Log time</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let message of messages">
-                    <td>{{message.enqueued | mydate:'yyyy-MM-dd (HH:mm)'}}</td>
+                    <td class="">{{message.enqueued | duration}}</td>
                     <td>{{message.message}}</td>
                     <td>
                         <span *ngIf="message.up" class="badge badge-success">{{message.up | duration}}</span>
                     </td>
+                    <td class="text-muted">{{message.enqueued | mydate:'yyyy-MM-dd HH:mm'}}</td>
                 </tr>
             </tbody>
         </table>
