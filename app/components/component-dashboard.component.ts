@@ -21,29 +21,35 @@ export class ComponentDashboardComponent implements OnInit, OnChanges {
     
     hasTemperature() : boolean {
         return this.latest && this.latest.data && this.latest.data.Temperatures != null;
+        /*
         for (let key in this.latest) {
             if (this.latest[key].temperature)
                 return true;
         }
         return false;
+        */
     }
 
     hasPosition() : boolean {
         return this.latest && this.latest.data && this.latest.data.Positions != null;
+        /*
         for (let key in this.latest) {
             if (this.latest[key].position)
                 return true;
         }
         return false;
+        */
     }
 
     hasWeigth() : boolean {
         return this.latest && this.latest.data && this.latest.data.Weights != null;
+        /*
         for (let key in this.latest) {
             if (this.latest[key].weight)
                 return true;
         }
         return false;
+        */
     }
     
     getJson() : string {
