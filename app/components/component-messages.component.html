@@ -1,8 +1,9 @@
 <div class="card">
     <div class="card-header">
-        <strong>Messages</strong> 
+        <strong>Messages</strong>
+        <i class="fa fa-spinner fa-spin" style="font-size: 15px;margin-left: 10px;" *ngIf="loading"></i> 
         <span class="float-right"> Refresh every 10 sec 
-        <label class="switch switch-text switch-pill switch-primary">
+        <label class="switch switch-text switch-pill switch-primary autoRefresh">
             <input checked="" class="switch-input" type="checkbox" [(ngModel)]="autoRefresh" (click)="toggleAutoRefresh()">
             <span class="switch-label" data-off="Off" data-on="On"></span>
             <span class="switch-handle"></span>
@@ -23,9 +24,6 @@
                     </div>
                 </form>
             </div>
-        </div>
-        <div>&nbsp;
-            <span class="badge badge-default" *ngIf="loading">Loading...</span>
         </div>
         <table class="table">
             <thead>

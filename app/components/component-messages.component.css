@@ -4,3 +4,6 @@
 .message-list {
     margin: 15px;
 }
+.autoRefresh{
+    margin-bottom: 0px !important;
+}
