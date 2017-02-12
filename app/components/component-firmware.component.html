@@ -28,11 +28,13 @@
         <!-- Drop Zone -->
         <div class="row form-group">
             <div class="col-sm-6">
-            <label for="postal-code">Upload new firmware</label>
+                <label for="postal-code">Upload new firmware</label>
             </div>
-            <div class="col-sm-6 checkbox">
-                <label><input type="checkbox" name="autoOTA" [(ngModel)]="autoOTA" (click)="updateUrl()"> send OTA ({{autoOTA}})</label>
-            </div>
+            <label class="col-sm-6 custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" name="autoOTA" [(ngModel)]="autoOTA" (click)="updateUrl()">
+                <span class="custom-control-indicator"></span>
+                <span class="custom-control-description">Send OTA Command</span>
+            </label>
         </div>
         <div ng2FileDrop
                 [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"

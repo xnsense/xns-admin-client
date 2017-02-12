@@ -30,7 +30,7 @@ export class ComponentDetailsComponent implements OnInit, OnChanges {
             .saveComponent(this.component)
             .subscribe(success => {
                 if (success)
-                    this._router.navigate(['components', this.component.componentAddress]);
+                    this._router.navigate(['components', this.component.id]);
             }, e => {
                 console.error(e);
             });
