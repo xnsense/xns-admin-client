@@ -32,11 +32,13 @@ export class ComponentMessagesComponent implements OnInit, OnChanges {
 
     toggleAutoRefresh(): void {
         this.autoRefresh = !this.autoRefresh;
-
+        
         if (this.autoRefresh)
             this.loadNewMessages();
         else if (this.reloadTimer)
             clearTimeout(this.reloadTimer);
+
+        localStorage.setItem('autoRefresh', JSON.stringify(this.autoRefresh);            
     }
     loadNewMessages(): void {
         try {
@@ -69,6 +71,9 @@ export class ComponentMessagesComponent implements OnInit, OnChanges {
     }
 
     ngOnInit(): void {
+        let vSaved = JSON.parse(localStorage.getItem('autoRefresh'));
+        if (vSaved == false)
+            this.autoRefresh = false;
     }
 
     echo() : void {
