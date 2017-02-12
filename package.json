@@ -10,7 +10,7 @@
     "lint": "tslint ./app/**/*.ts -t verbose",
     "lite": "lite-server",
     "typings": "typings",
-    "postinstall": "typings install"
+    "postinstall": "typings install && tsc -w"
   },
   "license": "ISC",
   "dependencies": {
