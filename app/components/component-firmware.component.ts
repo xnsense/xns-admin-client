@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
+import { FileUploader, FileSelectDirective } from 'ng2-file-upload';
+
 import { IComponent } from './component';
 import { IFirmware } from './firmware';
 import { IHardware } from './hardware';
@@ -17,13 +19,20 @@ export class ComponentFirmwareComponent implements OnInit, OnChanges {
     errorMessage: any;
     firmware: IFirmware;
     hardware: IHardware;
-    comp: IComponent;
+
+    public uploader:FileUploader = new FileUploader({});
+    public hasBaseDropZoneOver:boolean = false;
 
     constructor(private _service: XnsService) {
     }
 
+    fileOverBase(e:any): void {
+        this.hasBaseDropZoneOver = e;
+        console.log("File is over zone");
+    }
     ngOnInit(): void {
-        this.comp = this.component;
+        this.uploader.setOptions({url: this._service.getFirmwareUrl(this.component, true), autoUpload: true});
+
         let fwId = this.component.firmwareId;
         let hwId = this.component.hardwareId;
         

@@ -5,9 +5,6 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Ng2BootstrapModule }  from 'ng2-bootstrap';
 
-// import { FileDroppa } from 'file-droppa';
-
-
 import { AppComponent }  from './app.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './home/login.component';
@@ -33,14 +30,14 @@ import { XnsServiceGuard } from './api/xns-guard.service';
     ]),
     ComponentModule,
     Ng2BootstrapModule
-    // ,FileDroppa
+    //FileUploadModule
   ],
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent    
   ],
   providers: [
     { provide: LOCALE_ID, useValue: "en-US" }, //replace "en-US" with your locale

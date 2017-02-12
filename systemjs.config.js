@@ -27,7 +27,10 @@
       'rxjs': 'npm:rxjs',
 
       // ng2-bootstrap
-      'ng2-bootstrap': 'node_modules/ng2-bootstrap/bundles/ng2-bootstrap.umd.js'
+      'ng2-bootstrap': 'npm:ng2-bootstrap/bundles/ng2-bootstrap.umd.js',
+
+      // ng2-file-upload
+      'ng2-file-upload': 'npm:ng2-file-upload/bundles/ng2-file-upload.umd.js'
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {

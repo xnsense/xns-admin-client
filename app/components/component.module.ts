@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { RouterModule} from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
+import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
+
+
 import { ComponentListComponent } from './component-list.component';
 import { ComponentEditComponent } from './component-edit.component';
 import { ComponentDashboardComponent } from './component-dashboard.component';
@@ -42,7 +45,8 @@ import { XnsServiceGuard } from '../api/xns-guard.service';
     ReversePipe,
     KeysPipe,
     MyDatePipe,
-    DurationPipe
+    DurationPipe,
+    FileSelectDirective, FileDropDirective
   ],
   providers: [
     XnsService,

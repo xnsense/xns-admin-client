@@ -23,6 +23,11 @@ export class XnsService {
     private _auth: string;
     private _authExpires: Number;
     
+    getFirmwareUrl(component: IComponent, sendOTAMessage: boolean):string {
+        return this._baseUrl + "api/ComponentFirmwareFile?componentAddress=" + encodeURI(component.componentAddress) + (sendOTAMessage ? "&sendOTAMessage=True" : "");
+
+    }
+
     onLogin = new BehaviorSubject<boolean>(false);
 
     constructor(private _http: Http, 
