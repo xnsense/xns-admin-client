@@ -6,31 +6,31 @@
     <div class="card-block">
         <div class="row">
             
-            <div class="form-group col-sm-8">
+            <div class="form-group col-xs-12 col-md-8">
                 <label>Hardware</label>
                 <input type="text" name="hardware" class="form-control" [(ngModel)]="hardware.appname">
             </div>
-            <div class="form-group col-sm-4">
+            <div class="form-group col-xs-12 col-md-4">
                 <label for="hardwareRevision">Revision</label>
                 <input type="text" name="revision" class="form-control" [(ngModel)]="hardware.revision">
             </div>
         </div>
         <div class="row">
-            <div class="form-group col-sm-5">
+            <div class="form-group col-xs-12 col-md-5">
                 <label>Firmware Revision</label>
                 <input type="text" class="form-control" name="fwRevision" [(ngModel)]="firmware.revision">
             </div>
-            <div class="form-group col-sm-7">
+            <div class="form-group col-xs-12 col-md-7">
                 <label>URL</label>
                 <input type="text" class="form-control" name="fwUrl" [(ngModel)]="firmware.blobUrl">
             </div>
         </div>
         <!-- Drop Zone -->
         <div class="row form-group">
-            <div class="col-sm-6">
+            <div class="col-xs-12 col-md-6">
                 <label for="postal-code">Upload new firmware</label>
             </div>
-            <label class="col-sm-6 custom-control custom-checkbox">
+            <label class="col-xs-12 col-md-6 custom-control custom-checkbox">
                 <input type="checkbox" class="custom-control-input" name="autoOTA" [(ngModel)]="autoOTA" (click)="updateUrl()">
                 <span class="custom-control-indicator"></span>
                 <span class="custom-control-description">Send OTA Command</span>
