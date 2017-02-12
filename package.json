@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "author": "Roar Fredriksen",
   "description": "Administration application for the xnsense ecosystem",
+  "engines": {
+    "node": "6.9.1"
+  },
   "scripts": {
     "start": "concurrently \"tsc -w\" \"lite-server\" ",
     "tsc": "tsc",
