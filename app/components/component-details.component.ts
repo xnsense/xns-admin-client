@@ -1,4 +1,6 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { IComponent } from './component';
 import { XnsService } from '../api/xns.service';
@@ -11,7 +13,9 @@ import { XnsService } from '../api/xns.service';
 export class ComponentDetailsComponent implements OnInit, OnChanges {
     @Input() public component: IComponent;
 
-    constructor(private _service: XnsService) {
+    constructor(private _service: XnsService,
+                private _router: Router) 
+    {
     }
 
     ngOnInit(): void {
@@ -20,5 +24,15 @@ export class ComponentDetailsComponent implements OnInit, OnChanges {
     
     ngOnChanges() : void {
         
+    }
+    save() : void {
+    this._service
+        .saveComponent(this.component)
+        .subscribe(success => {
+            if (success)
+                this._router.navigate(['components', this.component.componentAddress]);
+        }, e => {
+
+        });
     }
 }
