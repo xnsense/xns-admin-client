@@ -26,13 +26,13 @@ export class ComponentDetailsComponent implements OnInit, OnChanges {
         
     }
     save() : void {
-    this._service
-        .saveComponent(this.component)
-        .subscribe(success => {
-            if (success)
-                this._router.navigate(['components', this.component.componentAddress]);
-        }, e => {
-
-        });
+        this._service
+            .saveComponent(this.component)
+            .subscribe(success => {
+                if (success)
+                    this._router.navigate(['components', this.component.componentAddress]);
+            }, e => {
+                console.error(e);
+            });
     }
 }
