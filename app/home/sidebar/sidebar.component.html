@@ -1,14 +1,17 @@
 <div class="sidebar" [class.sidebar-toggled]="toggled">
-    <div class="sidebar-header">
+    <div class="sidebar-header" *ngIf="isLoggedIn">
         <img src="img/avatars/7.jpg" class="img-avatar" alt="Avatar">
         <div>
-            <strong>JanCB {{toggled}}</strong>
+            <strong>{{username}}</strong>
         </div>
         <div class="text-muted">
-            <small>Dude</small>
+            <small>{{username}}</small>
         </div>
 
         <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+            <button type="button" class="btn btn-link" (click)="logout()">
+                <i class="icon-logout"></i>
+            </button>
             <button type="button" class="btn btn-link">
                 <i class="icon-settings"></i>
             </button>
@@ -21,6 +24,7 @@
     <nav class="sidebar-nav">
         <ul class="nav">
             <li class="nav-item">
+                <a class="nav-link" routerLinkActive="active" [routerLink]="['/home']"><i class="fa fa-home"></i>Home</a>
                 <a class="nav-link" routerLinkActive="active" [routerLink]="['/units']"><i class="fa fa-fort-awesome"></i> Units</a>
                 <a class="nav-link" routerLinkActive="active" [routerLink]="['/components']"><i class="fa fa-cubes"></i> Components</a>
             </li>

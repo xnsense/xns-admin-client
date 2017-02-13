@@ -29,7 +29,9 @@ export class XnsService {
     getAuthHeader():string[] {
         return ["X-ZUMO-AUTH", this._auth];
     }
-
+    getUsername():string {
+        return localStorage.getItem('username');
+    }
     onLogin = new BehaviorSubject<boolean>(false);
 
     constructor(private _http: Http, 
@@ -204,6 +206,7 @@ export class XnsService {
                 this._authExpires = Date.now() + this.AUTH_EXPIRES_TIME;
                 localStorage.setItem('auth', this._auth);
                 localStorage.setItem('auth_expires', this._authExpires.toString());
+                localStorage.setItem('username', user);
 
                 this.onLogin.next(true);
                 return this._auth;
