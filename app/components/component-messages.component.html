@@ -2,7 +2,7 @@
     <div class="card-header">
         <strong>Messages</strong>
         <i class="fa fa-spinner fa-spin" style="font-size: 15px;margin-left: 10px;" *ngIf="loading"></i> 
-        <span class="float-right"> Refresh every 10 sec 
+        <span class="float-right"> Refresh 10 sec 
         <label class="switch switch-text switch-pill switch-primary autoRefresh">
             <input checked="" class="switch-input" type="checkbox" [(ngModel)]="autoRefresh" (click)="toggleAutoRefresh()">
             <span class="switch-label" data-off="Off" data-on="On"></span>
@@ -25,26 +25,28 @@
                 </form>
             </div>
         </div>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Time ago</th>
-                    <th>Message</th>
-                    <th>Up time</th>
-                    <th>Log time</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let message of messages">
-                    <td class="">{{message.enqueued | duration}}</td>
-                    <td>{{message.message}}</td>
-                    <td>
-                        <span *ngIf="message.up" class="badge badge-success">{{message.up | duration}}</span>
-                    </td>
-                    <td class="text-muted">{{message.enqueued | mydate:'yyyy-MM-dd HH:mm'}}</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="col-xs-2">Time ago</th>
+                        <th class="col-xs-5">Message</th>
+                        <th class="hidden-xs-down">Up time</th>
+                        <th class="hidden-xs-down">Log time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let message of messages">
+                        <td class="">{{message.enqueued | duration}}</td>
+                        <td>{{message.message}}</td>
+                        <td class="hidden-xs-down">
+                            <span *ngIf="message.up" class="badge badge-success">{{message.up | duration}}</span>
+                        </td>
+                        <td class="text-muted hidden-xs-down">{{message.enqueued | mydate:'yyyy-MM-dd HH:mm'}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
