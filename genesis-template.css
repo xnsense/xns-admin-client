@@ -606,20 +606,20 @@ pre {
   padding-left: 15px; }
   @media (min-width: 576px) {
     .container {
-      padding-right: 15px;
-      padding-left: 15px; } }
+      padding-right: 10px;
+      padding-left: 10px; } }
   @media (min-width: 768px) {
     .container {
-      padding-right: 15px;
-      padding-left: 15px; } }
+      padding-right: 10px;
+      padding-left: 10px; } }
   @media (min-width: 992px) {
     .container {
-      padding-right: 15px;
-      padding-left: 15px; } }
+      padding-right: 10px;
+      padding-left: 10px; } }
   @media (min-width: 1200px) {
     .container {
-      padding-right: 15px;
-      padding-left: 15px; } }
+      padding-right: 10px;
+      padding-left: 10px; } }
   @media (min-width: 576px) {
     .container {
       width: 540px;
@@ -645,12 +645,12 @@ pre {
   padding-left: 15px; }
   @media (min-width: 576px) {
     .container-fluid {
-      padding-right: 15px;
-      padding-left: 15px; } }
+      padding-right: 10px;
+      padding-left: 10px; } }
   @media (min-width: 768px) {
     .container-fluid {
-      padding-right: 15px;
-      padding-left: 15px; } }
+      padding-right: 10px;
+      padding-left: 10px; } }
   @media (min-width: 992px) {
     .container-fluid {
       padding-right: 15px;
@@ -10688,9 +10688,6 @@ body {
     padding-right: 7.5px;
     padding-left: 7.5px; }
 
-.main .container-fluid {
-  padding: 0 30px; }
-
 .app,
 app-dashboard,
 app-root {
@@ -10703,6 +10700,13 @@ app-root {
 
 .app-footer {
   flex: 0 0 50px; }
+
+.app-body {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  overflow-x: hidden; 
+  }
 
   .app-body .main {
     flex: 1; }

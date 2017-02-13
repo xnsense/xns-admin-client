@@ -16,21 +16,19 @@
             </div>
         </div>
         <div class="row">
-            <div class="form-group col-xs-12 col-md-5">
+            <div class="form-group col-xs-12 col-md-12 col-lg-5">
                 <label>Firmware Revision</label>
                 <input type="text" class="form-control" name="fwRevision" [(ngModel)]="firmware.revision">
             </div>
-            <div class="form-group col-xs-12 col-md-7">
+            <div class="form-group col-xs-12 col-md-12 col-lg-5">
                 <label>URL</label>
                 <input type="text" class="form-control" name="fwUrl" [(ngModel)]="firmware.blobUrl">
             </div>
         </div>
         <!-- Drop Zone -->
         <div class="row form-group">
-            <div class="col-xs-12 col-md-6">
-                <label for="postal-code">Upload new firmware</label>
-            </div>
-            <label class="col-xs-12 col-md-6 custom-control custom-checkbox">
+
+            <label class="col-xs-12 custom-control custom-checkbox">
                 <input type="checkbox" class="custom-control-input" name="autoOTA" [(ngModel)]="autoOTA" (change)="updateUrl()">
                 <span class="custom-control-indicator"></span>
                 <span class="custom-control-description">Send OTA Command</span>
@@ -42,7 +40,7 @@
                 [uploader]="uploader"
                 class="well my-drop-zone"
                 >
-            Drop hex file here <span *ngIf="uploader?.queue?.length > 0">({{uploader?.queue?.length}} files uploading)</span>
+            Drop hex file to upload new firmware <span *ngIf="uploader?.queue?.length > 0">({{uploader?.queue?.length}} files uploading)</span>
         </div>
         
 <!--
