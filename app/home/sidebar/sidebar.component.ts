@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { XnsService } from '../../api/xns.service';
 
 @Component({
@@ -8,4 +8,5 @@ import { XnsService } from '../../api/xns.service';
   styleUrls: [ 'sidebar.component.css' ]
 })
 export class SidebarComponent {
+  @Input() toggled: boolean = false;
 }

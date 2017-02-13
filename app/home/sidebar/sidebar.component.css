@@ -1,0 +1,5 @@
+
+.sidebar-toggled.sidebar {
+    margin-left: 0px;
+    z-index: 999;
+}

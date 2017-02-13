@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { FileUploader, FileSelectDirective, FileItem } from 'ng2-file-upload';
@@ -19,7 +19,7 @@ export class ComponentFirmwareComponent implements OnInit, OnChanges {
     public errorMessage: any;
     public firmware: IFirmware;
     public hardware: IHardware;
-    @Output() public autoOTA: boolean = false;
+    public autoOTA: boolean = false;
 
     public uploader:FileUploader = new MyUploader({});
     public hasBaseDropZoneOver:boolean = false;
@@ -61,7 +61,7 @@ export class ComponentFirmwareComponent implements OnInit, OnChanges {
         //let url = "http://localhost:8080/api";
         let url = this._service.getFirmwareUrl(this.component, this.autoOTA);
         let auth = this._service.getAuthHeader();
-        this.uploader.setOptions({ url: url, autoUpload: true, removeAfterUpload: true, method: "POST", authTokenHeader: auth[0], authToken: auth[1] });        
+        this.uploader.setOptions({ url: url, autoUpload: true, removeAfterUpload: true, method: "POST", authTokenHeader: auth[0], authToken: auth[1] });      
     }
     
     ngOnChanges() : void {

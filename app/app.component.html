@@ -1,7 +1,7 @@
-<xns-navbar></xns-navbar>
+<xns-navbar (menuButtonClick)="menuButtonClick()"></xns-navbar>
 
 <div class="app-body">
-    <xns-sidebar></xns-sidebar>
+    <xns-sidebar [toggled]="menuToggled"></xns-sidebar>
     
 
     <!-- Main content -->
