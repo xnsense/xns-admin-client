@@ -10,6 +10,8 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './home/login.component';
 import { NavbarComponent } from './home/navbar/navbar.component';
 import { SidebarComponent } from './home/sidebar/sidebar.component';
+import { SIDEBAR_TOGGLE_DIRECTIVES } from './home/sidebar/sidebar.directive';
+
 import { DatePipe } from '@angular/common';
 
 /* Feature Modules */
@@ -37,7 +39,8 @@ import { XnsServiceGuard } from './api/xns-guard.service';
     HomeComponent,
     LoginComponent,
     NavbarComponent,
-    SidebarComponent    
+    SidebarComponent,
+    SIDEBAR_TOGGLE_DIRECTIVES,    
   ],
   providers: [
     { provide: LOCALE_ID, useValue: "en-US" }, //replace "en-US" with your locale

@@ -10,7 +10,6 @@ import { XnsService } from '../../api/xns.service';
   styleUrls: [ 'navbar.component.css' ]
 })
 export class NavbarComponent implements OnInit {
-  @Output() menuButtonClick = new EventEmitter();
   public menuItems: any[];
   public brandMenu: any;
   isCollapsed = true;
@@ -21,10 +20,6 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-  menuClicked(event:any): void {
-    event.preventDefault();
-    this.menuButtonClick.emit();
-  }
   ngOnInit() {
     this.menuItems = ROUTES.filter(menuItem => menuItem.menuType !== MenuType.BRAND && (menuItem.anonymous != this._service.isLoggedIn()));
     this.brandMenu = ROUTES.filter(menuItem => menuItem.menuType === MenuType.BRAND)[0];
