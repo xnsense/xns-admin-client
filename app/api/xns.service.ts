@@ -220,6 +220,9 @@ export class XnsService {
         this._auth = null;
         localStorage.clear();
         this.onLogin.next(false);
+        document.querySelector('body').classList.remove('sidebar-fixed');
+        document.querySelector('body').classList.add('sidebar-hidden');
+        document.getElementById('loginBtn').classList.remove('hidden');
     }
 
     public isLoggedIn() : boolean {

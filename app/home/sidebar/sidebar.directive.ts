@@ -8,11 +8,30 @@ import { Directive, HostListener } from '@angular/core';
 })
 export class SidebarToggleDirective {
   constructor() { }
+  //Check if element has class
+  private hasClass(target:any, elementClassName:string) {
+    return new RegExp('(\\s|^)' + elementClassName + '(\\s|$)').test(target.className);
+  }
 
+  //Toggle element class
+  private toggleClass(elem:any, elementClassName:string) {
+    let newClass = ' ' + elem.className.replace( /[\t\r\n]/g, ' ' ) + ' ';
+    if (this.hasClass(elem, elementClassName)) {
+      while (newClass.indexOf(' ' + elementClassName + ' ') >= 0 ) {
+        newClass = newClass.replace( ' ' + elementClassName + ' ' , ' ' );
+      }
+      elem.className = newClass.replace(/^\s+|\s+$/g, '');
+    } else {
+      elem.className += ' ' + elementClassName;
+    }
+  }
   @HostListener('click', ['$event'])
   toggleOpen($event:any) {
     $event.preventDefault();
-    document.querySelector('body').classList.toggle('sidebar-hidden');
+    if (this.hasClass(document.querySelector('body'), 'sidebar-fixed')) {
+        this.toggleClass(document.querySelector('body'), 'sidebar-hidden');
+    }
+    /**document.querySelector('body').classList.toggle('sidebar-hidden');**/
   }
 }
 
