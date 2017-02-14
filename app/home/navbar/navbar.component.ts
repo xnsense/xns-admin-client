@@ -26,6 +26,11 @@ export class NavbarComponent implements OnInit {
     this.isLoggedIn = this._service.isLoggedIn();
     this.menuItems = ROUTES.filter(menuItem => menuItem.menuType !== MenuType.BRAND && (menuItem.anonymous != this._service.isLoggedIn()));
     this.brandMenu = ROUTES.filter(menuItem => menuItem.menuType === MenuType.BRAND)[0];
+    this._service.onLogin.subscribe(v => {
+      if (v) {
+        this.isLoggedIn = true;
+      }
+    });
   }
 
   public get menuIcon(): string {
