@@ -23,8 +23,8 @@ export class LoginComponent implements OnInit {
         
         if(!this._service.isLoggedIn())
         {
-            document.querySelector('body').classList.remove('sidebar-fixed');
-            document.querySelector('body').classList.add('sidebar-hidden');
+            /**document.querySelector('body').classList.remove('sidebar-fixed');
+            document.querySelector('body').classList.add('sidebar-hidden');**/
         }
         
         // reset login status
@@ -40,10 +40,6 @@ export class LoginComponent implements OnInit {
             .subscribe(
                 data => {
                     this._router.navigate([this.returnUrl]);
-                    document.querySelector('body').classList.remove('sidebar-hidden');
-                    document.querySelector('body').classList.add('sidebar-fixed');
-                    document.getElementById('loginBtn').classList.add('hidden');
-                    document.getElementById('sidebarBtn').classList.remove('hidden');
                 },
                 error => {
                     console.error(error);

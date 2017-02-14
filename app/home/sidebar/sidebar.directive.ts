@@ -28,8 +28,8 @@ export class SidebarToggleDirective {
   @HostListener('click', ['$event'])
   toggleOpen($event:any) {
     $event.preventDefault();
-    if (this.hasClass(document.querySelector('body'), 'sidebar-fixed')) {
-        this.toggleClass(document.querySelector('body'), 'sidebar-hidden');
+    if (this.hasClass(document.getElementById('appComponent'), 'sidebar-fixed')) {
+        this.toggleClass(document.getElementById('appComponent'), 'sidebar-hidden');
     }
     /**document.querySelector('body').classList.toggle('sidebar-hidden');**/
   }

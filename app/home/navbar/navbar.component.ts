@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter} from '@angular/core';
 import { ROUTES } from './navbar-routes.config';
 import { MenuType } from './navbar.metadata';
 import { XnsService } from '../../api/xns.service';
@@ -13,6 +13,8 @@ export class NavbarComponent implements OnInit {
   public menuItems: any[];
   public brandMenu: any;
   isCollapsed = true;
+  public isLoggedIn:boolean = false;
+  
 
   constructor(private _service: XnsService) {
     this._service.onLogin.asObservable().subscribe(loggedIn => {
@@ -21,6 +23,7 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.isLoggedIn = this._service.isLoggedIn();
     this.menuItems = ROUTES.filter(menuItem => menuItem.menuType !== MenuType.BRAND && (menuItem.anonymous != this._service.isLoggedIn()));
     this.brandMenu = ROUTES.filter(menuItem => menuItem.menuType === MenuType.BRAND)[0];
   }
@@ -34,4 +37,7 @@ export class NavbarComponent implements OnInit {
       'pull-xs-right': this.isCollapsed && menuItem.menuType === MenuType.RIGHT
     };
   }
+
+
+
 }

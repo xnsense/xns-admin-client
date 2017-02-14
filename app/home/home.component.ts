@@ -15,14 +15,5 @@ export class HomeComponent implements OnInit {
         { }
     ngOnInit() 
     {
-        if(!this._service.isLoggedIn())
-        {
-            document.querySelector('body').classList.remove('sidebar-fixed');
-            document.querySelector('body').classList.add('sidebar-hidden');
-        }else
-        {
-            document.getElementById('loginBtn').classList.add('hidden');
-            document.getElementById('sidebarBtn').classList.remove('hidden');
-        }
     }
 }

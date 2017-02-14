@@ -18,4 +18,17 @@ export class AppComponent {
     public isLoggedIn() : boolean {
         return this._service.isLoggedIn();
     }
+
+    public sideBarClass(): string
+    {
+        if(this._service.isLoggedIn())
+        {
+            return "app header-fixed sidebar-fixed"
+        }else
+        {
+            return "app header-fixed sidebar-hidden"
+        }
+    }
+
+
 }

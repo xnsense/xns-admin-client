@@ -1,25 +1,29 @@
-<xns-navbar (menuButtonClick)="menuButtonClick()"></xns-navbar>
 
-<div class="app-body">
-    <xns-sidebar [toggled]="menuToggled"></xns-sidebar>
+<div id="appComponent" [class]="sideBarClass()">
 
-    <!-- Main content -->
-    <main class="main">
+    <xns-navbar (menuButtonClick)="menuButtonClick()"></xns-navbar>
 
-        <!-- Breadcrumb -->
-        <ol class="breadcrumb">
-            
-        </ol>
+    <div class="app-body">
+        <xns-sidebar [toggled]="menuToggled"></xns-sidebar>
 
-        <div class="container-fluid">
-            <router-outlet></router-outlet>
-        </div>
-        <!-- /.conainer-fluid -->
-    </main>
+        <!-- Main content -->
+        <main class="main">
+
+            <!-- Breadcrumb -->
+            <ol class="breadcrumb">
+                
+            </ol>
+
+            <div class="container-fluid">
+                <router-outlet></router-outlet>
+            </div>
+            <!-- /.conainer-fluid -->
+        </main>
+    </div>
+
+    <footer class="app-footer">
+        <a href="https://xnsense.com">xnsense</a> &copy; 2017.
+    </footer>
+
 </div>
-
-<footer class="app-footer">
-    <a href="https://xnsense.com">xnsense</a> &copy; 2017.
-</footer>
-
 
