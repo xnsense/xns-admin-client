@@ -5227,7 +5227,14 @@ a.bg-inverse:focus, a.bg-inverse:hover {
   margin-bottom: auto !important; }
 
 .ml-auto {
-  margin-left: auto !important; }
+  margin-left: auto !important;
+  margin-right: 20px;
+  margin-top: 0px;
+}
+
+a:hover { 
+    text-decoration: none !important;
+}
 
 .mx-auto {
   margin-right: auto !important;
@@ -10819,7 +10826,7 @@ app-root {
     .app-header .navbar-nav {
       position: absolute;
       top: 0;
-      right: 15px;
+      right: 0px;
       height: inherit; }
   .app-body {
     margin-top: 55px; }

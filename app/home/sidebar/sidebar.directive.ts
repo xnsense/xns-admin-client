@@ -28,10 +28,10 @@ export class SidebarToggleDirective {
   @HostListener('click', ['$event'])
   toggleOpen($event:any) {
     $event.preventDefault();
-    if (this.hasClass(document.getElementById('appComponent'), 'sidebar-fixed')) {
+    /**if (this.hasClass(document.getElementById('appComponent'), 'sidebar-fixed')) {
         this.toggleClass(document.getElementById('appComponent'), 'sidebar-hidden');
-    }
-    /**document.querySelector('body').classList.toggle('sidebar-hidden');**/
+    }**/
+    this.toggleClass(document.getElementById('appComponent'), 'sidebar-hidden');
   }
 }
 
@@ -49,7 +49,8 @@ export class MobileSidebarToggleDirective {
   @HostListener('click', ['$event'])
   toggleOpen($event:any) {
     $event.preventDefault();
-    document.querySelector('body').classList.toggle('sidebar-mobile-show');
+    /**document.querySelector('body').classList.toggle('sidebar-mobile-show');**/
+    document.getElementById('appComponent').classList.toggle('sidebar-mobile-show');
   }
 }
 
@@ -84,8 +85,8 @@ export class SidebarOffCanvasCloseDirective {
   toggleOpen($event:any) {
     $event.preventDefault();
 
-    if (this.hasClass(document.querySelector('body'), 'sidebar-off-canvas')) {
-      this.toggleClass(document.querySelector('body'), 'sidebar-opened');
+    if (this.hasClass(document.getElementById('appComponent'), 'sidebar-off-canvas')) {
+      this.toggleClass(document.getElementById('appComponent'), 'sidebar-opened');
     }
   }
 }

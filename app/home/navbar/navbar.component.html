@@ -1,5 +1,5 @@
 <header class="app-header navbar">
-    <button class="navbar-toggler mobile-sidebar-toggler hidden-lg-up" type="button">&#9776;</button>
+    <button *ngIf="isLoggedIn" class="navbar-toggler mobile-sidebar-toggler hidden-lg-up" type="button">&#9776;</button>
     <a class="navbar-brand" [routerLink]="['/home']"></a>
 
     <ul *ngIf="isLoggedIn" id="sidebarBtn" class="nav navbar-nav hidden-md-down">
@@ -7,5 +7,5 @@
             <a class="nav-link navbar-toggler sidebar-toggler" href="#">&#9776;</a>
         </li>
     </ul>
-      <a *ngIf="!isLoggedIn" id="loginBtn" [routerLink]="['/login']" style="margin-top: 15px;margin-left: 6px;margin-right: 10px;">Login</a>
+      <a *ngIf="!isLoggedIn" id="loginBtn" [routerLink]="['/login']" class="nav navbar-nav ml-auto">Login</a>
 </header>
