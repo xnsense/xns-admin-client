@@ -1,5 +1,5 @@
-<div class="sidebar" [class.sidebar-toggled]="toggled">
-    <div class="sidebar-header" *ngIf="isLoggedIn">
+<div class="sidebar" [class.sidebar-toggled]="toggled" *ngIf="isLoggedIn">
+    <div class="sidebar-header">
         <img src="img/avatars/7.jpg" class="img-avatar" alt="Avatar">
         <div>
             <strong>{{username}}</strong>

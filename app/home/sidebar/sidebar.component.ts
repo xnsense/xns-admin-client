@@ -24,6 +24,9 @@ export class SidebarComponent implements OnInit {
       if (v) {
         this.isLoggedIn = true;
         this.username = this._service.getUsername();
+      }else
+      {
+        this.isLoggedIn = false;
       }
     });
 

@@ -17,9 +17,6 @@ export class AppComponent {
     public menuButtonClick() :void {
         this.menuToggled = !this.menuToggled;
     }
-    public isLoggedIn() : boolean {
-        return this._service.isLoggedIn();
-    }
 
     public sideBarClass(): string
     {
