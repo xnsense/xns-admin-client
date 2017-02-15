@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
         }
         
         // reset login status
-        this._service.logout();
+        //this._service.logout();
 
         // get return url from route parameters or default to '/'
         this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/';

@@ -38,6 +38,11 @@ export class XnsService {
                 private _datePipe: DatePipe) { 
         this._auth = localStorage.getItem('auth');
         this._authExpires = Number(localStorage.getItem('auth_expires') || 0);
+
+        if(this.isLoggedIn())
+        {
+            this.onLogin.next(true);
+        }
     }
 
     getComponent(id: string): Observable<IComponent> {
@@ -222,7 +227,8 @@ export class XnsService {
         this.onLogin.next(false);
     }
 
-    public isLoggedIn() : boolean {
+    public isLoggedIn() : boolean 
+    {
         return this._auth != null && this._authExpires > Date.now();
     } 
 

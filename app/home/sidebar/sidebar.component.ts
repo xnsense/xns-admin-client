@@ -20,8 +20,8 @@ export class SidebarComponent implements OnInit {
     this.isLoggedIn = this._service.isLoggedIn();
     this.username = this._service.getUsername();
     
-    this._service.onLogin.subscribe(v => {
-      if (v) {
+    this._service.onLogin.subscribe((value) => {
+      if (value) {
         this.isLoggedIn = true;
         this.username = this._service.getUsername();
       }else
@@ -29,7 +29,6 @@ export class SidebarComponent implements OnInit {
         this.isLoggedIn = false;
       }
     });
-
   }
 
   logout() {
