@@ -14,6 +14,7 @@ import { IComponent } from '../components/component';
 import { IHardware } from '../components/hardware';
 import { IFirmware } from '../components/firmware';
 import { IComponentMessage } from '../components/component-message';
+import { IUser } from './user';
 
 @Injectable()
 export class XnsService {
@@ -29,8 +30,15 @@ export class XnsService {
     getAuthHeader():string[] {
         return ["X-ZUMO-AUTH", this._auth];
     }
-    getUsername():string {
-        return localStorage.getItem('username');
+    getUser():IUser 
+    {
+        return {
+            email: localStorage.getItem('email'),
+            firstName: localStorage.getItem('firstName'),
+            lastName: localStorage.getItem('lastName'),
+            currentSolutionId: localStorage.getItem('currentSolutionId')
+        };
+        //return localStorage.getItem('username');
     }
     onLogin = new BehaviorSubject<boolean>(false);
 
@@ -208,10 +216,19 @@ export class XnsService {
         return this._http.post(this._baseUrl + "api/serviceauth", JSON.stringify({"username":user,"accessToken":`xns:${user}-${pass}`}), options)
             .map((response: Response) => {
                 this._auth = response.json().authenticationToken;
+                var firstName = response.json().user.firstName;
+                var lastName = response.json().user.lastName;
+                var email = response.json().user.email;
+                var currentSolutionId = response.json().user.currentSolutionId;
+
                 this._authExpires = Date.now() + this.AUTH_EXPIRES_TIME;
                 localStorage.setItem('auth', this._auth);
                 localStorage.setItem('auth_expires', this._authExpires.toString());
                 localStorage.setItem('username', user);
+                localStorage.setItem('firstName', firstName);
+                localStorage.setItem('lastName', lastName);
+                localStorage.setItem('email', email);
+                localStorage.setItem('currentSolutionId', currentSolutionId);
 
                 this.onLogin.next(true);
                 return this._auth;

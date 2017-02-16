@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Ng2BootstrapModule }  from 'ng2-bootstrap';
+import { TabsModule } from 'ng2-bootstrap';
 
 import { FileUploader, FileSelectDirective, FileItem } from 'ng2-file-upload';
 

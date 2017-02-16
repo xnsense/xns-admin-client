@@ -4,7 +4,8 @@ import { RouterModule} from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
-
+import { Ng2BootstrapModule }  from 'ng2-bootstrap';
+import { TabsModule } from 'ng2-bootstrap';
 
 import { ComponentListComponent } from './component-list.component';
 import { ComponentEditComponent } from './component-edit.component';
@@ -27,6 +28,7 @@ import { XnsServiceGuard } from '../api/xns-guard.service';
   imports: [
       CommonModule,
       FormsModule,
+      TabsModule,
       RouterModule.forChild([
         { path: 'components', component: ComponentListComponent, canActivate: [XnsServiceGuard] },
         { path: 'components/:id', component: ComponentDashboardComponent, canActivate: [XnsServiceGuard] },

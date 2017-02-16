@@ -1,52 +1,49 @@
-<div class="card" *ngIf="firmware && hardware">
-    <div class="card-header">
-        <strong>Firmware</strong>
-        <small></small>
-    </div>
-    <div class="card-block">
-        <div class="row">
-            
-            <div class="form-group col-xs-12 col-md-8">
-                <label>Hardware</label>
-                <input type="text" name="hardware" class="form-control" [(ngModel)]="hardware.appname">
-            </div>
-            <div class="form-group col-xs-12 col-md-4">
-                <label for="hardwareRevision">Revision</label>
-                <input type="text" name="revision" class="form-control" [(ngModel)]="hardware.revision">
-            </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-xs-12 col-md-12 col-lg-5">
-                <label>Firmware Revision</label>
-                <input type="text" class="form-control" name="fwRevision" [(ngModel)]="firmware.revision">
-            </div>
-            <div class="form-group col-xs-12 col-md-12 col-lg-5">
-                <label>URL</label>
-                <input type="text" class="form-control" name="fwUrl" [(ngModel)]="firmware.blobUrl">
-            </div>
-        </div>
-        <!-- Drop Zone -->
-        <div class="row form-group">
 
-            <label class="col-xs-12 custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" name="autoOTA" [(ngModel)]="autoOTA" (change)="updateUrl()">
-                <span class="custom-control-indicator"></span>
-                <span class="custom-control-description">Send OTA Command</span>
-            </label>
-        </div>
-        <div ng2FileDrop
-                [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
-                (fileOver)="fileOverBase($event)"
-                [uploader]="uploader"
-                class="well my-drop-zone"
-                >
-            Drop hex file to upload new firmware <span *ngIf="uploader?.queue?.length > 0">({{uploader?.queue?.length}} files uploading)</span>
-        </div>
         
-<!--
-        <div class="upload-drop-zone" id="drop-zone">
-            Drag and drop files here
+        <div class="col-xs-12 mb-2" *ngIf="firmware && hardware">
+            <!-- Nav tabs -->
+            <tabset>
+                <tab heading="Firmware">
+                    <div class="row">
+                        <div class="form-group col-xs-12 col-md-8">
+                            <label>Hardware</label>
+                            <input type="text" name="hardware" class="form-control" [(ngModel)]="hardware.appname">
+                        </div>
+                        <div class="form-group col-xs-12 col-md-4">
+                            <label for="hardwareRevision">Revision</label>
+                            <input type="text" name="revision" class="form-control" [(ngModel)]="hardware.revision">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-xs-12 col-md-12 col-lg-5">
+                            <label>Firmware Revision</label>
+                            <input type="text" class="form-control" name="fwRevision" [(ngModel)]="firmware.revision">
+                        </div>
+                        <div class="form-group col-xs-12 col-md-12 col-lg-5">
+                            <label>URL</label>
+                            <input type="text" class="form-control" name="fwUrl" [(ngModel)]="firmware.blobUrl">
+                        </div>
+                    </div>
+                    <!-- Drop Zone -->
+                    <div class="row form-group">
+
+                        <label class="col-xs-12 custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="autoOTA" [(ngModel)]="autoOTA" (change)="updateUrl()">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Send OTA Command</span>
+                        </label>
+                    </div>
+                    <div ng2FileDrop
+                            [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
+                            (fileOver)="fileOverBase($event)"
+                            [uploader]="uploader"
+                            class="well my-drop-zone"
+                            >
+                        Drop hex file to upload new firmware <span *ngIf="uploader?.queue?.length > 0">({{uploader?.queue?.length}} files uploading)</span>
+                    </div>
+                </tab>
+                <tab heading="Actions">
+                    Comming soon
+                </tab>
+            </tabset>
         </div>
--->                    
-    </div>
-</div>

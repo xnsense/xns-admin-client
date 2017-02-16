@@ -4,6 +4,8 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Ng2BootstrapModule }  from 'ng2-bootstrap';
+import { TabsModule } from 'ng2-bootstrap';
+import { DropdownModule } from 'ng2-bootstrap';
 
 import { AppComponent }  from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -11,6 +13,7 @@ import { LoginComponent } from './home/login.component';
 import { NavbarComponent } from './home/navbar/navbar.component';
 import { SidebarComponent } from './home/sidebar/sidebar.component';
 import { SIDEBAR_TOGGLE_DIRECTIVES } from './home/sidebar/sidebar.directive';
+
 
 import { DatePipe } from '@angular/common';
 
@@ -31,8 +34,9 @@ import { XnsServiceGuard } from './api/xns-guard.service';
       { path: '**', redirectTo: 'home', pathMatch: 'full' }
     ]),
     ComponentModule,
-    Ng2BootstrapModule
-    //FileUploadModule
+    Ng2BootstrapModule,
+    TabsModule.forRoot(),
+    DropdownModule.forRoot()
   ],
   declarations: [
     AppComponent,

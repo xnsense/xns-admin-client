@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { XnsService } from './api/xns.service';
+import { Ng2BootstrapModule }  from 'ng2-bootstrap';
+import { TabsModule } from 'ng2-bootstrap';
 
 @Component({
     selector: 'pm-app',

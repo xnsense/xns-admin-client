@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { XnsService } from '../../api/xns.service';
 import { Router } from '@angular/router';
+import {IUser} from '../../api/user';
+
 @Component({
   moduleId: module.id,
   selector: 'xns-sidebar',
@@ -9,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class SidebarComponent implements OnInit {
   @Input() toggled: boolean = false;
-  public username:string = null;
+  public user:IUser = null;
   public isLoggedIn:boolean = false;
 
   constructor(private _service: XnsService, private _router: Router) {
@@ -18,12 +20,12 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit(): void{
     this.isLoggedIn = this._service.isLoggedIn();
-    this.username = this._service.getUsername();
+    this.user = this._service.getUser();
     
     this._service.onLogin.subscribe((value) => {
       if (value) {
         this.isLoggedIn = true;
-        this.username = this._service.getUsername();
+        this.user = this._service.getUser();
       }else
       {
         this.isLoggedIn = false;
@@ -34,7 +36,7 @@ export class SidebarComponent implements OnInit {
   logout() {
     this._service.logout();
     this.isLoggedIn = false;
-    this.username = null;
+    this.user = null;
     this._router.navigate(['home']);
   }
 
