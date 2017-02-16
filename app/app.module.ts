@@ -12,6 +12,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './home/login.component';
 import { NavbarComponent } from './home/navbar/navbar.component';
 import { SidebarComponent } from './home/sidebar/sidebar.component';
+import { UserComponent } from './home/user/user.component';
 import { SIDEBAR_TOGGLE_DIRECTIVES } from './home/sidebar/sidebar.directive';
 
 
@@ -30,6 +31,7 @@ import { XnsServiceGuard } from './api/xns-guard.service';
     RouterModule.forRoot([
       { path: 'home', component: HomeComponent },
       { path: 'login', component: LoginComponent },
+      { path: 'user', component: UserComponent },
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: '**', redirectTo: 'home', pathMatch: 'full' }
     ]),
@@ -44,6 +46,7 @@ import { XnsServiceGuard } from './api/xns-guard.service';
     LoginComponent,
     NavbarComponent,
     SidebarComponent,
+    UserComponent,
     SIDEBAR_TOGGLE_DIRECTIVES,    
   ],
   providers: [

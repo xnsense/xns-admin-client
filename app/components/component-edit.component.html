@@ -1,24 +1,24 @@
 
 <div *ngIf="component != null">
-<form name="form" (ngSubmit)="f.form.valid && save()" #f="ngForm" novalidate>
-    <div class="form-group">
-        <label for="typeInput">Type</label>
-        <input type="text" name="type" class="form-control" [(ngModel)]="component.type" #type="ngModel" id="typeInput" placeholder="Type"/>
-    </div>
-    <div class="form-group">
-        <label for="typeInput">Name</label>
-        <input type="text" name="name" class="form-control" [(ngModel)]="component.name" #name="ngModel" id="nameInput" placeholder="Name"/>
-    </div>
-    <div class="form-group">
-        <label for="typeInput">Description</label>
-        <textarea class="form-control" name="description" [(ngModel)]="component.description" #description="ngModel" id="descriptionInput" placeholder="Description"></textarea>
-    </div>
-    <div class="form-group">
-        <button class="btn btn-primary" type="submit">Submit</button>
-    </div>
+    <form name="form" (ngSubmit)="f.form.valid && save()" #f="ngForm" novalidate>
+        <div class="form-group">
+            <label for="typeInput">Type</label>
+            <input type="text" name="type" class="form-control" [(ngModel)]="component.type" #type="ngModel" id="typeInput" placeholder="Type"/>
+        </div>
+        <div class="form-group">
+            <label for="typeInput">Name</label>
+            <input type="text" name="name" class="form-control" [(ngModel)]="component.name" #name="ngModel" id="nameInput" placeholder="Name"/>
+        </div>
+        <div class="form-group">
+            <label for="typeInput">Description</label>
+            <textarea class="form-control" name="description" [(ngModel)]="component.description" #description="ngModel" id="descriptionInput" placeholder="Description"></textarea>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary" type="submit">Submit</button>
+        </div>
 
-    <pre>
-        {{component.description}}
-    </pre>
-</form>
+        <pre>
+            {{component.description}}
+        </pre>
+    </form>
 </div>
