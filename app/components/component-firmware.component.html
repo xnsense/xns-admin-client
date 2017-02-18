@@ -50,7 +50,7 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th class="col-xs-3">Name</th>
+                            <th class="col-xs-9 col-md-3">Name</th>
                             <th class="col-xs-3">Command</th>
                             <th class="hidden-xs-down">Command Details</th>
                             <th class=""></th>
@@ -59,7 +59,7 @@
                     <tbody>
                         <tr *ngFor="let firmwareAction of firmwareActions">
                             <td class="">{{firmwareAction.name}}</td>
-                            <td>{{firmwareAction.command}}</td>
+                            <td class="hidden-xs-down">{{firmwareAction.command}}</td>
                             <td class="hidden-xs-down">{{firmwareAction.commandDetails}}</td>
                             <th class="">
                                 <button class="btn btn-primary btn-xs" type="button" (click)="sendCommand(firmwareAction)">Send</button>
