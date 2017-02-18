@@ -10710,7 +10710,7 @@ app-root {
   flex: 0 0 50px; }
 
 .app-body {
-  display: flex;
+  /**display: flex;**/
   flex: 1;
   flex-direction: row;
   overflow-x: hidden; 
