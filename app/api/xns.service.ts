@@ -25,8 +25,13 @@ export class XnsService {
     private _auth: string;
     private _authExpires: Number;
     
-    getFirmwareUrl(component: IComponent, sendOTAMessage: boolean):string {
+    getFirmwareUrl(component: IComponent, sendOTAMessage: boolean):string 
+    {
         return this._baseUrl + "api/ComponentFirmwareFile?componentAddress=" + encodeURI(component.componentAddress) + "&sendOTAMessage=" + (sendOTAMessage ? "True" : "False");
+    }
+    getReleaseFirmwareUrl(component: IComponent,firmware: IFirmware, hardware: IHardware, sendOTAMessage: boolean):string 
+    {
+        return this._baseUrl + "api/ComponentFirmwareFile?componentAddress=" + encodeURI(component.componentAddress) + "&sendOTAMessage=" + (sendOTAMessage ? "True" : "False") + "&fwRevision=" + encodeURI(firmware.revision) + "&hwName=" + encodeURI(hardware.appname) + "&hwRevision=" + encodeURI(hardware.revision);
     }
     getAuthHeader():string[] {
         return ["X-ZUMO-AUTH", this._auth];

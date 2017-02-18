@@ -19,19 +19,22 @@
                     <label>Firmware Revision</label>
                     <input type="text" class="form-control" name="fwRevision" [(ngModel)]="firmware.revision">
                 </div>
-                <div class="form-group col-xs-12 col-md-12 col-lg-5">
+                <div class="form-group col-xs-12 col-md-12 col-lg-7">
                     <label>URL</label>
                     <input type="text" class="form-control" name="fwUrl" [(ngModel)]="firmware.blobUrl">
                 </div>
             </div>
-            <!-- Drop Zone -->
             <div class="row form-group">
-
-                <label class="col-xs-12 custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" name="autoOTA" [(ngModel)]="autoOTA" (change)="updateUrl()">
+                <label class="col-xs-12 col-lg-6 custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" name="autoOTA" [(ngModel)]="autoOTA" (change)="updateUrl(false)">
                     <span class="custom-control-indicator"></span>
                     <span class="custom-control-description">Send OTA Command</span>
                 </label>
+                <label class="col-xs-12 col-lg-6 custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" name="releaseVersion" (change)="updateUrl(true)">
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description">Release Version</span>
+                </label>                
             </div>
             <div ng2FileDrop
                     [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"

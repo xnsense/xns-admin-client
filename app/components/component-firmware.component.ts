@@ -39,7 +39,7 @@ export class ComponentFirmwareComponent implements OnInit, OnChanges {
         this.uploader.uploadAll();
     }
     ngOnInit(): void {
-        this.updateUrl();
+        this.updateUrl(false);
 
         let fwId = this.component.firmwareId;
         let hwId = this.component.hardwareId;
@@ -88,13 +88,19 @@ export class ComponentFirmwareComponent implements OnInit, OnChanges {
         });
     }
 
-    updateUrl() : void {
-        //let url = "http://localhost:8080/api";
-        let url = this._service.getFirmwareUrl(this.component, this.autoOTA);
+    updateUrl(release:boolean) : void {
+        let url: any;
+        if(release)
+        {
+            url = this._service.getReleaseFirmwareUrl(this.component,this.firmware, this.hardware, this.autoOTA);
+        }else
+        {
+            url = this._service.getFirmwareUrl(this.component, this.autoOTA);
+        }
         let auth = this._service.getAuthHeader();
         this.uploader.setOptions({ url: url, autoUpload: true, removeAfterUpload: true, method: "POST", authTokenHeader: auth[0], authToken: auth[1] });      
     }
-    
+
     ngOnChanges() : void {
 
     }
