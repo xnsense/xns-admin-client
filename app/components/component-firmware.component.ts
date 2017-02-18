@@ -7,6 +7,7 @@ import { FileUploader, FileSelectDirective, FileItem } from 'ng2-file-upload';
 
 import { IComponent } from './component';
 import { IFirmware } from './firmware';
+import { IFirmwareAction } from './firmwareAction';
 import { IHardware } from './hardware';
 import { XnsService } from '../api/xns.service';
 
@@ -20,6 +21,7 @@ export class ComponentFirmwareComponent implements OnInit, OnChanges {
     @Input() public component: IComponent;
     public errorMessage: any;
     public firmware: IFirmware;
+    public firmwareActions: IFirmwareAction[];
     public hardware: IHardware;
     public autoOTA: boolean = false;
 
@@ -56,7 +58,34 @@ export class ComponentFirmwareComponent implements OnInit, OnChanges {
                     this.hardware = data;
                 },
                 error => this.errorMessage = <any>error
-            );        
+            );    
+
+        this._service.getFirmwareActionList()
+            .subscribe(data => {
+                this.firmwareActions = data;
+                //Filter he Actions to only the Components Firmware
+                this.firmwareActions = this.firmwareActions.filter(x => x.firmwareId == fwId);
+                },
+                error => this.errorMessage = <any>error);
+    }
+
+    sendCommand(firmwareAction:IFirmwareAction) : void {
+        let command: any;
+        let commandName: any;
+        this.errorMessage = null;
+        try 
+            {
+                command = JSON.parse(firmwareAction.commandDetails);
+                commandName = firmwareAction.command;
+            }
+            catch (ex)
+            {
+                this.errorMessage = ex;
+                console.log(this.errorMessage);
+                return;
+            }
+        this._service.sendCustomCommand(this.component, commandName, command).subscribe(success => {
+        });
     }
 
     updateUrl() : void {

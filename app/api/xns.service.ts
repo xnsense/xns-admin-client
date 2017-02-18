@@ -13,6 +13,7 @@ import 'rxjs/add/operator/map';
 import { IComponent } from '../components/component';
 import { IHardware } from '../components/hardware';
 import { IFirmware } from '../components/firmware';
+import { IFirmwareAction } from '../components/firmwareAction';
 import { IComponentMessage } from '../components/component-message';
 import { IUser } from './user';
 
@@ -158,6 +159,23 @@ export class XnsService {
         let options = new RequestOptions({ headers: headers });
         return this._http.get(this._baseUrl + "tables/firmware/" + encodeURI(id), options)
             .map((response: Response) => <IFirmware> response.json())
+            .do(data => console.log('All: ' +  JSON.stringify(data)))
+            .catch(this.handleError);
+    }
+
+    getFirmwareActionList(): Observable<IFirmwareAction[]> {
+        let headers = new Headers({"X-ZUMO-AUTH": this._auth});
+        let options = new RequestOptions({ headers: headers });
+        return this._http.get(this._baseUrl + "tables/firmwareaction", options)
+            .map((response: Response) => <IFirmwareAction[]> response.json())
+            .do(data => console.log('All: ' +  JSON.stringify(data)))
+            .catch(this.handleError);
+    }
+    getFirmwareAction(): Observable<IFirmwareAction> {
+        let headers = new Headers({"X-ZUMO-AUTH": this._auth});
+        let options = new RequestOptions({ headers: headers });
+        return this._http.get(this._baseUrl + "tables/firmwareaction", options)
+            .map((response: Response) => <IFirmwareAction> response.json())
             .do(data => console.log('All: ' +  JSON.stringify(data)))
             .catch(this.handleError);
     }

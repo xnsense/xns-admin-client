@@ -42,8 +42,32 @@
                 Drop hex file to upload new firmware <span *ngIf="uploader?.queue?.length > 0">({{uploader?.queue?.length}} files uploading)</span>
             </div>
         </tab>
-        <tab heading="Actions">
-            Comming soon
+        <tab heading="Actions" *ngIf="firmwareActions">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="col-xs-3">Name</th>
+                            <th class="col-xs-3">Command</th>
+                            <th class="hidden-xs-down">Command Details</th>
+                            <th class=""></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let firmwareAction of firmwareActions">
+                            <td class="">{{firmwareAction.name}}</td>
+                            <td>{{firmwareAction.command}}</td>
+                            <td class="hidden-xs-down">{{firmwareAction.commandDetails}}</td>
+                            <th class="">
+                                <button class="btn btn-primary btn-xs" type="button" (click)="sendCommand(firmwareAction)">Send</button>
+                            </th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>     
+            <div class="label label-danger" *ngIf="errorMessage != null">
+                {{errorMessage}}
+            </div>       
         </tab>
     </tabset>
 </div>

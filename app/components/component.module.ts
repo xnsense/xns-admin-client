@@ -15,6 +15,7 @@ import { ComponentFirmwareComponent } from './component-firmware.component';
 import { ComponentMessagesComponent } from './component-messages.component';
 import { ComponentCustomCommandComponent } from './component-custom-command.component';
 import { ComponentOtaComponent } from './component-ota.component';
+import { ComponentFirmwareActionComponent} from './component-firmware-action.component';
 
 import { ReversePipe } from '../shared/reverse.pipe';
 import { KeysPipe } from '../shared/keys.pipe';
@@ -44,6 +45,7 @@ import { XnsServiceGuard } from '../api/xns-guard.service';
     ComponentEditComponent,
     ComponentOtaComponent,
     ComponentCustomCommandComponent,
+    ComponentFirmwareActionComponent,
     ReversePipe,
     KeysPipe,
     MyDatePipe,
