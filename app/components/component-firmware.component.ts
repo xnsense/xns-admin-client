@@ -39,7 +39,7 @@ export class ComponentFirmwareComponent implements OnInit, OnChanges {
         this.uploader.uploadAll();
     }
     ngOnInit(): void {
-        this.updateUrl(false);
+        this.updateUrl();
 
         let fwId = this.component.firmwareId;
         let hwId = this.component.hardwareId;
@@ -90,7 +90,7 @@ export class ComponentFirmwareComponent implements OnInit, OnChanges {
 
     updateUrl() : void {
         let url: any;
-
+        console.log("Mode: " + this.release);
         if(this.release)
         {
             url = this._service.getReleaseFirmwareUrl(this.component,this.firmware, this.hardware, this.autoOTA);
