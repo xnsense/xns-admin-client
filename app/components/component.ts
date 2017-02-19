@@ -1,3 +1,5 @@
+import { IComponentData } from './component-data';
+
 export interface IComponent {
     id: string;
     type: string;
@@ -7,4 +9,5 @@ export interface IComponent {
     unitId: string;
     hardwareId: string;
     firmwareId: string;
+    data: IComponentData
 }
