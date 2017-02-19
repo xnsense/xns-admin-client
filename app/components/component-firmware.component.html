@@ -26,12 +26,12 @@
             </div>
             <div class="row form-group">
                 <label class="col-xs-12 col-lg-6 custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" name="autoOTA" [(ngModel)]="autoOTA" (change)="updateUrl(false)">
+                    <input type="checkbox" class="custom-control-input" name="autoOTA" [(ngModel)]="autoOTA" (change)="updateUrl()">
                     <span class="custom-control-indicator"></span>
                     <span class="custom-control-description">Send OTA Command</span>
                 </label>
                 <label class="col-xs-12 col-lg-6 custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" name="releaseVersion" (change)="updateUrl(true)">
+                    <input type="checkbox" class="custom-control-input" name="releaseVersion" [(ngModel)]="release" (change)="updateUrl()">
                     <span class="custom-control-indicator"></span>
                     <span class="custom-control-description">Release Version</span>
                 </label>                

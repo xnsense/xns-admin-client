@@ -24,7 +24,7 @@ export class ComponentFirmwareComponent implements OnInit, OnChanges {
     public firmwareActions: IFirmwareAction[];
     public hardware: IHardware;
     public autoOTA: boolean = false;
-
+    public release: boolean = false;
     public uploader:FileUploader = new MyUploader({});
     public hasBaseDropZoneOver:boolean = false;
 
@@ -88,9 +88,10 @@ export class ComponentFirmwareComponent implements OnInit, OnChanges {
         });
     }
 
-    updateUrl(release:boolean) : void {
+    updateUrl() : void {
         let url: any;
-        if(release)
+
+        if(this.release)
         {
             url = this._service.getReleaseFirmwareUrl(this.component,this.firmware, this.hardware, this.autoOTA);
         }else
