@@ -9,8 +9,11 @@ export class DurationPipe implements PipeTransform {
     transform(value : any) : string {
         let output = "";
         var seconds: number;
-        
-        if (typeof value === 'string')
+        if (value == null)
+        {
+            return null;
+        }
+        else if (typeof value === 'string')
         {
             let regex = /^\d+$/g;
             if (regex.test(value))
@@ -24,7 +27,8 @@ export class DurationPipe implements PipeTransform {
                 }
                 catch(ex)
                 {
-                    return `Value is not a number or a date (was ${typeof value}): ${value}`;
+                    return null;
+                    //return `Value is not a number or a date (was ${typeof value}): ${value}`;
                 }
             }
         }

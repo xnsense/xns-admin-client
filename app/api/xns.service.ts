@@ -65,7 +65,7 @@ export class XnsService {
         let options = new RequestOptions({ headers: headers });
         return this._http.get(this._baseUrl + "tables/component/" + encodeURI(id), options)
             .map((response: Response) => (<IComponent> response.json()))
-            .do(data => console.log('All: ' +  JSON.stringify(data)))
+            //.do(data => console.log('All: ' +  JSON.stringify(data)))
             .catch(this.handleError);
     }
 
@@ -105,7 +105,7 @@ export class XnsService {
             .map((response: Response) => {
                 return true;
             })
-            .do(data => console.log('All: ' +  JSON.stringify(data)))
+            //.do(data => console.log('All: ' +  JSON.stringify(data)))
             .catch(this.handleError);
     }
 
@@ -141,7 +141,7 @@ export class XnsService {
             .map((response: Response) => {
                 return true;
             })
-            .do(data => console.log('All: ' +  JSON.stringify(data)))
+            //.do(data => console.log('All: ' +  JSON.stringify(data)))
             .catch(this.handleError);
     }
     getSaveableComponent(component: IComponent): any {
@@ -155,9 +155,9 @@ export class XnsService {
     getComponents(): Observable<IComponent[]> {
         let headers = new Headers({"X-ZUMO-AUTH": this._auth});
         let options = new RequestOptions({ headers: headers });
-        return this._http.get(this._baseUrl + "tables/component", options)
+        return this._http.get(this._baseUrl + "api/ComponentDataLatest", options)
             .map((response: Response) => <IComponent[]> response.json())
-            .do(data => console.log('All: ' +  JSON.stringify(data)))
+            //.do(data => console.log('All: ' +  JSON.stringify(data)))
             .catch(this.handleError);
     }
 
@@ -166,7 +166,7 @@ export class XnsService {
         let options = new RequestOptions({ headers: headers });
         return this._http.get(this._baseUrl + "tables/hardware", options)
             .map((response: Response) => <IHardware[]> response.json())
-            .do(data => console.log('All: ' +  JSON.stringify(data)))
+            //.do(data => console.log('All: ' +  JSON.stringify(data)))
             .catch(this.handleError);
     }
     
@@ -175,7 +175,7 @@ export class XnsService {
         let options = new RequestOptions({ headers: headers });
         return this._http.get(this._baseUrl + "tables/hardware/" + encodeURI(id), options)
             .map((response: Response) => <IHardware> response.json())
-            .do(data => console.log('All: ' +  JSON.stringify(data)))
+            //.do(data => console.log('All: ' +  JSON.stringify(data)))
             .catch(this.handleError);
     }
 
@@ -184,7 +184,7 @@ export class XnsService {
         let options = new RequestOptions({ headers: headers });
         return this._http.get(this._baseUrl + "tables/firmware", options)
             .map((response: Response) => <IFirmware[]> response.json())
-            .do(data => console.log('All: ' +  JSON.stringify(data)))
+            //.do(data => console.log('All: ' +  JSON.stringify(data)))
             .catch(this.handleError);
     }
 
@@ -193,7 +193,7 @@ export class XnsService {
         let options = new RequestOptions({ headers: headers });
         return this._http.get(this._baseUrl + "tables/firmware/" + encodeURI(id), options)
             .map((response: Response) => <IFirmware> response.json())
-            .do(data => console.log('All: ' +  JSON.stringify(data)))
+            //.do(data => console.log('All: ' +  JSON.stringify(data)))
             .catch(this.handleError);
     }
 
@@ -202,7 +202,7 @@ export class XnsService {
         let options = new RequestOptions({ headers: headers });
         return this._http.get(this._baseUrl + "tables/firmwareaction", options)
             .map((response: Response) => <IFirmwareAction[]> response.json())
-            .do(data => console.log('All: ' +  JSON.stringify(data)))
+            //.do(data => console.log('All: ' +  JSON.stringify(data)))
             .catch(this.handleError);
     }
     getFirmwareAction(): Observable<IFirmwareAction> {
@@ -210,7 +210,7 @@ export class XnsService {
         let options = new RequestOptions({ headers: headers });
         return this._http.get(this._baseUrl + "tables/firmwareaction", options)
             .map((response: Response) => <IFirmwareAction> response.json())
-            .do(data => console.log('All: ' +  JSON.stringify(data)))
+            //.do(data => console.log('All: ' +  JSON.stringify(data)))
             .catch(this.handleError);
     }
 
@@ -224,7 +224,7 @@ export class XnsService {
 
         return this._http.get(address , options)
             .map((response: Response) => <IComponentMessage[]> response.json().results)
-            .do(data => console.log('All: ' +  JSON.stringify(data)))
+            //.do(data => console.log('All: ' +  JSON.stringify(data)))
             .catch(this.handleError);
     }
     addOneMillisencond(date: Date) {
@@ -243,7 +243,7 @@ export class XnsService {
         var address = this._baseUrl + "api/ComponentData?componentAddress=" + encodeURI(component.componentAddress) + "&pageSize=1";
         return this._http.get(address , options)
             .map((response: Response) => response.json().results[0])
-            .do(data => console.log('All: ' +  JSON.stringify(data)))
+            //.do(data => console.log('All: ' +  JSON.stringify(data)))
             .catch(this.handleError);
         
     }

@@ -41,4 +41,10 @@ export class ComponentListComponent implements OnInit {
     toggleMenu() : void {
         this.menuToggled = !this.menuToggled;
     };
+
+
+    getTags(): string[] {
+        return [];
+        //return ["Fagerland", "temperatur", "display", "garasje"];
+    }
 }
