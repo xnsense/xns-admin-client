@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription }       from 'rxjs/Subscription';
 
 import { IComponent } from './component';
+import { IComponentData } from './componentData';
 import { XnsService } from '../api/xns.service';
 
 import { ComponentDetailsComponent } from './component-details.component';

@@ -11,6 +11,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
 import { IComponent } from '../components/component';
+import { IComponentData } from '../components/componentData';
 import { IHardware } from '../components/hardware';
 import { IFirmware } from '../components/firmware';
 import { IFirmwareAction } from '../components/firmwareAction';
@@ -67,6 +68,34 @@ export class XnsService {
             .do(data => console.log('All: ' +  JSON.stringify(data)))
             .catch(this.handleError);
     }
+
+
+    getComponentData(id: string, fromDate: Date, toDate: Date, pageSize: number, pageToken: string): Observable<IComponentData> {
+        let headers = new Headers({"X-ZUMO-AUTH": this._auth});
+        let options = new RequestOptions({ headers: headers });
+        let url = this._baseUrl + "api/componentData/" + encodeURI(id);
+        if(fromDate)
+        {
+            url += "&fromDate=" + fromDate.toISOString();
+        }
+        if(toDate)
+        {
+            url += "&toDate=" + toDate.toISOString();
+        }
+        if(pageSize)
+        {
+            url += "&pageSize=" + pageSize;
+        }
+        if(pageToken)
+        {
+            url += "&pageToken=" + pageToken;
+        }        
+        return this._http.get(url, options)
+            .map((response: Response) => (<IComponentData> response.json()))
+            .do(data => console.log('All: ' +  JSON.stringify(data)))
+            .catch(this.handleError);
+    }
+
 
     saveComponent(component: IComponent): Observable<boolean> {
         let headers = new Headers({"X-ZUMO-AUTH": this._auth, 'Content-Type': 'application/json'});
