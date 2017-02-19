@@ -119,7 +119,8 @@ export class XnsService {
         return {
             name: component.name,
             description: component.description,
-            type: component.type
+            type: component.type,
+            tag: component.tag
         };
     }
 

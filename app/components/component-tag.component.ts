@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 
 @Component({
     selector: 'xns-component-tag',
@@ -7,8 +7,14 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ComponentTagComponent {
     @Input() tag: string;
-    on: boolean;
+    @Input() on: boolean;
+    @Output() toggleTag = new EventEmitter();
 
     constructor() {
+    }
+
+    toggle(): void {
+        this.on = !this.on;
+        this.toggleTag.emit(this);
     }
 }

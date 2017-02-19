@@ -9,5 +9,6 @@ export interface IComponent {
     unitId: string;
     hardwareId: string;
     firmwareId: string;
+    tag: string;
     data: IComponentData
 }
