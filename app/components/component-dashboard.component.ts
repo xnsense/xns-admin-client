@@ -12,6 +12,7 @@ export class ComponentDashboardComponent implements OnInit, OnChanges {
     @Input() component: IComponent;
     loading: boolean = false;
     latest: any = {};
+    data: any = {};
 
    constructor(
                 private _service: XnsService,
@@ -64,6 +65,7 @@ export class ComponentDashboardComponent implements OnInit, OnChanges {
                 this._service.getComponent(id).subscribe(
                     data => {
                         this.component = data;
+                        this.loadLatest();
                     }
                 );
             }
@@ -80,10 +82,23 @@ export class ComponentDashboardComponent implements OnInit, OnChanges {
         this.loading = true;
         this._service.getComponentLatestData(this.component).subscribe(data => {
             this.latest = data;
+            this.data = this.evaluateData();
             this.loading = false;
             setTimeout(() => {
                 this.loadLatest();
             }, 10000);  
         });
+    }
+
+    evaluateData() : any {
+        let path:string = "return data.Temperatures.ute;";
+        try {
+            let func = new Function('data', path);
+            let value = func(this.latest.data);
+            return value;
+        }
+        catch (ex) {
+            return null;
+        }
     }
 }
