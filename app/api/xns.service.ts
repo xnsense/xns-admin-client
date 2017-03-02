@@ -17,6 +17,7 @@ import { IFirmware } from '../components/firmware';
 import { IFirmwareAction } from '../components/firmwareAction';
 import { IComponentMessage } from '../components/component-message';
 import { IUser } from './user';
+import { ISolution } from '../solutions/solution';
 
 @Injectable()
 export class XnsService {
@@ -212,6 +213,14 @@ export class XnsService {
         return this._http.get(this._baseUrl + "tables/firmwareaction", options)
             .map((response: Response) => <IFirmwareAction> response.json())
             //.do(data => console.log('All: ' +  JSON.stringify(data)))
+            .catch(this.handleError);
+    }
+    
+    getSolutions(): Observable<ISolution[]> {
+        let headers = new Headers({"X-ZUMO-AUTH": this._auth});
+        let options = new RequestOptions({ headers: headers });
+        return this._http.get(this._baseUrl + "tables/solution", options)
+            .map((response: Response) => <ISolution[]> response.json())
             .catch(this.handleError);
     }
 

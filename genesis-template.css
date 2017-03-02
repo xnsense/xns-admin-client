@@ -1523,7 +1523,8 @@ pre {
     cursor: not-allowed; }
 
 select.form-control:not([size]):not([multiple]), .daterangepicker select.input-mini:not([size]):not([multiple]) {
-  height: calc(2.09375rem + 2px); }
+  /*height: calc(2.09375rem + 2px); */
+}
 
 select.form-control:focus::-ms-value, .daterangepicker select.input-mini:focus::-ms-value {
   color: #9fa1a3;

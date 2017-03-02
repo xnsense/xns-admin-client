@@ -1,24 +1,51 @@
 
 <div class="col-xs-6" *ngIf="user">
-    <form name="form" (ngSubmit)="f.form.valid && save()" #f="ngForm" novalidate>
-        <div class="form-group">
-            <label for="typeInput">First Name</label>
-            <input type="text" name="firstName" class="form-control" [(ngModel)]="user.firstName" #type="ngModel" id="typeInput" placeholder="First Name"/>
+    <div class="card">
+        <div class="card-header">
+            <strong>My User</strong>
+            <small></small>
         </div>
-        <div class="form-group">
-            <label for="typeInput">Last Name</label>
-            <input type="text" name="lastName" class="form-control" [(ngModel)]="user.lastName" #name="ngModel" id="nameInput" placeholder="Last Name"/>
+        <div class="card-block">
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="name">First Name</label>
+                        <input class="form-control" id="firstName" [(ngModel)]="user.firstName" #type="ngModel" type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="name">Last Name</label>
+                        <input class="form-control" id="lastName" [(ngModel)]="user.lastName" #type="ngModel" type="text">
+                    </div>
+                </div>
+            </div>            
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="name">E-Mail</label>
+                        <input class="form-control" id="email" [(ngModel)]="user.email" #type="ngModel" type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="currSolution">Current Solution</label>
+                        <select name="currentSolution" class="form-control" id="currSolution" [(ngModel)]="user.currentSolutionId">
+                            <option *ngFor="let solution of solutions" [ngValue]="solution.id" [selected]="solution.id === user.currentSolutionId">{{solution.name}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="typeInput">E-Mail</label>
-            <input type="text" name="email" class="form-control" [(ngModel)]="user.email" #name="ngModel" id="nameInput" placeholder="E-Mail Address"/>
-        </div>
-        <div class="form-group">
-            <label for="typeInput">Current Solution</label>
-            <input type="text" name="currentSolutionId" class="form-control" [(ngModel)]="user.currentSolutionId" #name="ngModel" id="nameInput" placeholder=""/>
+
+        <div class="card-footer">
+            <button class="btn btn-md btn-primary" type="submit" (click)="saveUser()">Save</button>
         </div>        
-       <!-- <div class="form-group">
-            <button class="btn btn-primary" type="submit">Save</button>
-        </div>-->
-    </form>
+    </div>
 </div>
+
