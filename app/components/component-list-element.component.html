@@ -13,7 +13,7 @@
         <div class = "col-md-6"></div>
     </div>
     <div class="card-footer">
-        <button *ngIf="component.data" class="btn btn-default pull-right" (click)="showLatestData()">{{showDetails ? "Hide Data" : "Show Data"}}</button>
+        <button *ngIf="component.data" class="btn btn-link pull-right" (click)="showLatestData()">{{showDetails ? "Hide Data" : "Show Data"}}</button>
     </div>
     <div class="card-footer" *ngIf="showDetails">
         <pre>{{getComponentDataAsJson()}}</pre>

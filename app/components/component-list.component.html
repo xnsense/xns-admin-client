@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" style="padding-bottom: 10px;">
     <div class="col-xs-12">
         <xns-component-tag *ngFor="let tag of getTags()" [tag]="tag" [on]="isSelected(tag)" (toggleTag)="updateTags($event)"></xns-component-tag>
     </div>
