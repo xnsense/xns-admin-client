@@ -1,0 +1,21 @@
+<div class="card" *ngIf="component">
+    <div class="card-header">
+        <a [routerLink]="['/components', component.id]">{{component.name}}</a>
+        <span class="badge float-right" [class.badge-success]="isOnline(component.data?.processed)" >{{component.data?.enqueued | duration}}</span>
+    </div>
+    <div class="card-block row">
+        <div class = "col-md-6">
+            <div class="project-label"><strong>Address</strong></div>
+            <span>{{component.componentAddress}}</span>
+            <div class="project-label"><strong>Description</strong></div>
+            <span>{{component.description}}</span>
+        </div>
+        <div class = "col-md-6"></div>
+    </div>
+    <div class="card-footer">
+        <button *ngIf="component.data" class="btn btn-default pull-right" (click)="showLatestData()">{{showDetails ? "Hide Data" : "Show Data"}}</button>
+    </div>
+    <div class="card-footer" *ngIf="showDetails">
+        <pre>{{getComponentDataAsJson()}}</pre>
+    </div>
+</div>

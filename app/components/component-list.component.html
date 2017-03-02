@@ -7,24 +7,6 @@
 <div class="animated fadeIn row">
 
         <div class="col-xs-12 col-md-6" *ngFor="let component of components | tagfilter:selectedTags">
-            <div class="card">
-                <div class="card-header">
-                    <a [routerLink]="['/components', component.id]">{{component.name}}</a>
-                    <span class="badge badge-success float-right">{{component.data?.enqueued | duration}}</span>
-                </div>
-                <div class="card-block row">
-                        <div class = "col-md-6">
-                            <div class="project-label"><strong>Address</strong></div>
-                            <span>{{component.componentAddress}}</span>
-                            <div class="project-label"><strong>Description</strong></div>
-                            <span>{{component.description}}</span>
-                        </div>
-                        <div class = "col-md-6">
-
-                    </div>
-                </div>
-            </div>
+            <xns-component-list-element [component]="component"></xns-component-list-element>
         </div>
-
-
 </div>

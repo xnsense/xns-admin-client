@@ -70,7 +70,6 @@ export class ComponentListComponent implements OnInit {
         return tags;
         //return ["Fagerland", "temperatur", "display", "garasje"];
     }
-    
     isSelected(tag: string): boolean {
         if (this.selectedTags == null)
             return true;
@@ -87,5 +86,9 @@ export class ComponentListComponent implements OnInit {
             this.selectedTags.push(tag.tag);
 
         window.localStorage.setItem("selectedTags", this.selectedTags.filter(v => v).join('|'));
+    }
+
+    showLatestData(component: IComponent) :void {
+
     }
 }
