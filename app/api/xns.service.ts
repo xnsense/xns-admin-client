@@ -109,6 +109,22 @@ export class XnsService {
             //.do(data => console.log('All: ' +  JSON.stringify(data)))
             .catch(this.handleError);
     }
+//localStorage.setItem('currentSolutionId', currentSolutionId);
+    saveUser(user: IUser): Observable<boolean> 
+    {
+        let headers = new Headers({"X-ZUMO-AUTH": this._auth, 'Content-Type': 'application/json'});
+        let options = new RequestOptions({ headers: headers });
+        return this._http.post(this._baseUrl + "api/UserInfo?solutionId=" + encodeURI(user.currentSolutionId),JSON.stringify(""), options)
+            .map((response: Response) => 
+            {
+                localStorage.setItem('email', user.email);
+                localStorage.setItem('firstName', user.firstName);
+                localStorage.setItem('lastName', user.lastName);
+                localStorage.setItem('currentSolutionId', user.currentSolutionId);
+                return true;
+            })
+            .catch(this.handleError);
+    }
 
     echo(component: IComponent, message: string): Observable<boolean> {
         

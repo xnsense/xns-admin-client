@@ -38,8 +38,14 @@ export class UserComponent implements OnInit {
             },
             error => this.errorMessage = <any>error);
     }
-    saveUser(): void {
-        
-        console.log(this.user);
-    }    
+    saveUser() : void {
+        this._service
+            .saveUser(this.user)
+            .subscribe(success => {
+                if (success)
+                    console.log("User Saved");
+            }, e => {
+                    console.log("User Saved Failed");
+            });
+    }
 }
