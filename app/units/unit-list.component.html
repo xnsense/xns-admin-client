@@ -1,0 +1,15 @@
+<div class="animated fadeIn row">
+        <div class="col-xs-12 col-md-6" *ngFor="let unit of units">
+            <div class="card" *ngIf="unit">
+                <div class="card-header">
+                    <a [routerLink]="['/units', unit.id]">{{unit.name}}</a>
+                </div>
+                <div class="card-block row">
+                    <div class = "col-md-6">
+                        <div class="project-label"><strong>Description</strong></div>
+                        <span>{{unit.description}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>

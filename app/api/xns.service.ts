@@ -11,6 +11,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
 import { IComponent } from '../components/component';
+import { IUnit } from '../units/unit';
 import { IComponentData } from '../components/componentData';
 import { IHardware } from '../components/hardware';
 import { IFirmware } from '../components/firmware';
@@ -109,7 +110,7 @@ export class XnsService {
             //.do(data => console.log('All: ' +  JSON.stringify(data)))
             .catch(this.handleError);
     }
-//localStorage.setItem('currentSolutionId', currentSolutionId);
+
     saveUser(user: IUser): Observable<boolean> 
     {
         let headers = new Headers({"X-ZUMO-AUTH": this._auth, 'Content-Type': 'application/json'});
@@ -169,6 +170,42 @@ export class XnsService {
             tag: component.tag
         };
     }
+    getSaveableUnit(unit: IUnit): any {
+        return {
+            name: unit.name,
+            description: unit.description,
+            azureDevice: unit.azureDevice,
+            debugEnabled: unit.debugEnabled
+        };
+    }
+    getUnits(): Observable<IUnit[]> {
+        let headers = new Headers({"X-ZUMO-AUTH": this._auth});
+        let options = new RequestOptions({ headers: headers });
+        return this._http.get(this._baseUrl + "tables/Unit", options)
+            .map((response: Response) => <IUnit[]> response.json())
+            .catch(this.handleError);
+    }
+
+    getUnit(id: string): Observable<IUnit> {
+        let headers = new Headers({"X-ZUMO-AUTH": this._auth});
+        let options = new RequestOptions({ headers: headers });
+        return this._http.get(this._baseUrl + "tables/Unit/" + encodeURI(id), options)
+            .map((response: Response) => (<IUnit> response.json()))
+            //.do(data => console.log('All: ' +  JSON.stringify(data)))
+            .catch(this.handleError);
+    }
+
+    saveUnit(unit: IUnit): Observable<boolean> 
+    {
+        let headers = new Headers({"X-ZUMO-AUTH": this._auth, 'Content-Type': 'application/json'});
+        let options = new RequestOptions({ headers: headers });
+        let savable = this.getSaveableUnit(unit);
+        return this._http.patch(this._baseUrl + "tables/unit/" + encodeURI(unit.id), JSON.stringify(savable), options)
+            .map((response: Response) => {
+                return true;
+            })
+            .catch(this.handleError);
+    }    
 
     getComponents(): Observable<IComponent[]> {
         let headers = new Headers({"X-ZUMO-AUTH": this._auth});

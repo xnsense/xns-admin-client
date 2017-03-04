@@ -20,6 +20,7 @@ import { DatePipe } from '@angular/common';
 
 /* Feature Modules */
 import { ComponentModule } from './components/component.module';
+
 import { XnsService } from './api/xns.service';
 import { XnsServiceGuard } from './api/xns-guard.service';
 

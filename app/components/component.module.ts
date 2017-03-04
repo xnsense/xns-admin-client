@@ -7,6 +7,8 @@ import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
 import { Ng2BootstrapModule }  from 'ng2-bootstrap';
 import { TabsModule } from 'ng2-bootstrap';
 
+import { UnitListComponent } from '../units/unit-list.component';
+import { UnitDetailsComponent } from '../units/unit-details.component';
 import { ComponentListComponent } from './component-list.component';
 import { ComponentEditComponent } from './component-edit.component';
 import { ComponentDashboardComponent } from './component-dashboard.component';
@@ -34,12 +36,16 @@ import { XnsServiceGuard } from '../api/xns-guard.service';
       FormsModule,
       TabsModule,
       RouterModule.forChild([
+        { path: 'units', component: UnitListComponent, canActivate: [XnsServiceGuard] },
+        { path: 'units/:id', component: UnitDetailsComponent, canActivate: [XnsServiceGuard] },
         { path: 'components', component: ComponentListComponent, canActivate: [XnsServiceGuard] },
         { path: 'components/:id', component: ComponentDashboardComponent, canActivate: [XnsServiceGuard] },
         { path: 'edit/component/:id', component: ComponentEditComponent, canActivate: [XnsServiceGuard] }
       ])
   ],
   declarations: [
+    UnitListComponent,
+    UnitDetailsComponent,
     ComponentListComponent,
     ComponentDashboardComponent,
     ComponentMessagesComponent,
