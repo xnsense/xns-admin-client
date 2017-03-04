@@ -1,0 +1,17 @@
+
+.new-card
+{
+    border: dotted 3px lightgray;
+}
+
+.new-card-block
+{
+    height: 105px;
+}
+
+.new-unit-text
+{
+    margin-top: 5%;
+    font-size: 20px;
+    color: gray;
+}
