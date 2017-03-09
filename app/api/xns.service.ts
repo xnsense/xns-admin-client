@@ -6,6 +6,7 @@ import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
+import { Subscriber } from 'rxjs/Subscriber';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
@@ -187,12 +188,30 @@ export class XnsService {
     }
 
     getUnit(id: string): Observable<IUnit> {
-        let headers = new Headers({"X-ZUMO-AUTH": this._auth});
-        let options = new RequestOptions({ headers: headers });
-        return this._http.get(this._baseUrl + "tables/Unit/" + encodeURI(id), options)
-            .map((response: Response) => (<IUnit> response.json()))
-            //.do(data => console.log('All: ' +  JSON.stringify(data)))
-            .catch(this.handleError);
+
+        if (id == "new")
+        {
+            return Observable.create((sub:Subscriber<IUnit>) => {
+                
+                let x:IUnit  = <IUnit> {
+                    azureDevice: false,
+                    debugEnabled: false,
+                    id: null,
+                    name: "New Unit"
+                };
+                sub.next(x);
+                sub.complete();
+            });
+        }
+        else
+        {
+            let headers = new Headers({"X-ZUMO-AUTH": this._auth});
+            let options = new RequestOptions({ headers: headers });
+            return this._http.get(this._baseUrl + "tables/Unit/" + encodeURI(id), options)
+                .map((response: Response) => (<IUnit> response.json()))
+                //.do(data => console.log('All: ' +  JSON.stringify(data)))
+                .catch(this.handleError);
+        }
     }
 
     saveUnit(unit: IUnit): Observable<boolean> 
@@ -200,11 +219,25 @@ export class XnsService {
         let headers = new Headers({"X-ZUMO-AUTH": this._auth, 'Content-Type': 'application/json'});
         let options = new RequestOptions({ headers: headers });
         let savable = this.getSaveableUnit(unit);
-        return this._http.patch(this._baseUrl + "tables/unit/" + encodeURI(unit.id), JSON.stringify(savable), options)
-            .map((response: Response) => {
-                return true;
-            })
-            .catch(this.handleError);
+        
+        if (unit.id)
+        {
+            return this._http.patch(this._baseUrl + "tables/unit/" + encodeURI(unit.id), JSON.stringify(savable), options)
+                .map((response: Response) => {
+                    return true;
+                })
+                .catch(this.handleError);
+        }
+        else
+        {
+            return this._http.post(this._baseUrl + "tables/unit/" + encodeURI(unit.id), JSON.stringify(savable), options)
+                .map((response: Response) => {
+                    let saved = <IUnit>response.json();
+                    unit.id = saved.id;
+                    return true;
+                })
+                .catch(this.handleError);
+        }
     }    
 
     getComponents(): Observable<IComponent[]> {
