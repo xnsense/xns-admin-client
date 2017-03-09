@@ -16,7 +16,8 @@ import { IUnit } from '../units/unit';
 import { IComponentData } from '../components/componentData';
 import { IHardware } from '../components/hardware';
 import { IFirmware } from '../components/firmware';
-import { IFirmwareAction } from '../components/firmwareAction';
+import { IFirmwareAction } from '../components/firmware-action';
+import { IFirmwareDataPath } from '../components/firmware-datapath';
 import { IComponentMessage } from '../components/component-message';
 import { IUser } from './user';
 import { ISolution } from '../solutions/solution';
@@ -323,6 +324,18 @@ export class XnsService {
             //.do(data => console.log('All: ' +  JSON.stringify(data)))
             .catch(this.handleError);
     }
+
+    getFirmwareDataPaths(firmware: IFirmware):Observable<IFirmwareDataPath> {
+        let headers = new Headers({"X-ZUMO-AUTH": this._auth});
+        let options = new RequestOptions({ headers: headers });
+        let filter = "firmwareId eq '" + firmware.id + "'";
+        return this._http.get(this._baseUrl + "tables/firmwareDataPath?$filter=" + encodeURI(filter), options)
+            .map((response: Response) => <IFirmwareDataPath> response.json())
+            //.do(data => console.log('All: ' +  JSON.stringify(data)))
+            .catch(this.handleError);
+    }
+
+
     addOneMillisencond(date: Date) {
         var d = new Date(date);
         d.setMilliseconds(d.getMilliseconds() + 1);

@@ -75,6 +75,33 @@
                 {{errorMessage}}
             </div>       
         </tab>
+        
+        <tab heading="Data" *ngIf="firmwareDataPaths">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="col-xs-6 col-md-3">Name</th>
+                            <th class="col-xs-3">Path</th>
+                            <th class="col-xs-3">Format</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let path of firmwareDataPaths">
+                            <td class="">{{path.name}}</td>
+                            <td class="">{{path.path}}</td>
+                            <td class="">{{path.format}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <button class="btn btn-primary btn-xs" type="button">
+                Create  
+            </button>     
+            <div class="label label-danger" *ngIf="errorMessage != null">
+                {{errorMessage}}
+            </div>       
+        </tab>
     </tabset>
     
 </div>

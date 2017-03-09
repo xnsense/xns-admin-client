@@ -86,7 +86,7 @@ export class ComponentDashboardComponent implements OnInit, OnChanges {
             this.loading = false;
             setTimeout(() => {
                 this.loadLatest();
-            }, 10000);  
+            }, 30000);  
         });
     }
 

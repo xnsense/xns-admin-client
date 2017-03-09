@@ -7,7 +7,8 @@ import { FileUploader, FileSelectDirective, FileItem } from 'ng2-file-upload';
 
 import { IComponent } from './component';
 import { IFirmware } from './firmware';
-import { IFirmwareAction } from './firmwareAction';
+import { IFirmwareAction } from './firmware-action';
+import { IFirmwareDataPath } from './firmware-datapath';
 import { IHardware } from './hardware';
 import { XnsService } from '../api/xns.service';
 
@@ -22,12 +23,13 @@ export class ComponentFirmwareComponent implements OnInit, OnChanges {
     public errorMessage: any;
     public firmware: IFirmware;
     public firmwareActions: IFirmwareAction[];
+    public firmwareDataPaths: IFirmwareDataPath[];
     public hardware: IHardware;
     public autoOTA: boolean = false;
     public release: boolean = false;
     public uploader:FileUploader = new MyUploader({});
     public hasBaseDropZoneOver:boolean = false;
-
+    
     constructor(private _service: XnsService) {
     }
 
@@ -48,6 +50,7 @@ export class ComponentFirmwareComponent implements OnInit, OnChanges {
             .subscribe(
                 data => {
                     this.firmware = data;
+                    this.loadDataPaths();
                 },
                 error => this.errorMessage = <any>error
             );
@@ -67,6 +70,15 @@ export class ComponentFirmwareComponent implements OnInit, OnChanges {
                 this.firmwareActions = this.firmwareActions.filter(x => x.firmwareId == fwId);
                 },
                 error => this.errorMessage = <any>error);
+    }
+
+    loadDataPaths():void {
+        this._service.getFirmwareDataPaths(this.firmware)
+        .subscribe(data => {
+            this.firmwareDataPaths = data;
+        },
+        error => this.errorMessage = <any>error
+        )
     }
 
     sendCommand(firmwareAction:IFirmwareAction) : void {
