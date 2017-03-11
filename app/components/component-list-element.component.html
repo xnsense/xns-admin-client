@@ -3,16 +3,24 @@
         <a [routerLink]="['/components', component.id]">{{component.name}}</a>
         <span class="badge float-right" [class.badge-success]="isOnline(component.data?.processed)" >{{component.data?.enqueued | duration}}</span>
     </div>
-    <div class="card-block row">
-        <div class = "col-md-6">
-            <div class="project-label"><strong>Address</strong></div>
-            <span>{{component.componentAddress}}</span>
-            <div class="project-label"><strong>Description</strong></div>
-            <span>{{component.description}}</span>
+    <div class="card-block row" *ngIf="component.description">
+        <div class="col-sm-12">{{component.description}}</div>
+    </div>
+    <div class="card-block row" *ngIf="actions?.length > 0">
+        <div class="col-sm-12">
+            
         </div>
-        <div class = "col-md-6"></div>
+    </div>
+    <div class="card-block row">
+        <table class="table">
+            <tr *ngFor="let path of component?.data?.dataPathList">
+                <td>{{path.name}}</td>
+                <td class="pull-right">{{getDataValue(path)}}</td>
+            </tr>
+        </table>
     </div>
     <div class="card-footer">
+        <button *ngFor="let action of actions" class="btn btn-primary btn-xs" type="button" (click)="sendCommand(action)">{{action.name}}</button>
         <button *ngIf="component.data" class="btn btn-link pull-right" (click)="showLatestData()">{{showDetails ? "Hide Data" : "Show Data"}}</button>
     </div>
     <div class="card-footer" *ngIf="showDetails">

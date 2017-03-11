@@ -4,6 +4,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { IComponent } from './component';
 import { IComponentData } from './componentData';
 import { XnsService } from '../api/xns.service';
+import { IFirmwareDataPath } from './firmware-datapath';
+import { IFirmwareAction } from './firmware-action';
 
 @Component({
     selector: 'xns-component-list-element',
@@ -12,6 +14,7 @@ import { XnsService } from '../api/xns.service';
 })
 export class ComponentListElementComponent implements OnInit, OnChanges {
     @Input() component: IComponent;
+    actions: IFirmwareAction[] = [];
     showDetails: boolean = false;
 
    constructor(private _service: XnsService) {
@@ -19,7 +22,9 @@ export class ComponentListElementComponent implements OnInit, OnChanges {
     }
     
     ngOnInit(): void {
-        
+        this._service.getFirmwareActionList().subscribe(data => {
+            this.actions = data.filter(v=> v.firmwareId == this.component.firmwareId);
+        });
     }
 
     ngOnChanges(): void {
@@ -53,5 +58,37 @@ export class ComponentListElementComponent implements OnInit, OnChanges {
         }
         else
             return null;
+    }
+
+    getDataValue(path:IFirmwareDataPath):string {
+        let statement:string = "return " + path.path + ";";
+        try {
+            let func = new Function('data', statement);
+            let value = func(this.component.data.data);
+            return path.format.replace("%1", value);
+        }
+        catch (ex) {
+            return null;
+        }
+    }
+
+    
+    sendCommand(firmwareAction:IFirmwareAction) : void {
+        let command: any;
+        let commandName: any;
+        
+        try 
+            {
+                command = JSON.parse(firmwareAction.commandDetails);
+                commandName = firmwareAction.command;
+            }
+            catch (ex)
+            {
+                
+                console.log(ex);
+                return;
+            }
+        this._service.sendCustomCommand(this.component, commandName, command).subscribe(success => {
+        });
     }
 }
