@@ -6,18 +6,23 @@
     <div class="card-block row" *ngIf="component.description">
         <div class="col-sm-12">{{component.description}}</div>
     </div>
-    <div class="card-block row" *ngIf="actions?.length > 0">
+    <div class="card-block row" *ngIf="component?.data?.dataPathList?.length > 0">
         <div class="col-sm-12">
-            
-        </div>
-    </div>
-    <div class="card-block row">
         <table class="table">
-            <tr *ngFor="let path of component?.data?.dataPathList">
-                <td>{{path.name}}</td>
-                <td class="pull-right">{{getDataValue(path)}}</td>
-            </tr>
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th class="pull-right">Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let path of component?.data?.dataPathList">
+                    <td>{{path.name}}</td>
+                    <td class="pull-right">{{getDataValue(path)}}</td>
+                </tr>
+            </tbody>
         </table>
+        </div>
     </div>
     <div class="card-footer">
         <button *ngFor="let action of actions" class="btn btn-primary btn-xs" type="button" (click)="sendCommand(action)">{{action.name}}</button>
