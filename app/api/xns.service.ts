@@ -13,6 +13,7 @@ import 'rxjs/add/operator/map';
 
 import { IComponent } from '../components/component';
 import { IUnit } from '../units/unit';
+import { IUnitConfig } from '../units/unitConfig';
 import { IComponentData } from '../components/componentData';
 import { IHardware } from '../components/hardware';
 import { IFirmware } from '../components/firmware';
@@ -240,6 +241,14 @@ export class XnsService {
                 .catch(this.handleError);
         }
     }    
+    
+    getUnitConfig(id: string): Observable<IUnitConfig> {
+        let headers = new Headers({"X-ZUMO-AUTH": this._auth});
+        let options = new RequestOptions({ headers: headers });
+        return this._http.get(this._baseUrl + "api/UnitConfig?unitId=" + encodeURI(id), options)
+            .map((response: Response) => (<IUnitConfig> response.json()))
+            .catch(this.handleError);
+    }
 
     getComponents(): Observable<IComponent[]> {
         let headers = new Headers({"X-ZUMO-AUTH": this._auth});

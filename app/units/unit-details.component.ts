@@ -1,6 +1,5 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-
 
 import { IUnit } from './unit';
 import { XnsService } from '../api/xns.service';
@@ -15,7 +14,7 @@ export class UnitDetailsComponent implements OnInit, OnChanges
     @Input() unit: IUnit;
     public pageTitle: string = 'Unit';
     public errorMessage: string;
-    
+    public unitConfig: string;
    constructor(private _route: ActivatedRoute,
                 private _router: Router,
                 private _service: XnsService) {
@@ -48,7 +47,22 @@ export class UnitDetailsComponent implements OnInit, OnChanges
             }, e => 
             {
                 this.errorMessage = e;
-                console.error(e);
             });
     }
+    
+    getUnitConfig(): void {
+        try {
+
+            this._service.getUnitConfig(this.unit.id).subscribe(data => {
+                if (data != null)
+                    this.unitConfig = JSON.stringify(data,null,3);
+                else
+                    console.log("No Config");
+            });
+        }
+        catch(ex)
+        {
+            this.errorMessage = ex;
+        }
+    }    
 }

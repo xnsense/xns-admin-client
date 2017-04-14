@@ -1,4 +1,4 @@
-<div class="col-xs-12 col-lg-6">
+<div class="col-xs-12">
     <div class="card" *ngIf="unit">
         <div class="card-header">
             <strong>{{unit.name}}</strong>
@@ -34,11 +34,21 @@
                 </div>
                 <div class="form-group">
                     <button class="btn btn-primary" type="submit">Save</button>
+                    <button class="btn btn-secondary" (click)="getUnitConfig()">Show Config</button>
                 </div>
                 <div class="label label-danger" *ngIf="errorMessage != null">
                     {{errorMessage}}
-                </div> 
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Unit Config
+                    </div>
+                    <div class="panel-body">
+                        <pre>{{unitConfig}}</pre>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
+
 </div>

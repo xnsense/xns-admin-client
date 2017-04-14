@@ -14,8 +14,6 @@ import { NavbarComponent } from './home/navbar/navbar.component';
 import { SidebarComponent } from './home/sidebar/sidebar.component';
 import { UserComponent } from './home/user/user.component';
 import { SIDEBAR_TOGGLE_DIRECTIVES } from './home/sidebar/sidebar.directive';
-
-
 import { DatePipe } from '@angular/common';
 
 /* Feature Modules */
