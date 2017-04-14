@@ -181,6 +181,14 @@ export class XnsService {
             debugEnabled: unit.debugEnabled
         };
     }
+    getSaveableFirmwareDataPath(firmwareDataPath: IFirmwareDataPath): any {
+        return {
+            name: firmwareDataPath.name,
+            path: firmwareDataPath.path,
+            format: firmwareDataPath.format
+        };
+    }
+
     getUnits(): Observable<IUnit[]> {
         let headers = new Headers({"X-ZUMO-AUTH": this._auth});
         let options = new RequestOptions({ headers: headers });
@@ -242,6 +250,17 @@ export class XnsService {
         }
     }    
     
+    saveFirmwareDataPaths(firmwareDataPath: IFirmwareDataPath):Observable<boolean> {
+        let headers = new Headers({"X-ZUMO-AUTH": this._auth, 'Content-Type': 'application/json'});
+        let options = new RequestOptions({ headers: headers });
+        let savable = this.getSaveableFirmwareDataPath(firmwareDataPath);
+        return this._http.patch(this._baseUrl + "tables/firmwareDataPath/" + encodeURI(firmwareDataPath.id), JSON.stringify(savable), options)
+            .map((response: Response) => {
+                return true;
+            })
+            .catch(this.handleError);
+    }
+
     getUnitConfig(id: string): Observable<IUnitConfig> {
         let headers = new Headers({"X-ZUMO-AUTH": this._auth});
         let options = new RequestOptions({ headers: headers });

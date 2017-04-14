@@ -22,6 +22,7 @@ export class UnitDetailsComponent implements OnInit, OnChanges
     }
     ngOnChanges() : void 
     {
+        console.log("Change Happen");
     }
     ngOnInit(): void 
     {

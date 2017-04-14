@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Ng2BootstrapModule }  from 'ng2-bootstrap';
 import { TabsModule } from 'ng2-bootstrap';
@@ -19,18 +19,18 @@ import { XnsService } from '../api/xns.service';
 })
 export class ComponentFirmwareComponent implements OnInit, OnChanges {
     
+    public firmwareDataPaths: IFirmwareDataPath[];
     @Input() public component: IComponent;
     public errorMessage: any;
     public firmware: IFirmware;
     public firmwareActions: IFirmwareAction[];
-    public firmwareDataPaths: IFirmwareDataPath[];
     public hardware: IHardware;
     public autoOTA: boolean = false;
     public release: boolean = false;
     public uploader:FileUploader = new MyUploader({});
     public hasBaseDropZoneOver:boolean = false;
-    
     constructor(private _service: XnsService) {
+        
     }
 
     fileOverBase(e:any): void {
@@ -39,6 +39,23 @@ export class ComponentFirmwareComponent implements OnInit, OnChanges {
     }
     upload(): void {
         this.uploader.uploadAll();
+    }
+    ngOnChanges(changes: SimpleChanges) 
+    {
+        console.log(changes);
+        // changes.prop contains the old and the new value...
+    }
+    fwDataPathChanges(fwDataPath: IFirmwareDataPath ) 
+    {
+        console.log(fwDataPath);
+        this._service.saveFirmwareDataPaths(fwDataPath)
+            .subscribe(success => {
+                if (success)
+                    console.log("Saved");
+            }, e => 
+            {
+                console.log(e);
+            });
     }
     ngOnInit(): void {
         this.updateUrl();
@@ -112,10 +129,6 @@ export class ComponentFirmwareComponent implements OnInit, OnChanges {
         }
         let auth = this._service.getAuthHeader();
         this.uploader.setOptions({ url: url, autoUpload: true, removeAfterUpload: true, method: "POST", authTokenHeader: auth[0], authToken: auth[1] });      
-    }
-
-    ngOnChanges() : void {
-
     }
 }
 
