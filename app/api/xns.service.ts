@@ -249,7 +249,13 @@ export class XnsService {
             .map((response: Response) => (<IUnitConfig> response.json()))
             .catch(this.handleError);
     }
-
+    crateUnitConfig(id: string): Observable<IUnitConfig> {
+        let headers = new Headers({"X-ZUMO-AUTH": this._auth});
+        let options = new RequestOptions({ headers: headers });
+        return this._http.post(this._baseUrl + "api/UnitConfig?unitId=" + encodeURI(id) +"&IoTHubSASToken=true", options)
+            .map((response: Response) => (<IUnitConfig> response.json()))
+            .catch(this.handleError);
+    }
     getComponents(): Observable<IComponent[]> {
         let headers = new Headers({"X-ZUMO-AUTH": this._auth});
         let options = new RequestOptions({ headers: headers });

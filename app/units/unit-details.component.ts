@@ -64,5 +64,20 @@ export class UnitDetailsComponent implements OnInit, OnChanges
         {
             this.errorMessage = ex;
         }
+    }
+    createUnitConfig(): void {
+        try {
+
+            this._service.crateUnitConfig(this.unit.id).subscribe(data => {
+                if (data != null)
+                    this.unitConfig = JSON.stringify(data,null,3);
+                else
+                    console.log("No Config");
+            });
+        }
+        catch(ex)
+        {
+            this.errorMessage = ex;
+        }
     }    
 }
