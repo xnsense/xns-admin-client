@@ -62,12 +62,21 @@ export class ComponentListElementComponent implements OnInit, OnChanges {
 
     getDataValue(path:IFirmwareDataPath):string {
         let statement:string = "return " + path.path + ";";
+        //console.log(path.path);
         try {
             let func = new Function('data', statement);
             let value = func(this.component.data.data);
-            return path.format.replace("%1", value);
+            if(path.format)
+            {
+                return path.format.replace("%1", value);
+            }else
+            {
+                return value;
+            }
+            
         }
         catch (ex) {
+            console.log(ex);
             return null;
         }
     }

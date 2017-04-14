@@ -8,17 +8,17 @@
     </div>
     <div class="card-block row" *ngIf="component?.data?.dataPathList?.length > 0">
         <div class="col-sm-12">
-        <table class="table">
+        <table class="table table-condensed">
             <thead>
                 <tr>
                     <th>Data</th>
-                    <th class="pull-right">Value</th>
+                    <th class="text-right">Value</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let path of component?.data?.dataPathList">
                     <td>{{path.name}}</td>
-                    <td class="pull-right">{{getDataValue(path)}}</td>
+                    <td class="text-right">{{getDataValue(path)}}</td>
                 </tr>
             </tbody>
         </table>

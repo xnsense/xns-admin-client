@@ -47,14 +47,12 @@ export class ComponentFirmwareComponent implements OnInit, OnChanges {
     }
     fwDataPathChanges(fwDataPath: IFirmwareDataPath ) 
     {
-        console.log(fwDataPath);
         this._service.saveFirmwareDataPaths(fwDataPath)
             .subscribe(success => {
-                if (success)
-                    console.log("Saved");
+                
             }, e => 
             {
-                console.log(e);
+                this.errorMessage = e;
             });
     }
     ngOnInit(): void {
